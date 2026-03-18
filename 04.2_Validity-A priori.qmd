@@ -1,0 +1,105 @@
+---
+title: ""
+author: "Giorgio Arcara"
+date: ""
+#format: revealjs
+format:
+  beamer:
+    theme: metropolis
+    keep-tex: false
+incremental: false
+header-includes:
+  \setbeamerfont{title}{size=\large}
+  \usepackage{hyperref}
+  \setbeamertemplate{footline}[frame number]
+---
+
+<!-- the section below is shown only if rendering is beamer from latex. (and format:revealjs is commmented) -->
+
+::: {.content-visible when-format="beamer"}
+```{=latex}
+% TITLE SLIDES
+\title{{\fontsize{15pt}{16pt}\selectfont Applied Psychometrics}:\\ studying subclinical psychopathologies\\ \vspace{1.5em} \raggedright 
+\emph{4.2 - Validity: A priori}}
+\author{Giorgio Arcara,\\ University of Padua \\ IRCCS San Camillo, Venice}
+
+\titlegraphic{
+
+\vspace*{7cm}
+\includegraphics[scale=0.15]{Figures/LogoSanCamilloIRCCS_Unipd_alpha.png}
+\begin{center}
+\vspace{-2.2em}
+\includegraphics[scale=0.15]{Figures/CC_license_3_0.png}
+\end{center}
+}
+\date{2026}
+\maketitle
+```
+
+## A priori validity
+
+Is the validity that can be assessed even before data collection has started and pertain the theoretical robustness of the instrument.
+\pause
+\vfill
+
+- **Face Validity**
+- **Content Validity**
+ 
+## Face Validity
+\begin{center}
+\textbf{\Large Face Validity}
+\end{center}
+\vspace{2em}
+\pause
+Is the extent the test _appears_ to measure what it is meant to measure
+
+## Face Validity examples
+
+A test on memory that ask participant to "remember" something will have satisfactory face validity.
+\pause \vfill
+
+A test on anxiety with items that ask how "anxious/nervous" you are will have satisfactory face validity.
+
+
+## Notes on Face Validity
+ 
+It is the less important type of validity
+
+It is only assessed qualitatively (and often not reported) 
+
+ 
+
+## Content Validity
+\begin{center}
+\textbf{\Large Content Validity}
+\end{center}
+\vspace{2em}
+
+Is the extent the test covers all relevant aspect of a construct.
+
+Typically it is first assessed ad item level, to assess if each item is relevant for the construct, and then reported at test level.
+
+## Content Validity examples
+
+A test on Obsessive Compulsive Disorder that include only items on obsessions but not on compulsions will have low content validity.
+\pause \vfill
+
+A test on anxiety with many items on depression will have low content validity, while one that cover all important aspects of the construct of anxiety will have high content validity.
+
+
+## Notes on Content Validity 1/2
+ 
+It is commonly measured with **CVI** (Content Validity Index), whose desirable value dependes on number of raters
+ \vfill
+ \centering
+ _from Saiful Bahri Yusoff (2019)_
+ 
+![](Figures/CVI_recommendations.png){width="80%" fig-align="center"}
+
+
+## Notes on Content Validity 2/2
+
+Very often Content Validity is not reported.
+
+Content Validity as measured with CVI assess how well the items are related to the construct, but not how well the construct is covered.
+

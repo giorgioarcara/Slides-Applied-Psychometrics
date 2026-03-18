@@ -1,0 +1,113 @@
+---
+title: ""
+author: "Giorgio Arcara"
+date: ""
+#format: revealjs
+format:
+  beamer:
+    theme: metropolis
+    keep-tex: false
+incremental: false
+header-includes:
+  \setbeamerfont{title}{size=\large}
+  \usepackage{hyperref}
+  \usepackage{tikz}
+  \usetikzlibrary{positioning, arrows.meta}
+  \setbeamertemplate{footline}[frame number]
+---
+
+<!-- the section below is shown only if rendering is beamer from latex. (and format:revealjs is commmented) -->
+
+::: {.content-visible when-format="beamer"}
+```{=latex}
+% TITLE SLIDES
+\title{{\fontsize{15pt}{16pt}\selectfont Applied Psychometrics}:\\ studying subclinical psychopathologies\\ \vspace{1.5em} \raggedright \emph{1.2 - Unobservable entities}}
+\author{Giorgio Arcara,\\ University of Padua \\ IRCCS San Camillo, Venice}
+
+\titlegraphic{
+
+\vspace*{7cm}
+\includegraphics[scale=0.15]{Figures/LogoSanCamilloIRCCS_Unipd_alpha.png}
+\begin{center}
+\vspace{-2.2em}
+\includegraphics[scale=0.15]{Figures/CC_license_3_0.png}
+\end{center}
+}
+\date{2026}
+\maketitle
+```
+:::
+
+## Who said this?
+```{=latex}
+\begin{center}
+\emph{"Measure what is measurable, and make measurable what is not so"}
+\end{center}
+\vfill
+\pause
+\begin{columns}
+    \begin{column}{0.5\textwidth}
+        \begin{enumerate}
+            \item Andrea Vesalio (1514-1564)
+            \item Galileo Galilei (1564-1642)
+            \item Cesare Musatti (1897-1989)
+        \end{enumerate}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+    \pause
+        \begin{figure}
+            \includegraphics[width=0.5\linewidth]{Figures/Galileo.arp.300pix.jpg}
+        \end{figure}
+    \end{column}
+\end{columns}
+```
+
+## Unobservable entities in Physics
+```{=latex}
+\begin{figure}
+\includegraphics[height=4cm]{Figures/termometro_mercurio.png}
+\end{figure}
+```
+
+## Unobservable entities in Psychology
+
+```{=latex}
+\begin{center}
+\begin{tikzpicture}
+    % First block (top)
+    \node[draw, rectangle, text width=4cm, align=center] (construct) {\textbf{Construct} \\ (e.g. Anxiety, Memory)};
+    
+    % Second block (bottom, 5cm below)
+    \node[draw, rectangle, minimum width=3cm, minimum height=1cm, below=5cm of construct] (measure) {Number};
+    
+    \onslide<1-2>{\draw[<->, >=stealth, gray, dashed, thick] (construct) -- (measure);}
+    
+\onslide<2>{\node[rectangle, minimum width=3cm, minimum height=1cm, below=2.25cm of construct, xshift=3cm] (Notpossible) {\textbf{Not possible!}};}
+
+    
+    \onslide<3->{
+      
+    \node[draw, rectangle, text width=4cm, align=center, below=2cm of construct] (behaviour) {\textbf{Behaviour}\\ (e.g., responses to test)};
+    
+    % Straight arrows (gray, dashed)
+    \draw[-{Stealth}, gray, solid, thick] (construct) -- (behaviour);
+    \draw[-{Stealth}, gray, solid, thick] (behaviour) -- (measure);
+    
+    % Curved arrow on the left from construct to measure
+     \draw[<->, >=stealth, gray, dashed, thick] (measure) to[out=180, in=180] (construct);}
+     
+     \onslide<4->{
+      
+    \node[draw, rectangle, text width=4cm, align=center, right=0.5cm of construct] (others) {\textbf{Other variables}\\ {\small(e.g., Motivation,Mood, Fatigue, \textit{Other Constructs}})};        
+    \draw[-{Stealth}, gray, solid, thick] (others) -- (behaviour);
+     
+     }
+    \onslide<5>{\node[rectangle, minimum width=3cm, minimum height=1cm, below=2.25cm of construct, xshift=3cm] (Notpossible) {\includegraphics[height=2cm]{Figures/termometro_mercurio.png}};}
+
+    
+\end{tikzpicture}
+\end{center}
+```
+
+
+

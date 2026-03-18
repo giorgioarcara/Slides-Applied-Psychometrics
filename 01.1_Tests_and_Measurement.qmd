@@ -1,0 +1,142 @@
+---
+title: ""
+author: "Giorgio Arcara"
+date: ""
+#format: revealjs
+format:
+  beamer:
+    theme: metropolis
+    keep-tex: false
+incremental: false
+header-includes:
+  \setbeamerfont{title}{size=\large}
+  \usepackage{hyperref}
+  \setbeamertemplate{footline}[frame number]
+---
+
+<!-- the section below is shown only if rendering is beamer from latex. (and format:revealjs is commmented) -->
+
+::: {.content-visible when-format="beamer"}
+```{=latex}
+% TITLE SLIDES
+\title{{\fontsize{15pt}{16pt}\selectfont Applied Psychometrics}:\\ studying subclinical psychopathologies\\ \vspace{1.5em} \raggedright \emph{1.1 - Tests and Measurement}}
+\author{Giorgio Arcara,\\ University of Padua \\ IRCCS San Camillo, Venice}
+
+\titlegraphic{
+
+\vspace*{7cm}
+\includegraphics[scale=0.15]{Figures/LogoSanCamilloIRCCS_Unipd_alpha.png}
+\begin{center}
+\vspace{-2.2em}
+\includegraphics[scale=0.15]{Figures/CC_license_3_0.png}
+\end{center}
+}
+\date{2026}
+\maketitle
+```
+:::
+
+## A fragment of a test
+```{=latex}
+\includegraphics[width=0.9\textwidth]{Figures/Becks_1.png}
+```
+
+## A fragment of test scoring
+```{=latex}
+\includegraphics[width=0.9\textwidth]{Figures/Becks_2.png}
+```
+
+## Definition of Test
+
+```{=latex}
+\setlength{\fboxrule}{1.5pt}
+
+"A test is a
+\alt<2->{\fcolorbox{red}{white}{\rule{0pt}{12pt}\hspace{2pt}systematic procedure\hspace{2pt}}}{systematic procedure}
+for\\
+\alt<3->{\fcolorbox{red}{white}{\rule{0pt}{12pt}\hspace{2pt}observing a person's behavior\hspace{2pt}}}{observing a person's behavior}
+and for its
+\alt<4->{\fcolorbox{red}{white}{\rule{0pt}{12pt}\hspace{2pt}description with the help of a numerical scale\hspace{2pt}}}{description with the help of a numerical scale}
+or a category system.
+
+\begin{flushright}
+  \emph{(Cronbach, 1990, p.32)}
+\end{flushright}
+\pause
+```
+
+## Constructs
+\begin{center}
+\includegraphics[scale=0.05]{Figures/triangle.png}
+\end{center}
+
+with psychological tests the interest is never in the behavior itself but in the \textbf{construct} measured by that behavior.
+
+\textbf{Construct}: an unobservable psychological concept 
+
+## Type of tests
+
+- **maximal performance** \pause
+- **typical behaviour** \pause
+
+## A definition of Measurement
+\pause
+
+_"We may say that measurement, in the broadest sense, is defined as the assignment of numerals to objects or events, according to rules."_
+
+*Stevens (1946)*
+\vfill
+\pause
+Depending on the rule, different operations can be made with the numbers obtained with the measurement.
+
+## Our previous example
+```{=latex}
+\includegraphics[width=0.9\textwidth]{Figures/Becks_2.png}
+```
+
+<!--
+## Measurement Scales According to Stevens
+
+:::{.small}
+\scriptsize
+For Stevens, what is important is to define the measurement scale, which relates objects to numbers.
+
+\tiny
+| Scale        | Description                                                                 | Example                         | Possible Operations                                   |
+|--------------|------------------------------------------------------------------------------|---------------------------------|--------------------------------------------------------|
+| **Nominal** | Classification into categories without implicit order                         | Sex (M/F), Colors, Nationality  | Counting, mode, checking equality/difference      |
+| **Ordinal** | Classification with order, but distances between categories have no meaning   | Position in a ranking, Educational level | Ordering, medians, percentiles                     |
+| **Interval** | Measurement with order and equal intervals, but without meaningful absolute zero | Temperature in °C, IQ           | Addition, Subtraction, Mean, Standard deviation, z-score                |
+| **Ratio** | Measurement with order, equal intervals and zero has meaning          |  Age, Years of education, reaction times | All arithmetic operations (×, ÷, +, −), z-score, ratios|
+
+**Legend**  
+- *Scale*: type of measurement according to Stevens' classification.  
+- *Description*: main characteristics of the scale.  
+- *Example*: real variables that fall into that scale.  
+- *Possible operations*: mathematical and statistical transformations allowed by the data.
+:::
+-->
+
+## A new questionnaire
+
+Imagine having this questionnaire:
+\scriptsize
+
+1. Do you feel depressed? (No = 0, Yes = 1) \pause
+2. Do you sometimes feel like you're having a bad day? (No = 0, Yes = 1) \pause
+3. Do you sometimes feel that there is no hope in your life? (No = 0, Yes = 1) \pause
+4. Do you enjoy romantic movies? (No = 1, Yes = 0) \pause
+
+\vfill
+\normalsize
+The final score is obtained by summing the scores (0/1) of each question and a score > 3 is a very good indicator of Depression. 
+\pause
+
+\textbf{Would you consider this a "test" and a "measurement?"}
+
+
+
+
+
+
+

@@ -1,0 +1,133 @@
+---
+title: ""
+author: "Giorgio Arcara"
+date: ""
+#format: revealjs
+format:
+  beamer:
+    theme: metropolis
+    keep-tex: false
+incremental: false
+header-includes:
+  \setbeamerfont{title}{size=\large}
+  \usepackage{hyperref}
+  \setbeamertemplate{footline}[frame number]
+---
+
+<!-- the section below is shown only if rendering is beamer from latex. (and format:revealjs is commmented) -->
+
+::: {.content-visible when-format="beamer"}
+```{=latex}
+% TITLE SLIDES
+\title{{\fontsize{15pt}{16pt}\selectfont Applied Psychometrics}:\\ studying subclinical psychopathologies\\ \vspace{1.5em} \raggedright 
+\emph{2.2 - Item Response Theory}}
+\author{Giorgio Arcara,\\ University of Padua \\ IRCCS San Camillo, Venice}
+
+\titlegraphic{
+
+\vspace*{7cm}
+\includegraphics[scale=0.15]{Figures/LogoSanCamilloIRCCS_Unipd_alpha.png}
+\begin{center}
+\vspace{-2.2em}
+\includegraphics[scale=0.15]{Figures/CC_license_3_0.png}
+\end{center}
+}
+\date{2026}
+\maketitle
+```
+:::
+
+## Item Response Theory
+
+Item Response Theory is a family of more advanced methods that attempt to independently model task difficulty and subject ability.
+\pause
+
+They (often) assume **unidimensionality** of the measured construct.
+
+## Unidimensionality
+```{=latex}
+
+\begin{center}
+    \begin{tikzpicture}
+        % Draw the arrow
+        \draw[thick, ->] (0,0) -- (10,0);
+        
+        % Add ticks and numbers
+        \foreach \x in {0,2,4,6,8} {
+            \draw[thick] (\x,0.2) -- (\x,-0.2); % Tick mark
+            \node[below] at (\x,-0.2) {\x}; % Number
+        }
+    \end{tikzpicture}
+\end{center} 
+(\emph{es. My result is dependend by an ability/constructs that may be rapresented along a single dimension})
+```
+
+
+## Item Response Theory
+
+Example: Rasch Model (or 1-PL model)
+\vspace{2em}
+
+```{=latex}
+\small
+\begin{align}
+  \Pr(X_{ni}=1 \mid \theta_n, \beta_i)
+  &= \frac{\exp(\theta_n - \beta_i)}{1 + \exp(\theta_n - \beta_i)}
+  \label{eq:rasch_prob}
+  %\\
+  %\Pr(X_{ni}=0 \mid \theta_n, \beta_i) &= \frac{1}{1 + \exp(\theta_n - \beta_i)}
+  %\label{eq:rasch_prob0}
+\end{align}
+
+$\theta$ = ability
+$\beta$ = difficulty parameter
+```
+
+\vspace{2em}
+
+[[https://www.publichealth.columbia.edu/research/population-health-methods/item-response-theory]{.underline}](https://www.publichealth.columbia.edu/research/population-health-methods/item-response-theory)
+
+
+## Item Response Theory – Rasch models
+
+```{=latex}
+\begin{table}[ht]
+\centering
+\caption{\footnotesize Dichotomous Item Response Data for 10 Participants and 6 Items}
+\label{tab:rasch_data}
+\begin{tabular}{lccccccc}
+\hline
+\textbf{Participant} & \textbf{i1} & \textbf{i2} & \textbf{i3} & \textbf{i4} & \textbf{i5} & \textbf{i6} & \textbf{Total} \\
+\hline
+p1  & 1 & 1 & 1 & 1 & 1 & 1 & 6 \\
+p2  & 1 & 0 & 1 & 1 & 1 & 0 & 4 \\  % missing i2, unexpected fail
+p3  & 1 & 1 & 0 & 1 & 1 & 0 & 4 \\  % missing i3, unexpected fail
+p4  & 0 & 1 & 1 & 1 & 0 & 0 & 3 \\  % missing i1, unexpected fail
+p5  & 1 & 1 & 1 & 0 & 0 & 0 & 3 \\
+p6  & 1 & 0 & 1 & 0 & 0 & 1 & 3 \\  % unexpected pass on i6
+p7  & 0 & 1 & 0 & 1 & 0 & 0 & 2 \\
+p8  & 1 & 1 & 0 & 0 & 0 & 0 & 2 \\
+p9  & 0 & 1 & 0 & 0 & 0 & 0 & 1 \\
+p10 & 0 & 0 & 1 & 0 & 0 & 0 & 1 \\  % unexpected pass on i3
+\hline
+\textbf{Total} & 6 & 7 & 6 & 5 & 3 & 2 & \\
+\hline
+\end{tabular}
+\end{table}
+```
+
+<!--
+\begin{figure}
+  \includegraphics[width=0.7\textwidth]{Figures/Rasch_matrix.png}
+\end{figure}
+-->
+
+
+## Item Response Theory – Validity and Reliability
+
+Also tests developed with IRT have associated severe properties, including some related to **Validity** and **Reliability** as in CTT (although not necessarily with these labels).
+
+
+## Classical Test Theory vs Item Response Theory
+
+*Why relatively few tests are based on IRT, despite its methodological rigor?*

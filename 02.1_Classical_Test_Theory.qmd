@@ -1,0 +1,220 @@
+---
+title: ""
+author: "Giorgio Arcara"
+date: ""
+#format: revealjs
+format:
+  beamer:
+    theme: metropolis
+    keep-tex: false
+incremental: false
+header-includes:
+  \setbeamerfont{title}{size=\large}
+  \usepackage{hyperref}
+  \setbeamertemplate{footline}[frame number]
+---
+
+<!-- the section below is shown only if rendering is beamer from latex. (and format:revealjs is commmented) -->
+
+::: {.content-visible when-format="beamer"}
+```{=latex}
+% TITLE SLIDES
+\title{{\fontsize{15pt}{16pt}\selectfont Applied Psychometrics}:\\ studying subclinical psychopathologies\\ \vspace{1.5em} \raggedright 
+\emph{2.1 - Classical Test Theory}}
+\author{Giorgio Arcara,\\ University of Padua \\ IRCCS San Camillo, Venice}
+
+\titlegraphic{
+
+\vspace*{7cm}
+\includegraphics[scale=0.15]{Figures/LogoSanCamilloIRCCS_Unipd_alpha.png}
+\begin{center}
+\vspace{-2.2em}
+\includegraphics[scale=0.15]{Figures/CC_license_3_0.png}
+\end{center}
+}
+\date{2026}
+\maketitle
+```
+:::
+
+## Classical Test Theory
+
+A first teory on tests
+\vfill
+```{=latex}
+\url{https://en.wikipedia.org/wiki/Classical_test_theory}
+```
+
+## The cardinal principle of CTT is the following formula:
+```{=latex}
+\begin{center}
+$\onslide<2->{X = }T \onslide<3->{+ E}$
+\end{center}
+
+$T$ = true score
+
+\onslide<2->{$X$ = observed score}
+
+\onslide<3->{$E$ = error}
+\vfill
+\onslide<4->True Score and Error are independent on each other
+
+```
+
+## An example
+```{=latex}
+$T$ = 10
+
+$E$ = 2 
+\pause
+
+$X$ = 12
+```
+
+## An example
+```{=latex}
+$T$ = 10
+
+$E$ = -3
+\pause
+
+$X$ = 7
+```
+
+## Another example
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+#| fig-width: 7
+#| fig-height: 4
+
+set.seed(30)
+plot(0,0, xlim=c(0,20), ylim=c(0,10), col=NULL, main="Distribution of observed scores", xlab="")
+abline(v=12, lty=2, lwd=2)
+legend("topleft", lty=2, lwd=2, legend="True Score")
+```
+
+## Another example
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+#| fig-width: 7
+#| fig-height: 4
+
+#### CREATE PLOT FUNCTION
+obs_plot = function(n, my_seed, my_sd){
+  plot(0,0, xlim=c(0,20), ylim=c(0,10), col=NULL, main="Distribution of observed scores", xlab="")
+abline(v=12, lty=2, lwd=2)
+legend("topleft", lty=c(2,1), lwd=2, legend=c("True Score", "Observed Score"), col=c("black", "gray40"))
+set.seed(my_seed)
+err = rnorm(n, mean=0, sd=my_sd)
+if (n>0){
+segments(x0=c(12)+err, y0=-1, x1=(12)+err, y1=1.5, lwd=2, col="gray40")
+}
+}
+
+obs_plot(n=0, my_seed=20, my_sd=3)
+
+```
+## Another example
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+#| fig-width: 7
+#| fig-height: 4
+
+#### CREATE PLOT FUNCTION
+obs_plot = function(n, my_seed, my_sd){
+  plot(0,0, xlim=c(0,20), ylim=c(0,10), col=NULL, main="Distribution of observed scores", xlab="")
+abline(v=12, lty=2, lwd=2)
+legend("topleft", lty=c(2,1), lwd=2, legend=c("True Score", "Observed Score"), col=c("black", "gray40"))
+set.seed(my_seed)
+err = rnorm(n, mean=0, sd=my_sd)
+if (n>0){
+segments(x0=c(12)+err, y0=-1, x1=(12)+err, y1=1.5, lwd=2, col="gray40")
+}
+}
+
+obs_plot(n=1, my_seed=30, my_sd=3)
+
+```
+
+## Another example
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+#| fig-width: 7
+#| fig-height: 4
+
+
+obs_plot(n=3, my_seed=20, my_sd=3)
+
+```
+
+## Another example
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+#| fig-width: 14
+#| fig-height: 6
+par(mfrow=c(1,2))
+obs_plot(n=100, my_seed=20, my_sd=3)
+obs_plot(n=100, my_seed=20, my_sd=1)
+
+```
+
+
+
+## The usual situtation
+```{=latex}
+$X$ = 9
+\pause
+
+$T$ = ?
+```
+
+
+
+## Two main aims of Classical Test Theory
+
+- having tests with lowest possible error
+- estimating the error
+
+## Concepts of Classical Test Theory
+
+Two relevant concepts of Classical Test Theory are:
+```{=latex}
+\vfill
+\begin{itemize}
+\item \textbf{Validity} \pause (Are we measuring what we intend to measure?) \pause \\
+\item \textbf{Reliability} \pause (How precise or consistent is our measurement?)
+\end{itemize}
+\pause
+\vfill
+\emph{See upcoming lessons for more details}
+```
+
+## Limits of Classical Test Theory
+
+- Test ability and item difficulty are not modeled separately \pause
+- Is error really indepentent from true score?
+
+## Is error really independent from true score?
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+#| fig-width: 7
+#| fig-height: 4
+
+plot(0,0, xlim=c(0,20), ylim=c(0,10), col=NULL, main="Distribution of observed scores", xlab="")
+abline(v=20, lty=2, lwd=2)
+legend("topleft", lty=2, lwd=2, legend="True Score")
+```
+
+

@@ -1,0 +1,200 @@
+---
+title: ""
+author: "Giorgio Arcara"
+date: ""
+#format: revealjs
+format:
+  beamer:
+    theme: metropolis
+    keep-tex: false
+incremental: false
+header-includes:
+  \setbeamerfont{title}{size=\large}
+  \usepackage{hyperref}
+  \setbeamertemplate{footline}[frame number]
+---
+
+<!-- the section below is shown only if rendering is beamer from latex. (and format:revealjs is commmented) -->
+
+::: {.content-visible when-format="beamer"}
+```{=latex}
+% TITLE SLIDES
+\title{{\fontsize{15pt}{16pt}\selectfont Applied Psychometrics}:\\ studying subclinical psychopathologies\\ \vspace{1.5em} \raggedright 
+\emph{4.3 - Validity: A posteriori}}
+\author{Giorgio Arcara,\\ University of Padua \\ IRCCS San Camillo, Venice}
+
+\titlegraphic{
+
+\vspace*{7cm}
+\includegraphics[scale=0.15]{Figures/LogoSanCamilloIRCCS_Unipd_alpha.png}
+\begin{center}
+\vspace{-2.2em}
+\includegraphics[scale=0.15]{Figures/CC_license_3_0.png}
+\end{center}
+}
+\date{2026}
+\maketitle
+```
+
+## A posteriori validity
+
+Is the validity as demonstrated after data are collected and actual properties of test items are assessed.
+\pause
+\vfill
+
+- **Construct Validity** \scriptsize (Convergent/Discriminant and Factorial Structure) \normalsize
+- **Criterion Validity** (Concurrent and Predictive)
+- **Known-Groups Validity** (Concurrent and Predictive)
+- **Ecological Validity**
+ 
+## Construct Validity 1/3
+
+\begin{center}
+\textbf{\Large Construct Validity}
+\end{center}
+\vspace{2em}
+
+is the extent to which an instrument or test accurately measures the theoretical, non-observable concept (e.g., intelligence, anxiety, motivation) it is intended to measure.
+
+\pause \centering
+__very similar to the general definition of "Validity"__
+
+## Construct Validity 2/3
+\small 
+
+Construct validity it is normally divided into **Convergent**, **Discriminant**, and **Factorial Structure**
+\pause \vfill
+
+**Convergent Construct Validity** is the extent to which test scores (or items) are related with the construct it is  intended to measure.
+\pause
+
+**Discriminant Construct Validity** is the extent to which test scores (or items) are **NOT** related with constructs it is NOT intended to measure. 
+\pause
+
+**Factorial Structure** is the degree to which test items load onto factors as predicted by the underlying theory.
+
+
+## Construct Validity 3/3
+
+NOTE: most of the time when speaking about construct validity we are implicitely speaking about _Convergent_ construct validity or on _Factorial Structure_.
+
+
+## Construct Validity examples 1/2
+\small
+
+_Convergent_.
+A test that aim to measure short term memory has good (convergent) construct validity if it actually provide evidence that the score are related to the scores of other test measuring short term memory.
+\pause
+
+_Discriminant_.
+A test that aim to measure anxiety has good (discriminant) construct validity if it actually provide evidence that it does not corrrelate strongly with measures of depression. 
+\pause
+
+_Factorial Structure_.
+A test that aim to measure Obsessive Compulsive Disorder has good factorial structure, if items group in a proper way distinguishing Obsessions and Compulsions.
+
+## Notes on Construct Validity
+
+There are two main types of analysis used to assess Construct Validity: 
+\pause
+
+- Correlations of the measure the relationship with other measures (For Convergent/Discriminant)\pause
+- Factor Analysis, to show that the items groups meaningfully (For Factorial Structure)
+
+\pause
+\small
+\vfill
+_(given their relevance these analyses will be covered in the next week)_
+
+
+## Criterion Validity
+\begin{center}
+\textbf{\Large Criterion Validity}
+\end{center}
+\vspace{2em}
+
+Is the extent the score of the test is able to predict an outcome that is considered a _gold-standard_
+
+\pause
+The **criterion** is an observable variable. It can be the the score to another test or a behaviour.
+
+The **gold-standard** is the definition of the best available measure.
+
+## Criterion Validity (2/2)
+
+Criterion validity It is typically divided into two subtypes:
+
+- **concurrent validity**: the test is related to another measure that could be taken at the same time.
+- **predictive validity**: the test is able to predict another measure in the future.
+
+
+## Criterion Validity example
+
+A short test on anxiety can have good criterion validity if it is able to predict the performance on a longer test, considered the gold standard.
+\vfill \pause
+
+A test on reading abilities can have a good criterion validity if it is able to predict scholastic outcome of children in two years.
+
+## Notes on criterion validity
+
+It is typically measured with correlations and high values (e.g., $\ge 0.7$ or $\ge 0.8$) are recommended.
+
+## Known-Group Validity
+\begin{center}
+\textbf{\Large Known-Groups Validity}
+\end{center}
+\vspace{2em}
+
+is the extent the score of the test is able to reflect a classification that is considered a _gold-standard_
+(it is analogous to criterion validity but for categorical variables)
+
+The **gold-standard** is a classification that we consider to be the truth/the more accurate classification.
+
+
+## Known-Group Validity
+
+
+Known-group validity is also typically divided into two subtypes:
+
+- **concurrent validity**: the test is related to a classification that could be taken at the same time.
+- **predictive validity**: the test is able to predict a classification in the future.
+
+
+## Known-group Validity example
+
+A test on learning and memory can have good known-group validity if it is able to _classify_ whether the person belong to the group of patients with Alzheimer's Disease or of healthy subjects. 
+\vfill \pause
+
+A test on learning and memory can have good known-group validity if it is able to _predict_ whether the person belong to the group of patients with Alzheimer's Disease or of healthy subjects, after two years.
+
+## Notes on known-group validity
+
+When speaking about classifications there are many measures that are used (Sensitivity, and Specificity but not only).
+These will be shortly covered in future lessons.
+
+Values $\ge 0.80$ are typically recommended for Sensitivity and Specificity.
+
+## Ecological Validity
+\begin{center}
+\textbf{\Large Ecological Validity}
+\end{center}
+\vspace{2em}
+
+Is the ability of a test to predict real-life, natural settings, behaviour.
+
+## Ecological Validity example
+
+A test on executive functions has good ecological validity if it is able to predict dysexecutive behaviours in real life.
+
+## Notes on Ecological Validity
+
+It is typically assessed with correlations, and there is no recommended minimal value.
+\pause
+\vfill
+In some cases it can be seen as a special kind of criterion validity (e.g. the example on scholastic outcome)
+
+
+
+
+
+

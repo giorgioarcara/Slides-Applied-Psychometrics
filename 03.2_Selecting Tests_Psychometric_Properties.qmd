@@ -1,0 +1,81 @@
+---
+title: ""
+author: "Giorgio Arcara"
+date: ""
+#format: revealjs
+format:
+  beamer:
+    theme: metropolis
+    keep-tex: false
+incremental: false
+header-includes:
+  \setbeamerfont{title}{size=\large}
+  \usepackage{hyperref}
+  \setbeamertemplate{footline}[frame number]
+---
+
+<!-- the section below is shown only if rendering is beamer from latex. (and format:revealjs is commmented) -->
+
+::: {.content-visible when-format="beamer"}
+```{=latex}
+% TITLE SLIDES
+\title{{\fontsize{15pt}{16pt}\selectfont Applied Psychometrics}:\\ studying subclinical psychopathologies\\ \vspace{1.5em} \raggedright 
+\emph{3.2 - Selecting Tests: Psychometric Properties}}
+\author{Giorgio Arcara,\\ University of Padua \\ IRCCS San Camillo, Venice}
+
+\titlegraphic{
+
+\vspace*{7cm}
+\includegraphics[scale=0.15]{Figures/LogoSanCamilloIRCCS_Unipd_alpha.png}
+\begin{center}
+\vspace{-2.2em}
+\includegraphics[scale=0.15]{Figures/CC_license_3_0.png}
+\end{center}
+}
+\date{2026}
+\maketitle
+```
+:::
+
+## A test is a measurement tool
+\centering
+
+![](Figures/Test_measurement_tool.png){width="70%"}
+
+## A tentative list of properties to consider
+\small
+
+- Validity  \pause
+
+- Reliability  \pause
+
+- Clinical Applicability (e.g. test duration) \pause
+
+- Normative data  \pause
+
+- Discriminative ability \pause
+
+- Thresholds for change over time \pause
+
+## Three intersecting aspects
+\centering
+![](Figures/Selecting_Tests.png){width="70%"}
+
+
+## Psychometric Properties and Goals
+
+Sometimes we may want to select not the best tool (in terms of properties), if another is more suited to our goals.
+
+## Psychometric Properties and Practical Aspects
+
+A very good test could not be the more popular or your favourite one
+\pause
+
+_Beware of this reasoning! you may be stuck with suboptimal tests_
+
+
+
+
+
+
+

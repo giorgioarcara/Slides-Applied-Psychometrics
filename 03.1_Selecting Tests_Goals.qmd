@@ -1,0 +1,77 @@
+---
+title: ""
+author: "Giorgio Arcara"
+date: ""
+#format: revealjs
+format:
+  beamer:
+    theme: metropolis
+    keep-tex: false
+incremental: false
+header-includes:
+  \setbeamerfont{title}{size=\large}
+  \usepackage{hyperref}
+  \setbeamertemplate{footline}[frame number]
+---
+
+<!-- the section below is shown only if rendering is beamer from latex. (and format:revealjs is commmented) -->
+
+::: {.content-visible when-format="beamer"}
+```{=latex}
+% TITLE SLIDES
+\title{{\fontsize{15pt}{16pt}\selectfont Applied Psychometrics}:\\ studying subclinical psychopathologies\\ \vspace{1.5em} \raggedright 
+\emph{3.1 - Selecting Tests: Goals}}
+\author{Giorgio Arcara,\\ University of Padua \\ IRCCS San Camillo, Venice}
+
+\titlegraphic{
+
+\vspace*{7cm}
+\includegraphics[scale=0.15]{Figures/LogoSanCamilloIRCCS_Unipd_alpha.png}
+\begin{center}
+\vspace{-2.2em}
+\includegraphics[scale=0.15]{Figures/CC_license_3_0.png}
+\end{center}
+}
+\date{2026}
+\maketitle
+```
+:::
+
+## sometimes we forget the clinical goal
+\centering
+
+![](Figures/target.png){width="50%"}
+
+
+
+## selecting tests
+
+- Our toolkit should include tests we will need for our 
+
+**potential clinical goals** \pause
+
+- Our assessment should include tests that are useful to our
+
+**specific clinical goals**
+
+## Three intersecting aspects
+\centering
+![](Figures/Selecting_Tests.png){width="70%"}
+
+
+
+## Goals and Psychometric Properties
+
+Depending on the goal, we will select appropriate tests (e.g. _validity_, or thresholds for detecting change)
+
+## Goals and Practical Aspects
+
+Depending on practical aspects we may prefer one test or another (e.g. in some clinical settings one test can be preferred)
+
+
+
+
+
+
+
+

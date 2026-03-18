@@ -1,0 +1,168 @@
+---
+title: ""
+author: "Giorgio Arcara"
+date: ""
+#format: revealjs
+format:
+  beamer:
+    theme: metropolis
+    keep-tex: false
+incremental: false
+header-includes:
+  \setbeamerfont{title}{size=\large}
+  \usepackage{hyperref}
+  \setbeamertemplate{footline}[frame number]
+---
+
+<!-- the section below is shown only if rendering is beamer from latex. (and format:revealjs is commmented) -->
+
+::: {.content-visible when-format="beamer"}
+```{=latex}
+% TITLE SLIDES
+\title{{\fontsize{15pt}{16pt}\selectfont Applied Psychometrics}:\\ studying subclinical psychopathologies\\ \vspace{1.5em} \raggedright 
+\emph{4.1 - Validity: Introduction}}
+\author{Giorgio Arcara,\\ University of Padua \\ IRCCS San Camillo, Venice}
+
+\titlegraphic{
+
+\vspace*{7cm}
+\includegraphics[scale=0.15]{Figures/LogoSanCamilloIRCCS_Unipd_alpha.png}
+\begin{center}
+\vspace{-2.2em}
+\includegraphics[scale=0.15]{Figures/CC_license_3_0.png}
+\end{center}
+}
+\date{2026}
+\maketitle
+```
+
+## Validity and Goal
+\centering
+![](Figures/target.png){width="80%"}
+
+## Classifications and definitions of Validities
+
+There are many different definitions and classifications of Validity!
+
+## Validity: a definition
+
+_"Validity is the extent to which a test accurately measures what it is supposed to measure."_
+
+\pause
+\vfill
+  
+_“Validity is the scientific utility of a measuring instrument, broadly statable in
+terms of how well it measures what it purports to measure”_ (Nunnally & Bernstein, 1987)
+
+
+
+## Speaking about Validity
+
+It doesn't make sense to say that **a test is valid**
+\vfill \pause
+
+```{=latex}
+\begin{center}
+\tikz[baseline=(t.base)]{
+  \node[inner sep=0pt, outer sep=0pt, anchor=base] (t)
+    {\emph{"use this test! it has been validated!"}}; \pause
+  \draw[red, thick] ([yshift=0.35em]t.south west) -- ([yshift=0.35em]t.south east);
+}
+\end{center}
+```
+
+
+## More about validity
+A test can have proofs of validity for different aspects
+
+_E.g. a test may have evidence for validity to measure anxiety, and able to predict the success of outcome of a specific treatment_
+
+
+## Validity: a continuum
+
+Validity is not an all-or-none property
+\vfill
+
+```{=latex}
+\begin{center}
+\begin{tikzpicture}[baseline=(current bounding box.center)]
+
+
+% : peggio - meglio
+\node[anchor=west] at (0, 0) {\footnotesize \parbox[2cm]{4cm}{\emph{Less evidence on Validity}}};
+\node[anchor=east] at (11, 0) {\footnotesize \parbox[2cm]{4cm}{\emph{More evidence on Validity}}};
+\node[anchor=west] at (0, -1.2) {\textbf{Worse}};
+\node[anchor=east] at (10, -1.2) {\textbf{Better}};
+\draw[thick] (1.5, -1.2) -- (8.5, -1.2);
+
+\end{tikzpicture}
+\end{center}
+```
+
+## Minimal value for Validity?
+For some types of validity are associated to specific values, and there are recommended _minimal/desirable_ values. 
+
+However: 
+
+\pause
+\vfill
+- Sometimes tests are made available even if these requirement are not met. \pause
+- Literature can differ on these reccomendation.
+
+
+## Remember: Validity is a continuum
+
+```{=latex}
+\begin{center}
+\begin{tikzpicture}[baseline=(current bounding box.center)]
+
+
+% : peggio - meglio
+\node[anchor=west] at (0, 0) {\footnotesize \parbox[2cm]{4cm}{\emph{Less evidence on Validity}}};
+\node[anchor=east] at (11, 0) {\footnotesize \parbox[2cm]{4cm}{\emph{More evidence on Validity}}};
+\node[anchor=west] at (0, -1.2) {\textbf{Worse}};
+\node[anchor=east] at (10, -1.2) {\textbf{Better}};
+\draw[thick] (1.5, -1.2) -- (8.5, -1.2);
+
+\end{tikzpicture}
+\end{center}
+```
+
+
+
+## Types of Validity
+
+**A priori and a posteriori**
+
+## A priori validity
+
+Is the validity that can be assessed even before data collection has started and pertain the theoretical robustness of the instrument.
+\pause
+\vfill
+
+- **Face Validity**
+- **Content Validity**
+ 
+
+## A posteriori validity
+
+Is the validity as demonstrated after data are collected and actual properties of test items are assessed.
+\pause
+\vfill
+
+- **Construct Validity** \scriptsize (Convergent/Discriminant and Factorial Structure) \normalsize
+- **Criterion Validity** (Concurrent and Predictive)
+- **Known-Groups Validity** (Concurrent and Predictive)
+- **Ecological Validity**
+
+
+## What should I remember?
+\centering
+![](Figures/Remembering_Validity.png){width="50%"}
+
+\pause \small
+
+1. That validity is an important property to check.
+
+2. That you have resources (including this course) on relevant aspects about validity.
+

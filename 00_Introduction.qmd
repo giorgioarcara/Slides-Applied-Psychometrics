@@ -1,0 +1,140 @@
+---
+title: ""
+author: "Giorgio Arcara"
+date: ""
+#format: revealjs
+format:
+  beamer:
+    theme: metropolis
+    keep-tex: false
+incremental: false
+header-includes:
+  \setbeamerfont{title}{size=\large}
+  \usepackage{hyperref}
+  \setbeamertemplate{footline}[frame number]
+---
+
+<!-- the section below is shown only if rendering is beamer from latex. (and format:revealjs is commmented) -->
+
+::: {.content-visible when-format="beamer"}
+```{=latex}
+% TITLE SLIDES
+\title{{\fontsize{15pt}{16pt}\selectfont Applied Psychometrics}:\\ studying subclinical psychopathologies\\ \vspace{1.5em} \raggedright \emph{Introduction to the course}}
+\author{Giorgio Arcara,\\ University of Padua \\ IRCCS San Camillo, Venezia}
+
+\titlegraphic{
+
+\vspace*{7cm}
+\includegraphics[scale=0.15]{Figures/LogoSanCamilloIRCCS_Unipd_alpha.png}
+\begin{center}
+\vspace{-2.2em}
+\includegraphics[scale=0.15]{Figures/CC_license_3_0.png}
+\end{center}
+}
+\date{2026}
+\maketitle
+```
+:::
+
+## Psychometrics
+```{=latex}
+\pause
+\centering
+\includegraphics[width=0.7\textwidth]{Figures/Scared.png}
+```
+
+## Topics of the course
+```{=latex}
+\begin{center}
+\Large
+\textbf{Tests and measurement in clinical practice}
+\end{center}
+```
+
+## Goals of this course
+I want to show you that: \pause
+
+- Psychometrics is not an enemy \pause
+- it can be integrated into clinical practice \pause
+- There are better and worse ways to use tests
+
+## Today's Lesson
+- Introduction of the instructor and the course
+- Organizational aspects of the course
+- Educational method
+
+## CV Giorgio Arcara
+
+\includegraphics[scale=0.05]{Figures/Arcara-Giorgio.jpg}
+
+- Since 2006 interest in tests (especially in Neuropsychology)
+- Since 2016 Researcher at IRCCS San Camillo in Venice
+- Since 2025 Associate Professor in Psychometrics - Unipd
+
+## Contacts and references
+```{=latex}
+\begin{center}
+\Large
+\href{https://giorgioarcara.github.io}{\underline{https://giorgioarcara.github.io}}\\
+\vfill
+\href{giorgio.arcara\@unipd.it}{\underline{giorgio.arcara@unipd.it}}
+\pause
+\vfill
+\emph{Feel free to contact me when needed}
+\end{center}
+
+```
+
+## Organizational aspects - Activities
+
+```{=latex}
+\textbf{Activities of this course}
+\vfill
+\begin{itemize}
+\item Asyncronous Videolectures (~10 min) \footnotesize (posted every week) \pause
+\normalsize
+\item Other activities. \pause
+\begin{itemize}
+\item Short Quizzes (for self assessment) 
+\item Group activities (e.g. Forum discussions) \pause
+\end{itemize}
+\end{itemize}
+```
+
+## Organizational aspects - Materials
+\textbf{All materials on Moodle}
+  
+- slides \pause
+- articles \pause
+- other materials (e.g. links) \pause
+
+## Organizational aspects - Evaluation
+
+\textbf{To successfully complete the course}
+
+- completing all activities on Moodle \pause
+- writing a final short essay and submit it on moodle (1-2 pages) \pause
+- no exam/no vote 
+
+## Goals and teaching method
+```{=latex}
+\begin{center}
+Method based on \textbf{Teaching4Learning} approach and focused on "Active Learning" and "Learning by doing"\\
+\pause
+\vfill
+\emph{Please complete all activities!}
+\end{center}
+```
+
+## Feedbacks!
+\begin{center}
+\includegraphics[width=0.4\textwidth]{Figures/feedbacks.png}
+\end{center}
+
+## 
+```{=latex}
+\begin{center}
+\Large
+Let's navigate the Moodle page
+\end{center}
+```

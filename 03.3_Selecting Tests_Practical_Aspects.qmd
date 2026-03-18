@@ -1,0 +1,73 @@
+---
+title: ""
+author: "Giorgio Arcara"
+date: ""
+#format: revealjs
+format:
+  beamer:
+    theme: metropolis
+    keep-tex: false
+incremental: false
+header-includes:
+  \setbeamerfont{title}{size=\large}
+  \usepackage{hyperref}
+  \setbeamertemplate{footline}[frame number]
+---
+
+<!-- the section below is shown only if rendering is beamer from latex. (and format:revealjs is commmented) -->
+
+::: {.content-visible when-format="beamer"}
+```{=latex}
+% TITLE SLIDES
+\title{{\fontsize{15pt}{16pt}\selectfont Applied Psychometrics}:\\ studying subclinical psychopathologies\\ \vspace{1.5em} \raggedright 
+\emph{3.3 - Selecting Tests: Practical Aspects}}
+\author{Giorgio Arcara,\\ University of Padua \\ IRCCS San Camillo, Venice}
+
+\titlegraphic{
+
+\vspace*{7cm}
+\includegraphics[scale=0.15]{Figures/LogoSanCamilloIRCCS_Unipd_alpha.png}
+\begin{center}
+\vspace{-2.2em}
+\includegraphics[scale=0.15]{Figures/CC_license_3_0.png}
+\end{center}
+}
+\date{2026}
+\maketitle
+```
+:::
+
+## Practical aspects
+
+Selecting a test is also base on practical (non scientific) aspects
+
+
+
+## A tentative list of practical aspects
+
+- Popularity/Clinical diffusion \pause
+
+- Availability (e.g., is the test free?) \pause
+
+- Personal preference
+
+
+## Three intersecting aspects
+\centering
+![](Figures/Selecting_Tests.png){width="70%"}
+
+## Practical aspects and Goals
+
+Among the tests with the same goals I would choose those I prefer the most, or that are more widespread
+
+## Practical aspects and Psychometric Properties
+
+Among the tests with _analogous psychometric properties_ I would choose those I prefer the most, or that are more widespread
+
+
+
+
+
+
+
+
