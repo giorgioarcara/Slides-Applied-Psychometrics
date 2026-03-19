@@ -38,7 +38,7 @@ header-includes:
 
 ## Correlation
 
-Correlation is one of the most important statistical analysis you may ecounter in psychological testing (and not only)
+Correlation is one of the most important statistical analyses you may encounter in psychological testing (and not only).
 
 
 ## Correlation
@@ -47,11 +47,21 @@ It is a number that expresses the relation between *two* numerical variables.
 
 ## Correlation Values
 
-It ranges from -1 to 1. 
+It ranges from -1 to 1.
 
--Correlation value of 1 indicates perfect positive correlation
--Correlation value of -1 indicates perfect negative correlation
--Correlation value of 0 indicates no correlation betwen the variables.
+- A correlation value of 1 indicates perfect positive correlation
+- A correlation value of -1 indicates perfect negative correlation
+- A correlation value of 0 indicates no correlation between the variables.
+
+## A scatterplot
+```{r, echo=FALSE, output=TRUE, fig.width=4,fig.height=4, fig.align='center', out.width="70%"}
+source("R_functions/sim_corr.R")
+
+set.seed(42)
+plot_sim_corr(n=200, rho=0.6, method="none")
+
+
+```
 
 ## Examples - 1
 
@@ -102,20 +112,25 @@ plot_sim_corr(n=200, rho=0, plot_title = F)
 
 ## Types of correlation
 
-So far I showed results for **Pearson's correlation** (indicated with **r**)
+So far I have shown results for **Pearson's correlation** (indicated with **r**)
 
-There are many types of correlations, the most used in basic Pyschometrics are Pearson's correlation and **Spearman's correlation**, 
-indicated with **$\rho$**
+There are many types of correlations; the most used in basic Psychometrics are Pearson's correlation and **Spearman's correlation**, indicated with **$\rho$**
 
 ## Spearman correlation
 
-In short, Spearman correlation is used when data may have outliers, that can affect Pearson correlation.
-\pause
+Spearman correlation should be used with ordinal data or when the assumption of normality is violated.
 
-It is said that it is "robust" against outliers.
+More simply, it is also more appropriate when outliers are present, as it is considered "robust" against them.
 
+## When to use which?
 
-### Example of types of correlations
+| Condition | Use |
+|-----------|-----|
+| Continuous, normally distributed data | Pearson (*r*) |
+| Ordinal data | Spearman (*$\rho$*) |
+| Non-normal distribution or outliers present | Spearman (*$\rho$*) |
+
+## Example of types of correlations
 
 ```{r, echo=FALSE, output=TRUE, fig.width=4,fig.height=4, fig.align='center', out.width="70%"}
 source("R_functions/sim_corr.R")
@@ -124,9 +139,9 @@ set.seed(45)
 plot_sim_corr(n=200, rho=0.6, method="both")
 
 ```
-### adding an outlier
+## Adding an outlier
 
-```{r, echo=FALSE, output=TRUE, fig.width=4,fig.height=4, fig.align='center', out.width="70%"}
+```{r, echo=FALSE, output=TRUE, fig.width=4,fig.height=3.5, fig.align='center', out.width="70%"}
 source("R_functions/sim_corr.R")
 
 set.seed(45)
@@ -136,24 +151,24 @@ plot_sim_corr(n=200, rho=0.6, addx1 = outx1, addx2 = outx2, method="both")
 points(x=outx1, y=outx2, pch=19, col="black")
 
 ```
-\small Note that the data are the same of the plot in the slide before, except for the black point.
+\footnotesize Note that the data are the same as in the plot in the slide before, except for the black point.
 
-### Note!
+## Note!
 
 When interpreting correlations, _scatterplots_ (i.e. the graphs used to represent relationships between two variables) are very important, but rarely reported.
 
 
 ## Correlation in Psychometrics
 
-Correlations are used in many important aspect of Psychometrics, we encountered them for Convergent/Discriminant validity, but also for ecological validity.
+Correlations are used in many important aspects of Psychometrics; we encountered them for Convergent/Discriminant validity, but also for ecological validity.
 
-We will encounter them also for _Reliability_ (next week)
+We will encounter them also for _Reliability_ (next week).
 
-## Intepreting correlations
+## Interpreting correlations
 
-Here a common classification of correlation strength.
+Here is a common classification of correlation strength.
 
-| r or rho | r or rho | Strength of association |
+| r or R | r or R | Strength of association |
 |--------|--------|------------------------|
 | +0.8 to +1.0 | -1.0 to -0.8 | Perfect or very strong association |
 | +0.6 to +0.8 | -0.8 to -0.6 | Strong association |
@@ -164,41 +179,63 @@ Here a common classification of correlation strength.
 
 ## What is the "right" correlation value in the case of Validity?
 
-There is no straigthforward way to interpret if a specific correlation is adequate or no in the context of validity.
+There is no straightforward way to interpret whether a specific correlation is adequate or not in the context of validity.
 \pause
 
 For example, even a weak correlation can be adequate in the context of ecological validity.
 \pause
 
-**read carefully the article and check if the values are reasonably motivated by the authors**
+**Read carefully the article and check whether the values are reasonably motivated by the authors.**
 
 ## Comparing correlation values
-\small
 It is easier to interpret correlations for validity when discriminant validity is present.
 
-In this case you can check whether values for convergent validity are higher than those of discriminant validity.
+In this case you can check whether the values for convergent validity are higher than those for discriminant validity.
 \pause
 
-## An example of intepreting validity
+## An example of interpreting validity
 
 E.g. suppose you are checking a test that is supposed to measure memory problems in daily life.
 
-suppose you find that correlation with an external measure of memory is r = 0.4
+Suppose you find that the correlation with an external measure of memory is r = 0.4.
 
 \pause
-The authors claim that this is proof of validity as there is no expectation of very strong correlations.
+The authors claim that this is proof of validity, as there is no expectation of very strong correlations.
 
 ## Two potential scenarios
 _SCENARIO 1_
 
-the authors present also discriminant validity and the correlation with a scale on Depression is r = 0.1
+The authors also present discriminant validity and the correlation with a depression scale is r = 0.1.
 \pause
 
 _SCENARIO 2_
 
-the authors present also discriminant validity and the correlation with a scale on Depression is r = 0.5
+The authors also present discriminant validity and the correlation with a depression scale is r = 0.5.
 \pause
 
 
+## Correlation Matrix
+```{r, echo=FALSE, output=TRUE, fig.width=4,fig.height=3.5, fig.align='center', out.width="70%"}
+library("corrplot")
+
+mat = matrix(c(1, -0.7, -0.6, -0.01,
+               -0.7, 1, 0.5, 0.03,
+               -0.6, 0.5, 1, 0.02,
+               -0.01, 0.03, 0.02, 1
+               ), byrow=TRUE, ncol=4)
+
+colnames(mat)=rownames(mat)=c("Anxiety Scale", "Well-Being Scale", "Quality of Life Scale", "Age")
 
 
+# isSymmetric.matrix(mat)
+corrplot(mat, method = "number", col = "black", cl.pos = "n" )
+
+
+```
+
+## Correlation Matrix (another visualization)
+```{r, echo=FALSE, output=TRUE, fig.width=4, fig.height=3.5, fig.align='center', out.width="80%"}
+
+corrplot(mat, method = "ellipse", cl.offset = 5, cl.ratio=0.5)
+
+```
