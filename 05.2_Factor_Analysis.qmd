@@ -1,0 +1,252 @@
+---
+title: ""
+author: "Giorgio Arcara"
+date: ""
+#format: revealjs
+format:
+  beamer:
+    theme: metropolis
+    keep-tex: false
+incremental: false
+header-includes:
+  \setbeamerfont{title}{size=\large}
+  \usepackage{hyperref}
+  \setbeamertemplate{footline}[frame number]
+  \usepackage{tikz}
+  \usetikzlibrary{arrows.meta, positioning, shapes.geometric}
+  \usetikzlibrary{overlay-beamer-styles}
+---
+
+<!-- the section below is shown only if rendering is beamer from latex. (and format:revealjs is commmented) -->
+
+::: {.content-visible when-format="beamer"}
+```{=latex}
+% TITLE SLIDES
+\title{{\fontsize{15pt}{16pt}\selectfont Applied Psychometrics}:\\ studying subclinical psychopathologies\\ \vspace{1.5em} \raggedright 
+\emph{5.2 - Assessing Validity: Factor Analysis}}
+\author{Giorgio Arcara,\\ University of Padua \\ IRCCS San Camillo, Venice}
+
+\titlegraphic{
+
+\vspace*{7cm}
+\includegraphics[scale=0.15]{Figures/LogoSanCamilloIRCCS_Unipd_alpha.png}
+\begin{center}
+\vspace{-2.2em}
+\includegraphics[scale=0.15]{Figures/CC_license_3_0.png}
+\end{center}
+}
+\date{2026}
+\maketitle
+```
+
+
+## Correlation Matrix
+```{r, echo=FALSE, output=TRUE, fig.width=4,fig.height=3.5, fig.align='center', out.width="70%"}
+library("corrplot")
+
+mat = matrix(c(1, -0.7, -0.6, -0.01,
+               -0.7, 1, 0.5, 0.03,
+               -0.6, 0.5, 1, 0.02,
+               -0.01, 0.03, 0.02, 1
+), byrow=TRUE, ncol=4)
+
+colnames(mat)=rownames(mat)=c("Anxiety Scale", "Well-Being Scale", "Quality of Life Scale", "Age")
+
+
+# isSymmetric.matrix(mat)
+corrplot(mat, method = "number", col = "black", cl.pos = "n" )
+
+
+```
+
+## Factors
+```{=latex}
+\usetikzlibrary{shapes.geometric, arrows.meta}
+
+\begin{tikzpicture}[
+oval/.style={
+draw,
+ellipse,
+minimum width=3cm,
+minimum height=0.7cm,
+font=\small,
+align=center
+},
+rect/.style={
+draw,
+rectangle,
+minimum width=2.2cm,
+minimum height=0.7cm,
+font=\small,
+align=center
+},
+arr/.style={-{Stealth[length=4pt]}, gray!70!black},
+node distance=0.55cm
+]
+
+%--- Right column: rectangles ---
+\foreach \name [count=\i] in {Age, QoL Scale, Sociality Scale, Anxiety Scale}{
+\node[rect] (R\i) at (4, {--(\i-1)}) {\name};
+}
+
+%--- Left column: ellipses ---
+\node[oval, visible on=<2>] (L1) at (0,1) {  };
+\node[oval, visible on=<3->] (L1) at (0,1) {Well Being};
+
+%--- Arrows ---
+\onslide<2->{
+\foreach \i in {2,3,4}{
+\draw[arr] (L1.east) -- (R\i.west);
+}
+}
+
+
+
+\end{tikzpicture}
+```
+
+## Factors and Loadings
+
+| Variable         | Factor 1 |
+|------------------|----------|
+| Anxiety Scale    | 0.72     |
+| Sociality Scale  | 0.65     |
+| QoL Scale        | 0.58     |
+| Age              | 0.01     |
+\pause
+Loadings can be interpreted as the correlation between a variable and a Factor.
+
+
+## Factors and items
+```{=latex}
+\usetikzlibrary{shapes.geometric, arrows.meta}
+
+\begin{tikzpicture}[
+oval/.style={
+draw,
+ellipse,
+minimum width=2.2cm,
+minimum height=0.7cm,
+font=\small,
+align=center
+},
+rect/.style={
+draw,
+rectangle,
+minimum width=2.2cm,
+minimum height=0.7cm,
+font=\small,
+align=center
+},
+arr/.style={-{Stealth[length=4pt]}, gray!70!black},
+node distance=0.55cm
+]
+
+%--- Right column: rectangles ---
+\foreach \i in {1,...,10}{
+\node[rect] (R\i) at (5, {-(\i-1)*0.8}) {item\i};
+}
+
+%--- Left column: ellipses ---
+\onslide<2->{
+\node[oval] (L1) at (0, {-(2.5)*0.95}) {Factor 1};
+\node[oval] (L2) at (0, {-(5.5)*0.95}) {Factor 2};
+
+%--- Arrows ---
+\foreach \i in {1,2,3,4,5,8}{
+\draw[arr] (L1.east) -- (R\i.west);
+}
+
+\foreach \i in {6,9,10}{
+\draw[arr] (L2.east) -- (R\i.west);
+}
+}
+
+\end{tikzpicture}
+```
+
+## Factor loadings
+
+| Item   | Factor 1 | Factor 2 |
+|--------|----------|----------|
+| Item 1 | 0.72     |          |
+| Item 2 | 0.68     |          |
+| Item 3 | 0.75     |          |
+| Item 4 | 0.70     |          |
+| Item 5 | 0.66     |          |
+| Item 6 |          | 0.71     |
+| Item 7 |          |          |
+| Item 8 | 0.69     |          |
+| Item 9 |          | 0.74     |
+| Item 10|          | 0.73     |
+
+
+## Factor analysis
+\small
+
+In tests developed with Classical Test Theory, Factor Analysis is often used to check if the items correlates in a meaningful way _according to the expectations_.
+\pause
+
+- **Exporatory Factor Analysis** analysis is often performed on a first step on some participants, if the grouping is not known.
+\pause
+- **Confirmatory Factor Analysis** is performed then (on different participants), to check if factor solution is confirmed.
+
+## Factor analysis - recommendation
+
+Factor analysis requires about >200 participants, with 10-20 items for participant (but see Mac Callum et al. 1999)
+
+Results of Confirmatory Factor Analysis are assessed with different metrics of fit quality, more commonly:
+
+- **RMSEA** (Root Mean Squared Error Approximation) should be < 0.06
+- **CFI** (Confirmatory Factor Index) should be higher than 0.9
+- and others ...
+
+## Factor analysis
+
+In the literature you may find confusion between Exploratory and Confirmatory factor analysis.
+
+\pause
+
+An important aspect is that if both are performed this should not be on the same sample!
+
+## Interpreting Factor analysis
+
+Imaging this scenario
+
+| Item   | Factor 1 | Factor 2 |
+|--------|----------|----------|
+| I often feel anxious | 0.72     |          |
+| My hearth races with no reason | 0.68     |          |
+| I find hard to stop worrying | 0.75     |          |
+| I often anticipate the wors possible outcomes | 0.70     |          |
+| I feel afraid something bad may happen | 0.66     |          |
+
+\pause
+What this result tell?
+
+\pause
+<!--### INSERT QUIZ HERE --->
+
+## Interpreting Factor analysis
+![](Figures/triangle.png){width="15%" fig-align="center"}
+
+Factor analysis _per se_ in the context of psychometrics only tells my about item correlations, but NOT
+the interpretation.
+
+\pause
+Assigning a Label to a Factor is something done by the researcher/experimenter
+
+\pause
+To support construct interpretation other data are necessary (e.g. correlation of the total score of those items with another test/scale)
+
+## Interpreting Factor analysis (example)
+
+Is the structure of the test adherent to the theory? **OK**
+\pause
+
+Is the item grouping justified? **OK**
+\pause
+
+Are we sure we are measuring that construct (e.g. Anxiety, Memory)? **NO**
+
+
