@@ -1,0 +1,242 @@
+---
+title: ""
+author: "Giorgio Arcara"
+date: ""
+#format: revealjs
+format:
+  beamer:
+    theme: metropolis
+    keep-tex: false
+incremental: false
+header-includes:
+  \setbeamerfont{title}{size=\large}
+  \usepackage{hyperref}
+  \setbeamertemplate{footline}[frame number]
+  \usepackage{tikz}
+  \usetikzlibrary{arrows.meta, positioning, shapes.geometric}
+  \usetikzlibrary{overlay-beamer-styles}
+---
+
+```{=latex}
+% TITLE SLIDE
+\title{{\fontsize{15pt}{16pt}\selectfont Applied Psychometrics}:\\ studying subclinical psychopathologies\\ \vspace{1.5em} \raggedright 
+\emph{7.1 - Normative data, percentiles and thresholds}}
+\author{Giorgio Arcara,\\ University of Padua \\ IRCCS San Camillo, Venice}
+
+\titlegraphic{
+
+\vspace*{7cm}
+\includegraphics[scale=0.15]{Figures/LogoSanCamilloIRCCS_Unipd_alpha.png}
+\begin{center}
+\vspace{-2.2em}
+\includegraphics[scale=0.15]{Figures/CC_license_3_0.png}
+\end{center}
+}
+\date{2026}
+\maketitle
+```
+
+```{r}
+#initialize a quato template for resuse
+knitr::opts_template$set(
+  myplot = list(
+    echo = FALSE,
+    fig.show = "asis",
+    dpi = 100,
+    fig.width = 7,
+    fig.height = 5
+  )
+)
+
+```
+
+
+
+## A score
+```{r}
+#| opts.label: myplot
+
+my_score=22
+plot(0,0, ylim=c(0,22), xlim=c(0,30), xlab="Score", ylab="N. of Observations", type="n")
+segments(my_score, 0, my_score, 1, lwd=3, col="blue")
+
+
+```
+
+## A score (better visualization)
+```{r}
+#| opts.label: myplot
+
+my_score=22
+plot(0,0, ylim=c(0,22), xlim=c(0,30), xlab="Score", ylab="N. of Observations", type="n")
+segments(my_score, 0, my_score, 1, lwd=3, col="blue")
+abline(v=my_score, lty=2, col="blue")
+
+```
+
+## One scenario ...
+```{r}
+#| opts.label: myplot
+set.seed(42)
+hist(rnorm(100, mean=16, sd=3), ylim=c(0,22), xlim=c(0,30), xlab="Score", ylab="N. of Observations", breaks=20, main="")
+segments(my_score, 0, my_score, 1, lwd=3, col="blue")
+abline(v=my_score, lty=2, col="blue")
+
+
+```
+## ... and another scenario
+
+```{r}
+#| opts.label: myplot
+
+set.seed(42)
+hist(rnorm(100, mean=23, sd=3), ylim=c(0,22), xlim=c(0,30), xlab="Score", ylab="N. of Observations", breaks=20, main="")
+segments(my_score, 0, my_score, 1, lwd=3, col="blue")
+abline(v=my_score, lty=2, col="blue")
+
+
+```
+
+## What is the meaning of a raw score?
+
+::: {.callout-important}
+**Very little on its own.** The meaning of a score (in CTT) depends on how difficult the test is and what range of values is possible.
+:::
+\vfill
+
+As first step to _interpret_ a score we can make **a comparison** against people similar to the patient.
+
+
+## Normative data: definition
+
+**Normative data** are scores collected from a _sample_ of individuals assumed to be **healthy/normal**: cognitively intact and functioning independently in daily life and/or without relevant psychopathologies.
+
+
+## Normative data: the basic idea
+
+They let us ask:
+\vfill
+\begin{center}
+ \emph{"How does this patient perform compared to similar people that we consider 'normal'"?}
+ \end{center}
+\vfill
+\small
+
+\small
+(Similarity is typically defined by *age* and *education* and, typically, by *country and culture*.)
+
+## Comparison with normative data
+
+The output of this comparison is usually a percentile
+
+::: {.callout-note}
+**percentile** — the percentage of the normative sample who scored at or below a given score.
+:::
+
+\pause
+_E.g. if the score is at the 96° percentile it means that it is among the highest observed scores (96%) in the normative data._
+
+
+<!--
+## Three very different meanings of "normal"
+
+When we talk about normative data, three concepts of *normal* are in play — and they are **not** the same thing:
+
+| Meaning | What it refers to |
+|---|---|
+| **Healthy/functional** | Participants in the normative study have no cognitive disorders |
+| **Statistical normality** | A score "in the normal range" — a percentile-based inference |
+| **Normal distribution** | The Gaussian bell curve — a mathematical model |
+
+. . .
+
+::: {.callout-warning}
+Confusing these three senses is one of the most common errors in interpreting neuropsychological results.
+:::
+
+---
+-->
+
+## From percentile to thresholds
+
+Often, aften a percentile is obtained from the raw score, **thresholds are used 
+to further classify the results**.
+
+In _clinical neuropsychology_ is typically the 5° percentile, and it is associated with _suspect impairment/deficit_. 
+
+In _clinical psychology_ it may change and we may have also different thresholds (for example to distuinguish low anxiety, moderate anxiety, etc.)
+
+## From raw score to classification
+```{=latex}
+\begin{tikzpicture}[
+  node distance=4cm,
+  every node/.style={
+    draw,
+    rectangle,
+    rounded corners,
+    minimum width=3cm,
+    minimum height=1cm,
+    align=center
+  },
+  arrow/.style={->, thick}
+]
+
+% Nodes (right to left)
+\node<1-> (raw) {Raw score};
+
+\node<2-> (perc) [right of=raw] {Percentile};
+
+\node<3-> (cut) [right of=perc] {Comparison with\\thresholds/cut-off};
+
+% Arrows
+\draw<2-> [arrow] (raw) -- (perc);
+\draw<3-> [arrow] (perc) -- (cut);
+
+\end{tikzpicture}
+```
+
+
+## Subclinical psychopathologies
+
+Test may help us in identifying those condition in which clinical interview is not evident, but there are more **subtle issues** that may not be captured by qualitative methods alone.
+
+## An example of thresholds and classification
+
+| Raw Score | Percentile | Classification |
+|-----------|------------|------
+|  <20  |  50 |  Normal  |
+|  22-25 | 80 | Moderate Anxiety | 
+|  26-30 | 90 | High Anxiety | 
+
+* Note that the thresholds and classifications are almost always **arbitrary**. We will dedicate a lesson on this aspect.
+
+
+## What is the meaning of a percentile in clinical tests?
+
+\centering
+Quiz
+<!-- QUIZ ---
+It tells us the probability of having a pathology
+It tells us how people in the normative data have that score or lower
+It tells us how likely is the person to be normal.
+-->
+
+
+## What does a percentile comparison mean?
+
+_It tells us the proportion of people in the normative data obtain that score (equal or lower), from which we draw further inferences._
+
+\vfill
+\pause
+::: {.callout-important}
+A score below a given percentile is not, _per se_, evidence of a psychological or psychopathological problem.
+:::
+
+
+## Percentile and threshold comparisons as "warning" signs
+
+![](Figures/triangle.png){fig-align="center" width="10%"}
+
+A useful way to conceive results of comparison with normative data is as "warning" sign, that probably deserve further investigation and as an evidence that should integrated with all other available information.
+
+This will be covered in the lecture on **Interpretation** of tests.

@@ -1,0 +1,244 @@
+---
+title: ""
+author: "Giorgio Arcara"
+date: ""
+#format: revealjs
+format:
+  beamer:
+    theme: metropolis
+    keep-tex: false
+incremental: false
+header-includes:
+  \setbeamerfont{title}{size=\large}
+  \usepackage{hyperref}
+  \setbeamertemplate{footline}[frame number]
+  \usepackage{tikz}
+  \usetikzlibrary{arrows.meta, positioning, shapes.geometric}
+  \usetikzlibrary{overlay-beamer-styles}
+---
+
+```{=latex}
+% TITLE SLIDE
+\title{{\fontsize{15pt}{16pt}\selectfont Applied Psychometrics}:\\ studying subclinical psychopathologies\\ \vspace{1.5em} \raggedright 
+\emph{7.2 - The pragmatic utility of thresholds}}
+\author{Giorgio Arcara,\\ University of Padua \\ IRCCS San Camillo, Venice}
+
+\titlegraphic{
+
+\vspace*{7cm}
+\includegraphics[scale=0.15]{Figures/LogoSanCamilloIRCCS_Unipd_alpha.png}
+\begin{center}
+\vspace{-2.2em}
+\includegraphics[scale=0.15]{Figures/CC_license_3_0.png}
+\end{center}
+}
+\date{2026}
+\maketitle
+```
+
+## A quick recap
+
+Normative data and thresholds helps us in interpreting scores
+
+However, _per se_ \textcolor{red}{they do not tell anything about the existence of a pathological condition or a problem}
+
+
+```{r}
+#initialize a quato template for resuse
+knitr::opts_template$set(
+  myplot = list(
+    echo = FALSE,
+    fig.show = "asis",
+    dpi = 100,
+    fig.width = 7,
+    fig.height = 5
+  )
+)
+
+```
+
+## What is the meaning of a score?
+
+Suppose you have a score of **15 out of 30** on a test that aims at measuring anxiety, developed in the context of Classical Test Theory.
+
+How to make a first interpretation of this score?
+
+<!-- QUIZ HERE
+- Suppose you have a score of 15 out of 30 in an Anxiety test.
+- The person has an intermediate level of anxiety
+- The person has an high level of anxiety
+- The person has a low level of anxiety
+- With the available information I cannot know the level of Anxiety.
+-->
+
+```{r}
+#initialize a quato template for resuse
+knitr::opts_template$set(
+  myplot = list(
+    echo = FALSE,
+    fig.show = "asis",
+    dpi = 100,
+    fig.width = 7,
+    fig.height = 5
+  )
+)
+```
+
+## Percentile and clinical relevance
+\centering
+Is there clinical relevance when an observed value falls at extreme percentiles or exceeds a threshold?
+
+
+## Distribution of Anxiety score in healty participants
+```{r}
+#| opts.label: myplot
+
+my_score=22
+set.seed(42)
+hist(rnorm(100, mean=16, sd=3), ylim=c(0,22), xlim=c(0,30), xlab="Score", ylab="N. of Observations", breaks=20, main="Anxiety Test")
+segments(my_score, 0, my_score, 1, lwd=3, col="blue")
+abline(v=my_score, lty=2, col="blue")
+
+```
+
+## Distribution of height in a normative sample
+```{r}
+#| opts.label: myplot
+
+my_score=190
+set.seed(100)
+hist(rnorm(100, mean=175, sd=8), ylim=c(0,22), xlim=c(100,200), xlab="Score", ylab="N. of Observations", breaks=20, main="Height")
+segments(my_score, 0, my_score, 1, lwd=3, col="blue")
+abline(v=my_score, lty=2, col="blue")
+
+
+```
+
+
+## Percentiles and thresholds
+
+_It helps us estimate the likelihood of observing a specific score (or equal or lower) in the normative data, from which we draw further inferences._
+
+Thresholds are a further help to transform from a continuous distribution (percentiles) to a limited number of **arbitrary** categories.
+
+```{=latex}
+\begin{tikzpicture}[
+  node distance=4cm,
+  every node/.style={
+    draw,
+    rectangle,
+    rounded corners,
+    minimum width=3cm,
+    minimum height=1cm,
+    align=center
+  },
+  arrow/.style={->, thick}
+]
+
+% Nodes (right to left)
+\node (raw) {Raw score};
+
+\node (perc) [right of=raw] {Percentile};
+
+\node (cut) [right of=perc] {Comparison with\\thresholds/cut-off};
+
+% Arrows
+\draw [arrow] (raw) -- (perc);
+\draw [arrow] (perc) -- (cut);
+
+\end{tikzpicture}
+```
+
+## Paradox of the heap
+
+```{=latex}
+\begin{columns}[c]
+\column{0.5\textwidth}
+\begin{figure}
+\includegraphics[width=0.5\textwidth]{Figures/poor.png}
+\end{figure}
+\column{0.5\textwidth}
+\pause
+\begin{figure}
+\includegraphics[width=0.5\textwidth]{Figures/rich.png}
+\end{figure}
+\end{columns}
+```
+
+## Paradox of the heap
+
+- **Premise 1**: If a person has 0 coin is "poor"
+
+- **Premise 2**: If a person that is "poor" gain 1 coin is not rich
+\pause
+
+**Paradoxical conclusion**: if your apply the principle of Premise 2 a billion of time, the person should be still poor.
+
+\pause
+_Whenever a continuous variable is mapped onto vague categories, arbitrary thresholds create borderline cases that can give rise to Heap-type paradoxes._
+
+
+
+## Thresholds based on statistical properties
+
+
+If the threshold is based on statistical properties, it is a just convenient way to cluster data, but (often) based on arbitrary transformation of continuous percentile
+
+## Thresholds and Validity
+
+If we a support to the interpretation of thresholds, we should ascertain the _validity_ of this interpretation (see slides on **kwnon-groups validity**). 
+\pause
+
+However if we have **known groups** (e.g. people who are admitted to a psychiatric ward vs people who are not admitted at psychiatric ward), we can find optimal thresholds to **distinguish** between groups (see lectures of next weeks)
+
+
+
+## Why we use arbitrary threholds?
+
+If there are problems with thresholds, why don't we just use percentiles?
+
+\pause
+- There are cases in which we don't have clear "known" groups
+
+\pause 
+- They have **pragmatic utility**, and they can help us to make clinical choices (e.g. I will use this therapy for more severe cases)
+
+## A hypothetical neuropsychological test (Test A)
+
+| Task                     | Raw Score | Percentile | Cut-off |
+|--------------------------|-----------|------------|---------|
+| Memory                  | 45        | 60         |         |
+| Attention               | 11        | 6         |       |
+| Language                | 50        | 75         |         |
+| Executive Functions     | 2        | 5         |        |
+| Visuospatial            | 40        | 50         |         |
+| Processing Speed        | 14        | 3         |        |
+
+---
+
+## A hypothetical neuropsychological test (Test B)
+
+| Task                     | Raw Score | Percentile | Cut-off |
+|--------------------------|-----------|------------|---------|
+| Memory                  | 45        | 60         |         |
+| Attention               | 11        | 6         |       |
+| Language                | 50        | 75         |         |
+| Executive Functions     | 2        | 5         | *       |
+| Visuospatial            | 40        | 50         |         |
+| Processing Speed        | 14        | 3         | *       |
+
+
+## Take-home message
+
+Thresholds based on normative data (i.e., derived only from healthy) are useful, but often they are not a proof to belonging to a specific clinical category.
+
+This is because more often **we built** the categories arbitrarily, transforming a probability into groups.
+
+Classification from norms should interpret them as a **potential warning sign** \includegraphics[scale=0.01]{Figures/triangle.png} that deserve further investigation.
+
+
+
+
+
+
+

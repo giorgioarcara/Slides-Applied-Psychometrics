@@ -1,0 +1,84 @@
+---
+title: ""
+author: "Giorgio Arcara"
+date: ""
+#format: revealjs
+format:
+  beamer:
+    theme: metropolis
+    keep-tex: false
+incremental: false
+header-includes:
+  \setbeamerfont{title}{size=\large}
+  \usepackage{hyperref}
+  \setbeamertemplate{footline}[frame number]
+  \usepackage{tikz}
+  \usetikzlibrary{arrows.meta, positioning, shapes.geometric}
+  \usetikzlibrary{overlay-beamer-styles}
+---
+
+```{=latex}
+% TITLE SLIDE
+\title{{\fontsize{15pt}{16pt}\selectfont Applied Psychometrics}:\\ studying subclinical psychopathologies\\ \vspace{1.5em} \raggedright 
+\emph{7.2 - Collecting normative data}}
+\author{Giorgio Arcara,\\ University of Padua \\ IRCCS San Camillo, Venice}
+
+\titlegraphic{
+
+\vspace*{7cm}
+\includegraphics[scale=0.15]{Figures/LogoSanCamilloIRCCS_Unipd_alpha.png}
+\begin{center}
+\vspace{-2.2em}
+\includegraphics[scale=0.15]{Figures/CC_license_3_0.png}
+\end{center}
+}
+\date{2026}
+\maketitle
+```
+
+## Who will be part normative data?
+
+People that **we assume** are normal,
+\pause
+
+Often, people without acknowledged problems. E.g., people without neurological or psychiatric disease.
+
+::: {.callout-important}
+The composition of normative data will influence the **inferences** can be drawn from the comparison.
+:::
+
+
+## Collecting normative data
+```{=latex}
+\begin{center}
+\begin{tikzpicture}
+
+% --- Your figure -------------------------------------------------------
+\node (img) at (0,0) {\includegraphics[width=0.7\textwidth]{Figures/normative_data.png}};
+
+% Top-left
+\only<1>{\fill[white] (-3.5,3) rectangle (0,0);}
+
+% Top-right
+\only<1-2>{\fill[white] (-0.2,3) rectangle (3.2,0);}
+
+% Bottom-left
+\only<1-3>{\fill[white] (-3.5,0) rectangle (0,-3);}
+
+% Bottom-right
+\only<1-4>{\fill[white] (-0.2,0) rectangle (3.2,-3);}
+
+
+\end{tikzpicture}
+\end{center}
+\onslide<5> % <-- forces slide 5 to exist
+The vertical line is one potential \textbf{threshold}.
+
+\pause
+```
+
+## From continuous variables to "categories"
+
+The use of thresholds is a way that helps us to move from a continuous variable, to **categories** with important pragmatic values, but with potential problems.
+
+
