@@ -1,0 +1,252 @@
+---
+title: ""
+author: "Giorgio Arcara"
+date: ""
+format:
+  beamer:
+    theme: metropolis
+    keep-tex: false
+incremental: false
+header-includes:
+  \setbeamerfont{title}{size=\large}
+  \usepackage{hyperref}
+  \setbeamertemplate{footline}[frame number]
+---
+
+::: {.content-visible when-format="beamer"}
+```{=latex}
+\title{{\fontsize{15pt}{16pt}\selectfont Applied Psychometrics}:\\ studying subclinical psychopathologies\\ \vspace{1.5em} \raggedright 
+\emph{Regression-Based Norms}}
+\author{Giorgio Arcara,\\ University of Padua \\ IRCCS San Camillo, Venice}
+
+\titlegraphic{
+\vspace*{7cm}
+\includegraphics[scale=0.15]{Figures/LogoSanCamilloIRCCS_Unipd_alpha.png}
+\begin{center}
+\vspace{-2.2em}
+\includegraphics[scale=0.15]{Figures/CC_license_3_0.png}
+\end{center}
+}
+\date{2026}
+\maketitle
+```
+
+## The Standard Approach: A Quick Recap
+
+When we interpret a test score, we compare it to a **normative sample**.
+
+\pause \vfill
+
+The most common approaches are:
+
+- **z-scores** (parametric): how many SDs away from the mean?
+- **Non-parametric percentiles**: what proportion of the sample scores below this value?
+- **Crawford & Howell modified _t_-test**: is this single case significantly different from the normative group?
+
+\pause \vfill
+
+\small
+All these methods have one thing in common: they require a **single, well-defined normative group**.
+
+
+## The Problem: Who Should Be in the Group?
+
+In neuropsychological and clinical assessment, performance is known to vary with:
+
+\pause
+
+- **Age** (e.g., memory declines with age)
+- **Education** (e.g., higher education often boosts test scores)
+- **Sex** (e.g., some tasks show sex differences)
+
+\pause \vfill
+
+A straightforward solution is to create **separate normative groups** for each combination of these variables.
+
+\pause \vfill
+\small
+_But how exactly should we form these groups?_
+
+
+## The Arbitrary Binning Problem
+
+To create separate groups, we need to **bin** continuous variables like age and education.
+
+\pause \vfill
+
+For example:
+
+- Age: 18--30, 31--45, 46--60, 61--75, 76+
+- Education: $\le$ 8 years, 9--13 years, $\ge$ 14 years
+
+\pause \vfill
+
+**The problem**: these boundaries are \textbf{arbitrary}. Why 30 and not 35? Why 13 years and not 12?
+
+\pause \vfill
+\small
+Binning decisions can affect classification outcomes — a person at the edge of a bin may be classified very differently depending on which cut-off is chosen.
+
+
+## A Compounding Problem: Many Groups, Little Data
+
+As we add more variables, the number of groups grows quickly.
+
+\pause \vfill
+
+With 3 age groups × 3 education levels × 2 sex groups = \textbf{18 separate normative groups}.
+
+\pause \vfill
+
+In practice:
+
+- Some cells will have **very few participants**
+- Norms from small groups are **unreliable**
+- Some combinations may be **completely absent** from the normative sample
+
+\pause \vfill
+\small
+_We need a way to model the influence of these variables continuously and simultaneously._
+
+
+## A Potential Solution: Regression-Based Norms
+
+Instead of dividing participants into groups, we can **model the relationship** between demographic variables and test scores using regression.
+
+\pause \vfill
+
+The general idea:
+
+$$\hat{Y} = b_0 + b_1 \cdot \text{Age} + b_2 \cdot \text{Education} + b_3 \cdot \text{Sex} + \ldots$$
+
+\pause \vfill
+
+The model provides a **predicted score** for any combination of age, education, and sex — without artificial binning.
+
+\pause \vfill
+\small
+This approach was systematically formalised by Fastenau (1998) and later developed by Van der Elst and colleagues (2006 and onwards).
+
+
+## From Predicted Scores to Norms
+
+Once the regression model is fitted, each participant's score can be expressed **relative to what was expected** given their demographics.
+
+\pause \vfill
+
+The **residual** is the difference between the observed and the predicted score:
+
+$$e_i = Y_i - \hat{Y}_i$$
+
+\pause \vfill
+
+These residuals can then be used in different ways:
+
+- Expressed as **z-scores** using the residual standard deviation: $z = e_i / \text{SD}_e$
+- Converted to **percentiles** using the empirical distribution of residuals
+- Used in adapted **Crawford-type tests** applied to the residuals
+
+
+## What Can We Do with the Residual-Based Score?
+
+The standardised residual tells us: _how unusual is this score, given who this person is?_
+
+\pause \vfill
+
+A **z-score** based on the residuals allows us to:
+
+- Apply familiar cut-offs (e.g., $z < -1.5$ or $z < -2$)
+- Identify individuals whose performance is unexpectedly low (or high) \emph{after accounting for demographics}
+
+\pause \vfill
+\small
+This is sometimes called the **standardised regression-based (SRB)** approach (Temkin et al., 1999).
+
+
+## Advantages of Regression-Based Norms
+
+Regression-based norms offer several practical advantages:
+
+\pause
+
+- **No arbitrary binning**: age, education, etc. are treated as continuous
+- **Simultaneous adjustment**: all demographic variables are modelled together
+- **More efficient use of data**: the full sample is used, not subgroups
+- **Flexibility**: non-linear terms (e.g., $\text{Age}^2$) or interactions can be included
+- **Applicable to any person**: predictions can be generated for any demographic combination within the observed range
+
+\pause \vfill
+\small
+These properties make regression-based norms particularly useful when normative data are limited or when the population is demographically heterogeneous.
+
+
+## Limitations and Open Problems
+
+Regression-based norms are a valuable tool, but they come with important caveats.
+
+\pause \vfill
+
+**The model must fit well.**
+If the regression model is misspecified (e.g., missing a non-linear effect), the residuals will not reflect true individual differences — they will also absorb model error.
+
+\pause \vfill
+
+**Many models can be fitted.**
+Different choices of predictors, transformations, and functional forms can lead to different norms for the same person. There is no universally agreed procedure.
+
+\pause \vfill
+\small
+_Which model is the "right" one? This question often lacks a definitive answer._
+
+
+## Limitations: Edge Cases and Classification Risk
+
+A particularly important concern is **what happens at the boundaries** of the normative space.
+
+\pause \vfill
+
+Regression models **interpolate well** but can **extrapolate poorly**:
+
+- Very old individuals
+- Very low or very high education levels
+- Rare combinations of variables
+
+\pause \vfill
+
+In these cases, predictions are based on fewer observations and carry **greater uncertainty** — but this uncertainty is often not reflected in the final norm.
+
+\pause \vfill
+\small
+Classification at the edge (e.g., "borderline impaired" vs. "normal") can be particularly risky for demographically extreme individuals.
+
+
+## Summary
+
+\begin{center}
+\textbf{\Large Key Takeaways}
+\end{center}
+\vspace{1.5em}
+
+\small
+
+| Approach | Strength | Limitation |
+|---|---|---|
+| z-score / percentile | Simple, transparent | Requires pre-defined group |
+| Crawford _t_-test | Single-case inference | Requires pre-defined group |
+| Regression-based | Continuous adjustment, efficient | Model-dependent, edge uncertainty |
+
+\pause \vfill
+
+\normalsize
+Regression-based norms are a **principled and flexible** alternative to traditional normative approaches — but their validity depends heavily on the quality of the underlying model.
+
+\pause \vfill
+\small
+\centering
+_No method is assumption-free. Knowing the assumptions is the first step to using any method responsibly._
+
+## Regression-based norms, percentiles and probabilities
+
+As for Crawford t-tests there are also regression-based methods that use only percentiles and other regression methods that allow to make inferences at _population level_ (e.g. Crawford & Garthwaite 2006, Capitani & Laiacona, 1987).
+
+

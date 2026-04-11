@@ -67,7 +67,7 @@ corrplot(mat, method = "number", col = "black", cl.pos = "n" )
 oval/.style={
 draw,
 ellipse,
-minimum width=3cm,
+minimum width=3.5cm,
 minimum height=0.7cm,
 font=\small,
 align=center
@@ -85,13 +85,13 @@ node distance=0.55cm
 ]
 
 %--- Right column: rectangles ---
-\foreach \name [count=\i] in {Age, QoL Scale, Sociality Scale, Anxiety Scale}{
+\foreach \name [count=\i] in {Age, QoL Scale, Well-being scale, Anxiety Scale}{
 \node[rect] (R\i) at (4, {--(\i-1)}) {\name};
 }
 
 %--- Left column: ellipses ---
 \node[oval, visible on=<2>] (L1) at (0,1) {  };
-\node[oval, visible on=<3->] (L1) at (0,1) {Well Being};
+\node[oval, visible on=<3->] (L1) at (0,1) {Mental Health};
 
 %--- Arrows ---
 \onslide<2->{
@@ -105,16 +105,20 @@ node distance=0.55cm
 \end{tikzpicture}
 ```
 
+## Factors
+
+In factor analysis, a **factor** is a latent variable that accounts for the shared variance among a set of observed variables, thereby explaining the correlations between them.
+
 ## Factors and Loadings
 
 | Variable         | Factor 1 |
 |------------------|----------|
-| Anxiety Scale    | 0.72     |
-| Sociality Scale  | 0.65     |
+| Anxiety Scale    | -0.72     |
+| Well-Being Scale  | 0.65     |
 | QoL Scale        | 0.58     |
 | Age              | 0.01     |
 \pause
-Loadings can be interpreted as the correlation between a variable and a Factor.
+**Loadings** can be interpreted as the correlation between a variable and a Factor.
 
 
 ## Factors and items
@@ -170,8 +174,8 @@ node distance=0.55cm
 | Item   | Factor 1 | Factor 2 |
 |--------|----------|----------|
 | Item 1 | 0.72     |          |
-| Item 2 | 0.68     |          |
-| Item 3 | 0.75     |          |
+| Item 2 | -0.68     |          |
+| Item 3 | -0.75     |          |
 | Item 4 | 0.70     |          |
 | Item 5 | 0.66     |          |
 | Item 6 |          | 0.71     |
@@ -184,45 +188,50 @@ node distance=0.55cm
 ## Factor analysis
 \small
 
-In tests developed with Classical Test Theory, Factor Analysis is often used to check if the items correlates in a meaningful way _according to the expectations_.
+In tests developed with Classical Test Theory, Factor Analysis is often used to check if the items correlate in a meaningful way _according to the expectations_.
 \pause
 
-- **Exporatory Factor Analysis** analysis is often performed on a first step on some participants, if the grouping is not known.
+- **Exploratory Factor Analysis** is often performed in a first step on some participants, if the grouping is not known.
 \pause
-- **Confirmatory Factor Analysis** is performed then (on different participants), to check if factor solution is confirmed.
+- **Confirmatory Factor Analysis** is then performed (on different participants), to check if the factor solution is confirmed.
+
+## Factor analysis - technical aspects
+
+Many technical aspects of factor analysis will not be covered in these slides (e.g., factor rotation, measurement invariance).
+
 
 ## Factor analysis - recommendation
 
-Factor analysis requires about >200 participants, with 10-20 items for participant (but see Mac Callum et al. 1999)
+Factor analysis requires about >200 participants, with 10--20 participants per item (but see MacCallum et al., 1999)
 
-Results of Confirmatory Factor Analysis are assessed with different metrics of fit quality, more commonly:
+Results of Confirmatory Factor Analysis are assessed with different fit quality metrics, most commonly:
 
-- **RMSEA** (Root Mean Squared Error Approximation) should be < 0.06
-- **CFI** (Confirmatory Factor Index) should be higher than 0.9
+- **RMSEA** (Root Mean Square Error of Approximation) should be < 0.06
+- **CFI** (Comparative Fit Index) should be higher than 0.9
 - and others ...
 
 ## Factor analysis
 
-In the literature you may find confusion between Exploratory and Confirmatory factor analysis.
+In the literature you may find confusion between Exploratory and Confirmatory Factor Analysis.
 
 \pause
 
-An important aspect is that if both are performed this should not be on the same sample!
+An important point is that if both are performed, they should not be done on the same sample.
 
 ## Interpreting Factor analysis
 
-Imaging this scenario
+Imagine this scenario
 
 | Item   | Factor 1 | Factor 2 |
 |--------|----------|----------|
 | I often feel anxious | 0.72     |          |
-| My hearth races with no reason | 0.68     |          |
-| I find hard to stop worrying | 0.75     |          |
-| I often anticipate the wors possible outcomes | 0.70     |          |
+| My heart races for no reason | 0.68     |          |
+| I find it hard to stop worrying | 0.75     |          |
+| I often anticipate the worst possible outcomes | 0.70     |          |
 | I feel afraid something bad may happen | 0.66     |          |
 
 \pause
-What this result tell?
+What do these results tell us?
 
 \pause
 <!--### INSERT QUIZ HERE --->
@@ -230,23 +239,20 @@ What this result tell?
 ## Interpreting Factor analysis
 ![](Figures/triangle.png){width="15%" fig-align="center"}
 
-Factor analysis _per se_ in the context of psychometrics only tells my about item correlations, but NOT
-the interpretation.
+Factor analysis _per se_, in the context of psychometrics, only tells us about item correlations, but NOT their interpretation.
 
 \pause
-Assigning a Label to a Factor is something done by the researcher/experimenter
+Assigning a label to a factor is something done by the researcher/experimenter.
 
 \pause
-To support construct interpretation other data are necessary (e.g. correlation of the total score of those items with another test/scale)
+To support construct interpretation, additional data are necessary (e.g. correlation of the total score of those items with another test/scale).
 
 ## Interpreting Factor analysis (example)
 
-Is the structure of the test adherent to the theory? **OK**
+Is the structure of the test consistent with the theory? **OK**
 \pause
 
 Is the item grouping justified? **OK**
 \pause
 
 Are we sure we are measuring that construct (e.g. Anxiety, Memory)? **NO**
-
-

@@ -36,7 +36,7 @@ header-includes:
 \maketitle
 ```
 
-## Who will be part normative data?
+## Who will be part of the normative data?
 
 People that **we assume** are normal,
 \pause

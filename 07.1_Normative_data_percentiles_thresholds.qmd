@@ -20,7 +20,7 @@ header-includes:
 ```{=latex}
 % TITLE SLIDE
 \title{{\fontsize{15pt}{16pt}\selectfont Applied Psychometrics}:\\ studying subclinical psychopathologies\\ \vspace{1.5em} \raggedright 
-\emph{7.1 - Normative data, percentiles and thresholds}}
+\emph{7.1 - Normative data, percentiles, and thresholds}}
 \author{Giorgio Arcara,\\ University of Padua \\ IRCCS San Camillo, Venice}
 
 \titlegraphic{
@@ -37,7 +37,7 @@ header-includes:
 ```
 
 ```{r}
-#initialize a quato template for resuse
+#initialize a quarto template for reuse
 knitr::opts_template$set(
   myplot = list(
     echo = FALSE,
@@ -159,12 +159,12 @@ Confusing these three senses is one of the most common errors in interpreting ne
 
 ## From percentile to thresholds
 
-Often, aften a percentile is obtained from the raw score, **thresholds are used 
+Often, after a percentile is obtained from the raw score, **thresholds are used 
 to further classify the results**.
 
 In _clinical neuropsychology_ is typically the 5° percentile, and it is associated with _suspect impairment/deficit_. 
 
-In _clinical psychology_ it may change and we may have also different thresholds (for example to distuinguish low anxiety, moderate anxiety, etc.)
+In _clinical psychology_ it may change and we may have also different thresholds (for example to distinguish low anxiety, moderate anxiety, etc.)
 
 ## From raw score to classification
 ```{=latex}
@@ -198,12 +198,12 @@ In _clinical psychology_ it may change and we may have also different thresholds
 
 ## Subclinical psychopathologies
 
-Test may help us in identifying those condition in which clinical interview is not evident, but there are more **subtle issues** that may not be captured by qualitative methods alone.
+Tests may help us in identifying those condition in which clinical interview is not evident, but there are more **subtle issues** that may not be captured by qualitative methods alone.
 
 ## An example of thresholds and classification
 
 | Raw Score | Percentile | Classification |
-|-----------|------------|------
+|-----------|------------|----------------|
 |  <20  |  50 |  Normal  |
 |  22-25 | 80 | Moderate Anxiety | 
 |  26-30 | 90 | High Anxiety | 

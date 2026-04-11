@@ -168,7 +168,7 @@ We will encounter them also for _Reliability_ (next week).
 
 Here is a common classification of correlation strength.
 
-| r or R | r or R | Strength of association |
+| r or *$\rho$* | r or *$\rho$* | Strength of association |
 |--------|--------|------------------------|
 | +0.8 to +1.0 | -1.0 to -0.8 | Perfect or very strong association |
 | +0.6 to +0.8 | -0.8 to -0.6 | Strong association |
@@ -177,7 +177,8 @@ Here is a common classification of correlation strength.
 | +0.0 to +0.2 | -0.2 to 0.0 | Very weak or no association |
 
 
-## What is the "right" correlation value in the case of Validity?
+## What is an adequate correlation value in the case of Validity?
+\pause
 
 There is no straightforward way to interpret whether a specific correlation is adequate or not in the context of validity.
 \pause
@@ -212,6 +213,14 @@ _SCENARIO 2_
 
 The authors also present discriminant validity and the correlation with a depression scale is r = 0.5.
 \pause
+
+## Pairwise correlations
+
+- Anxiety Scale - Well-Being Scale: **-0.6** \pause
+
+- Anxiety Scale - Quality of Life Scale: **-0.7** \pause
+
+- ...
 
 
 ## Correlation Matrix

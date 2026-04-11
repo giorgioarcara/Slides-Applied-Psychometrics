@@ -1,0 +1,183 @@
+---
+title: ""
+author: "Giorgio Arcara"
+date: ""
+#format: revealjs
+format:
+  beamer:
+    theme: metropolis
+    keep-tex: false
+incremental: false
+header-includes:
+  \setbeamerfont{title}{size=\large}
+  \usepackage{hyperref}
+  \setbeamertemplate{footline}[frame number]
+  \usepackage{tikz}
+  \usetikzlibrary{arrows.meta, positioning, shapes.geometric}
+  \usetikzlibrary{overlay-beamer-styles}
+---
+
+<!-- the section below is shown only if rendering is beamer from latex. (and format:revealjs is commmented) -->
+
+::: {.content-visible when-format="beamer"}
+```{=latex}
+% TITLE SLIDES
+\title{{\fontsize{15pt}{16pt}\selectfont Applied Psychometrics}:\\ studying subclinical psychopathologies\\ \vspace{1.5em} \raggedright 
+\emph{6.1 - Reliability}}
+\author{Giorgio Arcara,\\ University of Padua \\ IRCCS San Camillo, Venice}
+
+\titlegraphic{
+
+\vspace*{7cm}
+\includegraphics[scale=0.15]{Figures/LogoSanCamilloIRCCS_Unipd_alpha.png}
+\begin{center}
+\vspace{-2.2em}
+\includegraphics[scale=0.15]{Figures/CC_license_3_0.png}
+\end{center}
+}
+\date{2026}
+\maketitle
+```
+
+## Reliability
+
+In the context of Classical Test Theory, Reliability can be considered the estimate on how "precise" is our test.
+\pause
+\vfill
+More precisely, Reliability is an estimate on how the test is free of _measurement error_
+
+
+
+## Classical Test Theory (a refresher)
+
+$X = T + E$
+\vfill
+
+$X$ = Observed Score
+
+$T$ = True Score
+
+$E$ = Measurement Error
+
+## True score
+
+![](Figures/True_score.png){fig-align="center" width="70%"}
+
+## Estimating Reliability adequateness
+
+It is typically easier to estimate if realibility is adequate, because it is easier to set recommended values. 
+\vfill
+
+\pause But remember, recommended values may vary!
+
+\vfill
+
+```{=latex}
+\begin{center}
+\begin{tikzpicture}[baseline=(current bounding box.center)]
+
+
+% : peggio - meglio
+\node[anchor=west] at (0, 0) {\footnotesize \parbox[2cm]{4cm}{\emph{Worse Reliability values}}};
+\node[anchor=east] at (11, 0) {\footnotesize \parbox[2cm]{4cm}{\emph{Best Reliability values}}};
+\node[anchor=west] at (0, -1.2) {\textbf{Worse}};
+\node[anchor=east] at (10, -1.2) {\textbf{Better}};
+\draw[thick] (1.5, -1.2) -- (8.5, -1.2);
+
+\end{tikzpicture}
+\end{center}
+```
+
+## Validity and Reliability
+\center
+![](Figures/Reliability_and_validity_GA.png){fig-align="center" width="60%"}
+```{=latex}
+\href{https://commons.wikimedia.org/wiki/File:Reliability_and_validity.svg}{\underline{CC-BY Nevit Dilmen}}
+```
+
+## Types of Reliability
+
+- Split-Half Reliability
+- Internal Consistency
+- Inter-rater Reliability
+- Test-Retest Reliability
+
+## Split-Half Reliability
+
+Is the consistency of the score of two random halves of the test
+
+It is calculated by splitting the test in two and then computing the _correlation_ between the two parts (after Spearman-Brown correction)
+
+\pause
+**Recommended value**: $\geq 0.7$ (after Spearman-Brown correction)
+
+<!-- Can you guess the problem with split-half reliability-->
+
+## Problem with Split-half reliability
+
+It may depends by the actual random split.
+
+## Internal Consistency
+
+It is an indication on how much items on the same test tapping on the same construct, provide similar results.
+\pause
+
+It is often applied _after Factor analysis_ separately on each factor, or accounting for factor structure.
+
+
+## Internal Consistency: Kuder-Richardson (KR-20)
+Is a  way to calculate internal consistency with  dicothomous items (e.g. 0/1 responses)
+
+\pause
+**Recommended value**: $\geq 0.7$
+
+
+## Internal Consistency: Cronbach's alpha
+```{=latex}
+\begin{center}
+\Large
+$\alpha$
+\normalsize
+\end{center}
+```
+
+
+Is a popular way to calculate internal consistency with non dicothomous items (e.g. Likert Scale)
+
+\pause
+Mathematically it is the average of all possible split-half reliabilities (under some assumptions)
+
+\pause
+**Recommended value**: $\geq 0.7$
+
+## Internal Consistency: Mc Donald's Omega
+```{=latex}
+\begin{center}
+\Large
+$\omega$
+\normalsize
+\end{center}
+```
+Is a more recommended way to calculate internal consistency.
+
+\pause
+It is tightly related to factor analysis
+
+\pause
+**Recommended value**: $\geq 0.7$
+
+## Inter-rater Reliability
+
+Is the consistency provided by the scores assigned by two _or more_ *raters* to the same measurement
+
+\pause it is often calculated with **Intraclass Correlation Coefficient (ICC)** (In particular with ICC(2,1) agreement version, but depends on design)
+
+**Recommended value**: $\geq 0.7$
+
+## Test-Retest Reliability
+\centering
+_Often considered the most important type of reliability_
+
+See the next video lecture!
+
+

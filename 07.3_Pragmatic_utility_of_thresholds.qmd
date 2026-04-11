@@ -20,7 +20,7 @@ header-includes:
 ```{=latex}
 % TITLE SLIDE
 \title{{\fontsize{15pt}{16pt}\selectfont Applied Psychometrics}:\\ studying subclinical psychopathologies\\ \vspace{1.5em} \raggedright 
-\emph{7.2 - The pragmatic utility of thresholds}}
+\emph{7.3 - The pragmatic utility of thresholds}}
 \author{Giorgio Arcara,\\ University of Padua \\ IRCCS San Camillo, Venice}
 
 \titlegraphic{
@@ -38,13 +38,13 @@ header-includes:
 
 ## A quick recap
 
-Normative data and thresholds helps us in interpreting scores
+Normative data and thresholds help us in interpreting scores
 
 However, _per se_ \textcolor{red}{they do not tell anything about the existence of a pathological condition or a problem}
 
 
 ```{r}
-#initialize a quato template for resuse
+#initialize a quarto template for reuse
 knitr::opts_template$set(
   myplot = list(
     echo = FALSE,
@@ -57,22 +57,10 @@ knitr::opts_template$set(
 
 ```
 
-## What is the meaning of a score?
-
-Suppose you have a score of **15 out of 30** on a test that aims at measuring anxiety, developed in the context of Classical Test Theory.
-
-How to make a first interpretation of this score?
-
-<!-- QUIZ HERE
-- Suppose you have a score of 15 out of 30 in an Anxiety test.
-- The person has an intermediate level of anxiety
-- The person has an high level of anxiety
-- The person has a low level of anxiety
-- With the available information I cannot know the level of Anxiety.
--->
 
 ```{r}
-#initialize a quato template for resuse
+#initialize a quarto template for reuse
+
 knitr::opts_template$set(
   myplot = list(
     echo = FALSE,
@@ -84,12 +72,91 @@ knitr::opts_template$set(
 )
 ```
 
+## Percentile and first interpretations
+
+With normative data, and percentiles we can start to make tentative interpretations of the results.
+
+
 ## Percentile and clinical relevance
+```{r}
+#| fig.height: 2
+#| fig.width: 3 
+#| fig.align: "center"
+
+par(cex = 0.7,      # text and symbols
+    lwd = 0.7,      # line width
+    cex.axis = 0.7, # axis labels
+    cex.lab = 0.7,  # axis titles
+    cex.main = 0.7) # main title
+
+# Generate random normal data
+set.seed(123)
+scores <- rnorm(1000, mean = 70, sd = 10)
+
+# Create histogram
+hist(scores,
+     breaks = 30,
+     col = "lightblue",
+     border = "white",
+     main = "Score Distribution",
+     xlab = "Scores",
+     ylab = "Frequency")
+
+abline(v=quantile(scores, prob=0.95), lwd=2)
+
+```
+
+
+## Percentile and clinical relevance
+```{r}
+#| fig.height: 2
+#| fig.width: 3 
+#| fig.align: "center"
+
+par(cex = 0.7,      # text and symbols
+    lwd = 0.7,      # line width
+    cex.axis = 0.7, # axis labels
+    cex.lab = 0.7,  # axis titles
+    cex.main = 0.7) # main title
+
+# Generate random normal data
+set.seed(123)
+scores <- rnorm(1000, mean = 70, sd = 10)
+
+# Create histogram
+hist(scores,
+     breaks = 30,
+     col = "lightblue",
+     border = "white",
+     main = "Score Distribution",
+     xlab = "Scores",
+     ylab = "Frequency")
+
+my_score=95
+segments(my_score, 0, my_score, 1, lwd=3, col="blue")
+abline(v=my_score, lty=2, col="blue")
+
+abline(v=quantile(scores, prob=0.95), lwd=2)
+
+# Choose a tail point (right tail)
+head_x <- 95
+head_y <- 20
+tail_x = 85
+tail_y=60
+
+
+# Add arrow pointing to the tail
+arrows(x0 = tail_x, y0 = tail_y, x1 = head_x, y1 = head_y,
+       col = "red", lwd = 2, length = 0.05)
+
+# Add question mark near the arrow tip
+text(x = tail_x-4 , y = tail_y+8, labels = "?", col = "red", cex = 2)
+```
 \centering
 Is there clinical relevance when an observed value falls at extreme percentiles or exceeds a threshold?
 
 
-## Distribution of Anxiety score in healty participants
+## Distribution of Anxiety score in healthy participants
 ```{r}
 #| opts.label: myplot
 
@@ -169,10 +236,10 @@ Thresholds are a further help to transform from a continuous distribution (perce
 
 - **Premise 1**: If a person has 0 coin is "poor"
 
-- **Premise 2**: If a person that is "poor" gain 1 coin is not rich
+- **Premise 2**: If a person that is "poor" gains 1 coin is not rich
 \pause
 
-**Paradoxical conclusion**: if your apply the principle of Premise 2 a billion of time, the person should be still poor.
+**Paradoxical conclusion**: if you apply the principle of Premise 2 a billion of time, the person should be still poor.
 
 \pause
 _Whenever a continuous variable is mapped onto vague categories, arbitrary thresholds create borderline cases that can give rise to Heap-type paradoxes._
@@ -186,14 +253,14 @@ If the threshold is based on statistical properties, it is a just convenient way
 
 ## Thresholds and Validity
 
-If we a support to the interpretation of thresholds, we should ascertain the _validity_ of this interpretation (see slides on **kwnon-groups validity**). 
+If we a support to the interpretation of thresholds, we should ascertain the _validity_ of this interpretation (see slides on **known-groups validity**). 
 \pause
 
 However if we have **known groups** (e.g. people who are admitted to a psychiatric ward vs people who are not admitted at psychiatric ward), we can find optimal thresholds to **distinguish** between groups (see lectures of next weeks)
 
 
 
-## Why we use arbitrary threholds?
+## Why we use arbitrary thresholds?
 
 If there are problems with thresholds, why don't we just use percentiles?
 

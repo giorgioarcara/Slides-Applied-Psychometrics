@@ -1,0 +1,137 @@
+---
+title: ""
+author: "Giorgio Arcara"
+date: ""
+#format: revealjs
+format:
+  beamer:
+    theme: metropolis
+    keep-tex: false
+incremental: false
+header-includes:
+  \setbeamerfont{title}{size=\large}
+  \usepackage{hyperref}
+  \setbeamertemplate{footline}[frame number]
+  \usepackage{tikz}
+  \usetikzlibrary{arrows.meta, positioning, shapes.geometric}
+  \usetikzlibrary{overlay-beamer-styles}
+---
+
+```{=latex}
+% TITLE SLIDE
+\title{{\fontsize{15pt}{16pt}\selectfont Applied Psychometrics}:\\ studying subclinical psychopathologies\\ \vspace{1.5em} \raggedright 
+\emph{7.4 - Z-scores and non parametric percentiles}}
+\author{Giorgio Arcara,\\ University of Padua \\ IRCCS San Camillo, Venice}
+
+\titlegraphic{
+
+\vspace*{7cm}
+\includegraphics[scale=0.15]{Figures/LogoSanCamilloIRCCS_Unipd_alpha.png}
+\begin{center}
+\vspace{-2.2em}
+\includegraphics[scale=0.15]{Figures/CC_license_3_0.png}
+\end{center}
+}
+\date{2026}
+\maketitle
+```
+
+```{r}
+#initialize a quato template for resuse
+knitr::opts_template$set(
+  myplot = list(
+    echo = FALSE,
+    fig.show = "asis",
+    dpi = 100,
+    fig.width = 7,
+    fig.height = 5
+  )
+)
+
+```
+## Z-score
+
+The most common and widespread method to determine the percentiles is the **z-score** transformation
+
+
+## Z-score
+
+
+$$ \mathbf{Z} = \frac{(X - M)}{SD}$$
+
+$\mathbf{Z}$ = Z score
+
+$X$ = observed score
+
+$M$ = Mean of the normative sample
+
+$SD$ = Standard deviation of the normative sample.
+
+
+## Z-score to percentiles
+
+If the data distribution is normal, z-scores can be easily mapped to percentiles.
+
+
+## Z-score to percentiles
+
+![](Figures/gaussiana.png){fig-align="center" widt="80%"}
+
+## Interpreting z-scores
+\centering
+z-scores can be easily interpreted.
+
+See online app!
+
+## Important!
+
+If the data distribution is not normal, than z-scores could not correspond to the expected percentile!
+
+```{r}
+#| opts.label: myplot
+#| fig.height: 4
+
+
+par(mfrow=c(1,2), mar=c(5.1, 4.1, 4.1, 2.1))
+set.seed(100)
+x1=rnorm(100, mean=10)
+x2=scale(-exp(rnorm(100, mean=20)))+10
+
+hist(x1, xlab="score", main="normal (gaussian) distribution")
+mtext("Z-score: ok", side = 3)
+hist(x2, xlab="score", main="non-normal distribution")
+mtext("Z-score: not ok", side = 3)
+
+
+```
+
+## Alternative: non-parametric percentile
+
+
+Non parametric percentiles are distribution-free and are calculated by ranking data and calculating the empirical proportion of data below a specific value.
+
+
+## Example of percentiles provided with a test 
+
+\scriptsize
+
+| Percentile | Score |
+| ---------- | ----- |
+| 5          | 12    |
+| 10         | 14    |
+| 15         | 15    |
+| 20         | 16    |
+| 25         | 17    |
+| 30         | 18    |
+| 35         | 19    |
+| 40         | 20    |
+| 45         | 21    |
+| 50         | 22    |
+| 55         | 23    |
+| 60         | 24    |
+| 65         | 25    |
+| 70         | 26    |
+| 75         | 27    |
+| 80         | 28    |
+| 85         | 29    |
+| 90         | 30    |

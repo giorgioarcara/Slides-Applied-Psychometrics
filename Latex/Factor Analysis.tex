@@ -1,0 +1,84 @@
+% =============================================================
+%  Confirmatory Factor Analysis – Factor Loadings Table
+%  Two-factor solution (N = 342)
+%  Minimal packages version
+% =============================================================
+
+\documentclass[12pt, a4paper]{article}
+\usepackage{booktabs}
+\usepackage{geometry}
+\usepackage{xcolor}
+\usepackage{colortbl}
+
+\geometry{margin=2.5cm}
+
+\definecolor{factor1col}{RGB}{210, 228, 248}
+\definecolor{factor2col}{RGB}{210, 245, 220}
+\definecolor{poorload}{RGB}{255, 220, 220}
+
+\begin{document}
+
+\begin{table}[ht]
+\centering
+\caption{Standardised Factor Loadings and Communalities for the Two-Factor Solution ($N = 342$)}
+\label{tab:cfa}
+
+\begin{tabular}{clccc}
+\toprule
+\textbf{Item} & \textbf{Abbreviated content} & \textbf{Factor 1} & \textbf{Factor 2} & $\mathbf{h^2}$ \\
+\midrule
+
+\multicolumn{5}{l}{\textit{Factor 1 -- Anxiety} ($\alpha = .89$)} \\[3pt]
+\rowcolor{factor1col} Item 1  & Feels nervous or on edge without clear reason  & .821 & .091 & .682 \\
+\rowcolor{factor1col} Item 2  & Heart races or pounds in stressful situations  & .803 & .074 & .651 \\
+\rowcolor{factor1col} Item 3  & Worries excessively about everyday matters     & .786 & .102 & .628 \\
+\rowcolor{factor1col} Item 4  & Finds it hard to stop or control worrying      & .774 & .115 & .611 \\
+\rowcolor{factor1col} Item 5  & Feels tense or restless most of the time       & .762 & .088 & .588 \\
+\rowcolor{factor1col} Item 6  & Avoids situations that trigger anxious feelings & .749 & .097 & .569 \\
+\rowcolor{factor1col} Item 7  & Experiences shortness of breath when anxious   & .741 & .083 & .554 \\
+\rowcolor{factor1col} Item 8  & Has trouble relaxing even in safe situations   & .728 & .110 & .543 \\
+\rowcolor{factor1col} Item 9  & Anticipates the worst outcome in situations    & .714 & .129 & .527 \\
+\rowcolor{factor1col} Item 10 & Feels afraid as if something awful might happen & .703 & .141 & .512 \\[6pt]
+
+\multicolumn{5}{l}{\textit{Factor 2 -- Depression} ($\alpha = .86$)} \\[3pt]
+\rowcolor{factor2col} Item 11 & Feels sad or empty for much of the day         & .095 & .812 & .668 \\
+\rowcolor{factor2col} Item 12 & Has lost interest in activities once enjoyed   & .083 & .798 & .643 \\
+\rowcolor{factor2col} Item 13 & Experiences persistent fatigue or low energy   & .110 & .779 & .616 \\
+\rowcolor{factor2col} Item 14 & Has difficulty concentrating on daily tasks    & .124 & .763 & .595 \\
+\rowcolor{factor2col} Item 15 & Feels worthless or excessively guilty          & .097 & .751 & .571 \\
+\rowcolor{factor2col} Item 16 & Sleep is disturbed (too much or too little)    & .088 & .738 & .551 \\
+\rowcolor{factor2col} Item 17 & Appetite has changed significantly recently    & .076 & .726 & .531 \\
+\rowcolor{factor2col} Item 18 & Feels hopeless about the future                & .103 & .711 & .511 \\[6pt]
+
+\multicolumn{5}{l}{\textit{Items flagged for removal (cross-loading / low communality)}} \\[3pt]
+\rowcolor{poorload} Item 19$^{\dagger}$ & Feels irritable or easily frustrated   & .312 & .298 & .186 \\
+\rowcolor{poorload} Item 20$^{\dagger}$ & Has difficulty making simple decisions  & .271 & .334 & .201 \\
+
+\bottomrule
+\end{tabular}
+
+\vspace{8pt}
+
+\begin{tabular}{ll}
+\multicolumn{2}{l}{\textbf{Model fit statistics}} \\[3pt]
+$\chi^2(169) = 201.34,\ p = .048$ & RMSEA $= .031$ [90\% CI: .009, .048] \\
+CFI $= .974$                       & TLI $= .969$                          \\
+SRMR $= .052$                      & AIC $= 14{,}832.6$                    \\
+\end{tabular}
+
+\vspace{8pt}
+
+\noindent\footnotesize
+\textit{Note.} Loadings are standardised (pattern matrix, ML estimation, oblique rotation).
+Inter-factor correlation $r = .54$ ($p < .001$). $h^2$ = communality.
+Row shading: \colorbox{factor1col}{blue} = Factor 1; \colorbox{factor2col}{green} = Factor 2;
+\colorbox{poorload}{red} = flagged items.
+Acceptable fit thresholds: RMSEA $<$ .06; CFI/TLI $>$ .95; SRMR $<$ .08. \\[4pt]
+$^{\dagger}$ Cross-loadings $>$ .25 on both factors and $h^2 <$ .25.
+Removing Items 19--20 improved fit:
+$\Delta\chi^2(11) = 18.42$, $p = .072$; $\Delta$RMSEA $= -.008$; $\Delta$CFI $= +.009$.\\
+\vspace{6pt}
+\emph{Example generated with the help of Claude Sonnet 4.6}
+\end{table}
+
+\end{document}

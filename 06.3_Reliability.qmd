@@ -1,0 +1,74 @@
+---
+title: ""
+author: "Giorgio Arcara"
+date: ""
+#format: revealjs
+format:
+  beamer:
+    theme: metropolis
+    keep-tex: false
+incremental: false
+header-includes:
+  \setbeamerfont{title}{size=\large}
+  \usepackage{hyperref}
+  \setbeamertemplate{footline}[frame number]
+  \usepackage{tikz}
+  \usetikzlibrary{arrows.meta, positioning, shapes.geometric}
+  \usetikzlibrary{overlay-beamer-styles}
+---
+
+<!-- the section below is shown only if rendering is beamer from latex. (and format:revealjs is commmented) -->
+
+```{=latex}
+% TITLE SLIDES
+\title{{\fontsize{15pt}{16pt}\selectfont Applied Psychometrics}:\\ studying subclinical psychopathologies\\ \vspace{1.5em} \raggedright 
+\emph{6.3 - Assessing Reliability}}
+\author{Giorgio Arcara,\\ University of Padua \\ IRCCS San Camillo, Venice}
+
+\titlegraphic{
+
+\vspace*{7cm}
+\includegraphics[scale=0.15]{Figures/LogoSanCamilloIRCCS_Unipd_alpha.png}
+\begin{center}
+\vspace{-2.2em}
+\includegraphics[scale=0.15]{Figures/CC_license_3_0.png}
+\end{center}
+}
+\date{2026}
+\maketitle
+```
+
+## Some considerations
+
+Reliability is assessed in many cases by two main analyses: Pearson Correlation and ICC (keeping aside Internal Consistency).
+\pause
+
+These slides contain some aspects you should pay attention to.
+
+## Test-Retest and Pearson correlation
+
+If Pearson correlation is used, this must be complemented by a check that NO systematic effect is present (this is typically done with a t-test comparing the scores at the two timepoints), accompanied by Bland-Altman Plots.
+```{=latex}
+for details see \href{https://pmc.ncbi.nlm.nih.gov/articles/PMC4470095/}{\underline{here}}, (Giavarina, 2015)
+```
+
+
+## Test-Retest and ICC
+There are many ICC coefficients, the one most commonly used is **ICC(2,1) agreement**.
+
+```{=latex}
+\vfill
+See \href{https://pmc.ncbi.nlm.nih.gov/articles/PMC4913118/pdf/main.pdf}{\underline{here}} for a detailed overview (Koo and Li, 2016).
+```
+
+## Test-Retest, inter-rater and ICC
+
+```{=latex}
+\begin{center}
+\begin{figure}
+\includegraphics[scale=0.3]{Figures/wiki_ICC.png}
+\end{figure}
+\small
+\href{https://en.wikipedia.org/wiki/Intraclass_correlation}{\underline{ICC (Wikipedia)}}
+\end{center}
+```

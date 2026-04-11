@@ -1,0 +1,196 @@
+---
+title: ""
+author: "Giorgio Arcara"
+date: ""
+#format: revealjs
+format:
+  beamer:
+    theme: metropolis
+    keep-tex: false
+incremental: false
+header-includes:
+  \setbeamerfont{title}{size=\large}
+  \usepackage{hyperref}
+  \setbeamertemplate{footline}[frame number]
+  \usepackage{tikz}
+  \usetikzlibrary{arrows.meta, positioning, shapes.geometric}
+  \usetikzlibrary{overlay-beamer-styles}
+---
+
+<!-- the section below is shown only if rendering is beamer from latex. (and format:revealjs is commmented) -->
+
+::: {.content-visible when-format="beamer"}
+```{=latex}
+% TITLE SLIDES
+\title{{\fontsize{15pt}{16pt}\selectfont Applied Psychometrics}:\\ studying subclinical psychopathologies\\ \vspace{1.5em} \raggedright 
+\emph{6.2 - Test-Retest Reliability}}
+\author{Giorgio Arcara,\\ University of Padua \\ IRCCS San Camillo, Venice}
+
+\titlegraphic{
+
+\vspace*{7cm}
+\includegraphics[scale=0.15]{Figures/LogoSanCamilloIRCCS_Unipd_alpha.png}
+\begin{center}
+\vspace{-2.2em}
+\includegraphics[scale=0.15]{Figures/CC_license_3_0.png}
+\end{center}
+}
+\date{2026}
+\maketitle
+```
+
+## A very old scale
+
+![](Figures/old_scale.png){fig-align="center" width="50%"}
+
+## Reliability and Measurement Error
+
+$X = T + E$
+\vfill
+
+$X$ = Observed Score
+
+$T$ = True Score
+
+$E$ = Measurement Error
+
+\vfill
+\small
+Assumption of Classical Test Theory: If we measure repeatedly _the same thing_, and then we average, the Measurement Error, assumed to be random, will cancel out.
+
+## Test-Retest reliability
+```{r}
+#| echo: FALSE
+#| output: TRUE
+#| fig.dpi: 100
+#| fig.width: 7
+#| fig.height: 5
+
+library(ONDAutils)
+
+set.seed(10)
+X = simulate_obs(Ts = 10, n = 30, rel=0.8, mu_true = 8, sd_true = 2, label = "Observed and True Score")
+abline(h=10, col="blue", lwd=3)
+legend("topright", legend=c("observed score", "true score"), pch=c(1, NA), lty=c(NA, 1), lwd=c(NA, 3), col=c("black", "blue"))
+
+```
+
+## High reliability
+
+
+```{r} 
+#| echo: FALSE
+#| output: TRUE
+#| fig.dpi: 100
+#| fig.width: 7
+#| fig.height: 5
+
+set.seed(10)
+X = simulate_obs(Ts = 10, n = 30, rel=0.9, mu_true = 8, sd_true = 2, label = "High Reliability")
+abline(h=10, col="blue", lwd=3)
+legend("topright", legend=c("observed score", "true score"), pch=c(1, NA), lty=c(NA, 1), lwd=c(NA, 3), col=c("black", "blue"))
+
+```
+
+## Low reliability
+
+
+```{r} 
+#| echo: FALSE
+#| output: TRUE
+#| fig.dpi: 100
+#| fig.width: 7
+#| fig.height: 5
+
+set.seed(10)
+X = simulate_obs(Ts = 10, n = 30, rel=0.4, mu_true = 8, sd_true = 2, label = "Low Reliability")
+abline(h=10, col="blue", lwd=3)
+legend("topright", legend=c("observed score", "true score"), pch=c(1, NA), lty=c(NA, 1), lwd=c(NA, 3), col=c("black", "blue"))
+
+```
+
+
+## How is it estimated?
+
+- Participants with _no expected change_ are tested twice at a given interval.
+
+- This interval may depend on the clinical context and should be justified (both conceptually and practically).
+
+
+## Problems of Test-Retest Reliability
+
+- There are infinite test-retest reliability values \pause(depending on the interval)
+
+- for performance tests, **practice effects** can have an important influence!
+
+\pause
+
+## How is test-retest reliability estimated?
+
+Test-retest reliability is assessed through two main analyses:
+
+- Correlation Coefficient (between pairwise measurements)
+
+- Intraclass Correlation Coefficient
+\vfill
+
+
+**Recommended value**: $\geq 0.70$ or $\geq 0.80$ 
+
+!!! But see also next group slides _6.3 Assessing Reliability_ !!!
+
+
+## Practice effect
+
+```{r}
+#| echo: FALSE
+#| output: TRUE
+#| fig.dpi: 100
+#| fig.width: 7
+#| fig.height: 5
+
+
+set.seed(100)
+n = 30
+Ts = 10
+mu_true = 15
+sd_true = 1
+rel = 0.8
+Xs = simulate_obs(Ts = Ts, n = n, rel=rel, mu_true = mu_true, sd_true = sd_true, plot_res=FALSE) # no practice effect
+
+pe = 0.1
+Xs_pe = Xs + pe*(1:length(Xs))
+
+df = data.frame(N = 1:n, Xs=Xs, Xs_pe = Xs_pe) # create version with practice effect (simple and linear)
+
+
+
+par(mfrow=c(1,2), mar=c(2,2,5,2))
+
+plot(df$N, df$Xs, ylim=c(0, 20), xlab="Observation", ylab="Score", main = "No Practice Effect")
+lines(df$N, df$Xs)
+abline(h=Ts, col="blue", lwd=3)
+legend("topright", legend=c("observed score", "true score"), pch=c(1, NA), lty=c(NA, 1), lwd=c(NA, 3), col=c("black", "blue"))
+
+
+plot(df$N, df$Xs_pe, ylim=c(0, 20), xlab="Observation", ylab="Score", main = "(Linear) Practice Effect")
+lines(df$N, df$Xs_pe)
+abline(h=Ts, col="blue", lwd=3)
+legend("topright", legend=c("observed score", "true score"), pch=c(1, NA), lty=c(NA, 1), lwd=c(NA, 3), col=c("black", "blue"))
+
+
+
+```
+## A common mistake
+![](Figures/triangle.png){fig-align="center" width="20%"}
+Test-retest reliability is **always** important for a test, non only in the case of repeated measurement!
+
+\pause
+Remember the example with the scale at the beginning of these slides.
+
+## Before moving on
+\centering
+Can practice effect influence are estimate of Test-Retest reliability?
+
+A small exercise
+
