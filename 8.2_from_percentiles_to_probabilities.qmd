@@ -20,7 +20,7 @@ header-includes:
 ```{=latex}
 % TITLE SLIDE
 \title{{\fontsize{15pt}{16pt}\selectfont Applied Psychometrics}:\\ studying subclinical psychopathologies\\ \vspace{1.5em} \raggedright 
-\emph{7.5 - From Percentiles to Probabilities}}
+\emph{8.2 - From Percentiles to Probabilities}}
 \author{Giorgio Arcara,\\ University of Padua \\ IRCCS San Camillo, Venice}
 
 \titlegraphic{
@@ -48,32 +48,59 @@ knitr::opts_template$set(
 )
 ```
 
-## Recap: what does a z-score do?
-
-The **z-score** transforms a raw score into a standardized unit, expressing how far a patient's score is from the **mean of the normative sample**:
-
-$$Z = \frac{(X - M)}{SD}$$
-
-When the normative distribution is normal, this z-score maps directly to a **percentile**.
-
-\vspace{1em}
-But... what exactly is that percentile telling us?
-
-
-## Percentiles: a description of a sample
+## Recap: what percentiles do?
 
 A percentile rank tells us:
+\vspace{1em}
+
 
 > *"What proportion of people **in the normative sample** scored below this value?"*
+\vspace{1em}
+
+For example: a score at the **5th percentile** means that 5% of the normative **sample** had an equal or lower score.
 
 \vspace{1em}
 
-For example: a score at the **5th percentile** means that 95% of the normative sample scored higher.
+## A sample and a percentile
 
-\vspace{1em}
+collecting data on 100 healthy participants
+\vspace{2em}
 
-\textbf{Key word: sample.}  
-The percentile is a \emph{descriptive} summary of the norm group — not a statement about the population.
+```{r}
+#| echo: FALSE
+#| fig.width: 6.5
+#| fig.height: 3.8
+#| fig.dpi: 100
+
+set.seed(100)
+x = rnorm(50, mean=20, sd=2)
+cut_off = quantile(x, prob=0.05)
+hist(x, xlab="Test Scores", col="lightsteelblue",border = "white",  main=paste("5th percentile =", as.character(round(cut_off))))
+abline(v=cut_off, lty=2, lwd=2, col="blue")
+```
+
+## A new sample
+
+collecting data on 100 **new** healthy participants
+\vspace{2em}
+\pause
+<!-- QUIZ would you expect the same cut-off?)" -->
+
+```{r}
+#| echo: FALSE
+#| fig.width: 6.5
+#| fig.height: 3.8
+#| fig.dpi: 100
+
+set.seed(101)
+x = rnorm(50, mean=20, sd=2)
+cut_off = quantile(x, prob=0.05)
+hist(x, xlab="Test Scores", col="lightsteelblue", border = "white", main=paste("5th percentile =", as.character(round(cut_off))))
+abline(v=cut_off, lty=2, lwd=2, col="blue")
+```
+
+
+
 
 
 ## Sample vs. Population
@@ -82,18 +109,48 @@ The percentile is a \emph{descriptive} summary of the norm group — not a state
 \begin{center}
 \begin{tikzpicture}[node distance=1.5cm]
   \node[draw, rounded corners, fill=gray!15, minimum width=4.5cm, minimum height=1.2cm] (pop) {\textbf{Population}: all healthy adults};
-  \node[draw, rounded corners, fill=blue!15, minimum width=4.5cm, minimum height=1.2cm, below=of pop] (samp) {\textbf{Normative sample}: $n = 150$ adults};
+  \node[draw, rounded corners, fill=blue!15, minimum width=4.5cm, minimum height=1.2cm, below=of pop] (samp) {\textbf{Normative sample}: $n = 100$ healthy adults};
   \node[draw, rounded corners, fill=orange!20, minimum width=4.5cm, minimum height=1.2cm, below=of samp] (pat) {\textbf{Patient}: 1 individual};
   \draw[->, thick] (pop) -- (samp) node[midway, right] {\small drawn from};
   \draw[->, thick, dashed] (samp) -- (pat) node[midway, right] {\small compared to};
-  \draw[->, thick, dotted, bend right=60] (pop.west) to node[left] {\small \emph{what we want}} (pat.west);
+  \onslide<2->{
+  \draw[->, thick, dotted, bend right=80] (pop.west) to node[left] {\small \emph{what we want}} (pat.west);
+  }
 \end{tikzpicture}
 \end{center}
 ```
-
+\small
 The percentile compares the patient to the **sample**.  
 What we actually want is to compare the patient to the **population**.
 
+## Sampling Error Affects percentiles and thresholds
+
+```{r}
+#| echo: FALSE
+#| fig.width: 6.5
+#| fig.height: 3.8
+#| fig.dpi: 100
+
+set.seed(7)
+n_sims <- 500
+cuts   <- numeric(n_sims)
+
+for (i in seq_len(n_sims)) {
+  ctrl <- rnorm(40, mean = 4, sd = 1)
+  cuts[i] <- quantile(ctrl, 0.05)    # 5th percentile as cut-off
+}
+
+par(mar = c(4, 4, 3, 1))
+hist(cuts, breaks = 30, col = "lightsteelblue", border = "white",
+     xlab = "Estimated cut-off (5th percentile)",
+     main = "Variability of Cut-off Across 500 Simulated Samples\n(n=40 each)",
+     freq = FALSE)
+abline(v = qnorm(0.05, 4, 1), col = "red", lwd = 2, lty = 2)
+legend("topright", legend = "True population\n 5th percentile",
+       col = "red", lty = 2, lwd = 2, cex = 0.85)
+```
+
+<!--
 
 ## The problem: uncertainty around the percentile
 \small
@@ -110,7 +167,7 @@ If the normative sample has $n = 50$, the confidence interval around a percentil
 #| fig.height: 2
 
 set.seed(42)
-opt(par())
+options(par())
 ns <- c(20, 50, 100, 200, 500)
 # CI width for a proportion p=0.05
 p <- 0.05
@@ -121,13 +178,14 @@ barplot(ci_width, names.arg=ns, xlab="Normative sample size (n)",
         col="steelblue", ylim=c(0, 20))
 ```
 
+-->
 
 ## Percentage vs. Probability
 
 Two concepts that are easy to conflate but are fundamentally different:
 
 \vspace{1em}
-
+\small
 | | **Percentile rank** | **p-value** |
 |---|---|---|
 | What it is | Proportion of sample below a score | Probability under a population model |
@@ -136,7 +194,8 @@ Two concepts that are easy to conflate but are fundamentally different:
 | Answers | "Where in the sample?" | "How probable under $H_0$?" |
 
 \vspace{1em}
-
+\pause
+\normalsize
 A score at the **5th percentile** is not the same as $p = .05$.
 
 
@@ -146,7 +205,7 @@ Consider a patient who scores at the **5th percentile** on a memory test.
 
 \vspace{1em}
 
-Using a **percentile**: we say "95% of the norm group scored higher" — but this is silent about:
+Using a **percentile**: we say "95% of the norm group scored higher", but it does not tell about:
 
 - How uncertain is the norm group estimate?
 - How probable is this score given the *population*?
@@ -161,14 +220,14 @@ Using a **percentile**: we say "95% of the norm group scored higher" — but thi
 
 The classical approach treats the z-score as if the normative sample **were** the population:
 
-$$Z = \frac{X - M}{SD} \sim \mathcal{N}(0,1)$$
+<!-- $$Z = \frac{X - M}{SD} \sim \mathcal{N}(0,1)$$ -->
 
 This assumes $M$ and $SD$ are known **population parameters** — but they are only **sample estimates**.
 
 \vspace{1em}
 
-For large normative samples ($n > 500$) this approximation is reasonable.  
-For typical neuropsychological norms ($n = 50$–$200$)... it is not.
+For large normative samples (e.g., $n > 200$) this approximation is reasonable.  
+For typical neuropsychological norms ($n = 50$–$100$)... it is not.
 
 
 ## Crawford & Howell (1998): the modified $t$-test
@@ -187,6 +246,7 @@ This is a small but crucial correction: it explicitly acknowledges that $M$ and 
 ## What the Crawford $t$-test actually asks
 
 The z-score asks:
+\vspace{1em}
 
 > *"Where does this score fall in the normative sample?"*
 
@@ -200,6 +260,7 @@ The Crawford $t$-test asks:
 
 This is an **inferential** question — and the one we actually care about clinically.
 
+<!--
 
 ## Comparison: z-score vs. Crawford $t$-test
 
@@ -250,6 +311,7 @@ Crawford et al. also distinguish two inferential questions:
 Both are probabilistic statements about the **population**, not descriptions of the sample.  
 Both come with **confidence intervals** — the percentile alone does not.
 
+-->
 
 ## Putting it all together
 
@@ -259,10 +321,10 @@ Both come with **confidence intervals** — the percentile alone does not.
   \node[draw, fill=gray!10, rounded corners, minimum width=5cm] (q) {Clinical question: is this score abnormal?};
   \node[draw, fill=blue!10, rounded corners, minimum width=5cm, below=of q, align=center] (perc) {Percentile rank (z-score):\\descriptive, sample-bound};
   \node[draw, fill=green!10, rounded corners, minimum width=5cm, below=of perc, align=center] (craw) {Crawford $t$-test:\\ inferential, population-referenced};
-  \node[draw, fill=orange!10, rounded corners, minimum width=5cm, below=of craw, align=center] (ci) {+ Confidence interval on rarity:\\honest uncertainty quantification};
+  %\node[draw, fill=orange!10, rounded corners, minimum width=5cm, below=of craw, align=center]   % (ci) {+ Confidence interval on rarity:\\honest uncertainty quantification};
   \draw[->, thick] (q) -- (perc) node[midway, right] {classical};
   \draw[->, thick] (q.west) to [bend right=40] node[left] {better} (craw.west);
-  \draw[->, thick] (craw) -- (ci);
+ % \draw[->, thick] (craw) -- (ci);
 \end{tikzpicture}
 \end{center}
 ```
@@ -274,7 +336,7 @@ When interpreting a single-case neuropsychological score:
 
 \vspace{0.5em}
 
-- **Always report the normative sample size** — it determines how much to trust the percentile
+- **Always report the normative sample size**: it determines how much to trust the percentile
 - **Prefer inferential methods** (Crawford $t$-test) over raw percentile ranks when $n < 200$
 - **Distinguish** "rare in this sample" (percentile) from "improbable in the population" ($p$-value)
 - **Report confidence intervals** around estimates of abnormality
@@ -284,7 +346,7 @@ When interpreting a single-case neuropsychological score:
 
 \small \textit{Crawford, J.R., \& Howell, D.C. (1998). Comparing an individual's test score against norms derived from small samples. \textit{The Clinical Neuropsychologist}, 12(4), 482--486.}
 
-
+<!--
 ## Summary
 
 | Concept | Percentile / z-score | Crawford $t$-test |
@@ -299,5 +361,15 @@ When interpreting a single-case neuropsychological score:
 
 \centering \textbf{The patient is not in your normative sample.}\\
 \textit{Treat the norm group as an estimate — not as ground truth.}
-
 -->
+
+## Summary
+
+We may be tempted to interpret results from z-scores as _probabilities_ but this is wrong.
+\pause
+
+Z-scores are focused on comparisons with samples and do not take into account sample size.
+\pause
+
+A clinicial should prefer inferential methods, _or at least_ acknowledge the limitations of descriptive ones (e.g., with z-scores always check the sample size).
+

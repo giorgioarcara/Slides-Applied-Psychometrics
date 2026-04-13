@@ -1,0 +1,391 @@
+---
+title: ""
+author: "Giorgio Arcara"
+date: ""
+format:
+  beamer:
+    theme: metropolis
+    keep-tex: false
+incremental: false
+header-includes:
+  \setbeamerfont{title}{size=\large}
+  \usepackage{hyperref}
+  \setbeamertemplate{footline}[frame number]
+  \usepackage{tikz}
+  \usetikzlibrary{arrows.meta, positioning, shapes.geometric}
+  \usetikzlibrary{overlay-beamer-styles}
+---
+
+```{=latex}
+\title{{\fontsize{15pt}{16pt}\selectfont Applied Psychometrics}:\\ studying subclinical psychopathologies\\ \vspace{1.5em} \raggedright 
+\emph{9.2 - Sensitivity, Specificity, and the ROC Curve}}
+\author{Giorgio Arcara,\\ University of Padua \\ IRCCS San Camillo, Venice}
+
+\titlegraphic{
+\vspace*{7cm}
+\includegraphics[scale=0.15]{Figures/LogoSanCamilloIRCCS_Unipd_alpha.png}
+\begin{center}
+\vspace{-2.2em}
+\includegraphics[scale=0.15]{Figures/CC_license_3_0.png}
+\end{center}
+}
+\date{2026}
+\maketitle
+```
+
+## A short recap (normative data)
+
+```{r}
+#| echo: FALSE
+#| fig.width: 6.5
+#| fig.height: 3.5
+#| fig.dpi: 100
+
+x <- seq(0, 16, length.out = 400)
+y_ctrl <- dnorm(x, mean = 10, sd = 1)
+y_clin <- dnorm(x, mean = 6, sd = 1)
+
+par(mar = c(4, 1, 3, 1))
+plot(x, y_ctrl, type = "l", lwd = 2, col = "steelblue",
+     yaxt = "n", ylab = "", xlab = "Test Score",
+     main = "Normative Distribution", ylim = c(0, 0.45), xlim=c(0,16))
+#lines(x, y_clin, lwd = 2, col = "#FFAC1C")
+abline(v = 8, lty = 2, lwd = 2, col = "gray40")
+legend("topright",
+       legend = c("Normative (controls)"),
+       col = c("steelblue"), lwd = 2, cex = 0.85)
+text(8.1, 0.42, "cut-off", col = "gray30", cex = 0.8, adj = 0)
+```
+
+
+## Adding the Clinical Group
+
+```{r}
+#| echo: FALSE
+#| fig.width: 6.5
+#| fig.height: 3.5
+#| fig.dpi: 100
+
+x <- seq(0, 16, length.out = 400)
+y_ctrl <- dnorm(x, mean = 10, sd = 1)
+y_clin <- dnorm(x, mean = 6, sd = 1)
+
+par(mar = c(4, 1, 3, 1))
+plot(x, y_ctrl, type = "l", lwd = 2, col = "steelblue",
+     yaxt = "n", ylab = "", xlab = "Test Score",
+     main = "Normative and Clinical Distributions", ylim = c(0, 0.45), xlim=c(0,16))
+lines(x, y_clin, lwd = 2, col = "#FFAC1C")
+abline(v = 8, lty = 2, lwd = 2, col = "gray40")
+legend("topright",
+       legend = c("Normative (controls)", "Clinical (condition)"),
+       col = c("steelblue", "#FFAC1C"), lwd = 2, cex = 0.85)
+text(8.1, 0.42, "cut-off", col = "gray30", cex = 0.8, adj = 0)
+```
+
+
+
+## The Four Cells
+
+```{=latex}
+\begin{center}
+\begin{tabular}{|c|c|c|}
+\hline
+ & \textbf{Condition present} & \textbf{Condition absent} \\
+\hline
+\textbf{Test positive} & True Positive (TP) & False Positive (FP) \\
+\hline
+\textbf{Test negative} & False Negative (FN) & True Negative (TN) \\
+\hline
+\end{tabular}
+\end{center}
+```
+
+\vfill
+\small
+A test \emph{positive} means the score falls in the region associated with the condition (typically below a cut-off in deficit-oriented tests).
+
+## True Positives and False Negatives
+
+With a clinical group we can now also estimate:
+
+\begin{columns}
+\begin{column}{0.48\textwidth}
+\textbf{True Positive (TP)}\\[0.4em]
+\small Score falls in the "impaired" region \emph{and} person has the condition.\\
+\textit{Correct detection.}
+\end{column}
+\begin{column}{0.48\textwidth}
+\textbf{False Negative (FN)}\\[0.4em]
+\small Score falls in the "normal" region \emph{but} person has the condition.\\
+\textit{Missed case.}
+\end{column}
+\end{columns}
+
+
+## Classifications
+
+```{r}
+#| echo: FALSE
+#| fig.width: 6.5
+#| fig.height: 3.8
+#| fig.dpi: 100
+
+x <- seq(0, 16, length.out = 400)
+y_c   <-  dnorm(x, mean = 10, sd = 1)  # controls
+y_p   <- dnorm(x, mean = 6, sd = 1)   # patients
+cut   <- 8
+
+par(mar = c(4, 1, 3, 1))
+plot(x, y_c, type = "n", yaxt = "n", ylab = "",
+     xlab = "Test Score", main = "Sensitivity / Specificity Trade-off",
+     ylim = c(0, 0.45))
+
+# FN (patients above cut-off)
+xi <- x[x >= cut]; polygon(c(xi, rev(xi)), c(y_p[x >= cut], rep(0, sum(x >= cut))),
+        col = rgb(1, 0.6, 0, 0.5), border = NA)
+# TP (patients below cut-off)
+xi <- x[x <= cut]; polygon(c(xi, rev(xi)), c(y_p[x <= cut], rep(0, sum(x <= cut))),
+        col = "#FFAC1C", border = NA)
+# FP (controls below cut-off)
+xi <- x[x <= cut]; polygon(c(xi, rev(xi)), c(y_c[x <= cut], rep(0, sum(x <= cut))),
+        col = rgb(1, 0.2, 0.9, 0.35), border = NA)
+# TN (controls above cut-off)
+xi <- x[x >= cut]; polygon(c(xi, rev(xi)), c(y_c[x >= cut], rep(0, sum(x >= cut))),
+        col = rgb(0.2, 0.5, 1, 0.3), border = NA)
+
+lines(x, y_c, lwd = 2, col = "steelblue")
+lines(x, y_p, lwd = 2, col = "#FF7518")
+abline(v = cut, lty = 2, lwd = 2)
+
+legend("topright", cex = 0.7,
+       legend = c("Controls", "Patients", "TP", "FN", "FP", "TN"),
+       col    = c("steelblue","#FFAC1C", rgb(0.8,0.1,0.1,0.7),
+                  rgb(1,0.6,0,0.7), rgb(1,0.2,0.9,0.5), rgb(0.2,0.5,1,0.5)),
+       lwd    = c(2,2,NA,NA,NA,NA),
+       pch    = c(NA,NA,15,15,15,15))
+```
+
+
+
+## Sensitivity
+
+$$\text{Sensitivity} = \frac{TP}{TP + FN}$$
+
+\vfill
+
+\begin{itemize}
+\item Proportion of \textbf{people with the condition} correctly identified by the test.
+\item A \textbf{high sensitivity} means few cases are missed (low FN).
+\item Also called the \emph{True Positive Rate}.
+\end{itemize}
+
+\vfill
+\small
+Critical when missing a case is costly (e.g., failing to detect a serious illness).
+
+## Specificity
+
+$$\text{Specificity} = \frac{TN}{TN + FP}$$
+
+\vfill
+
+\begin{itemize}
+\item Proportion of \textbf{people without the condition} correctly classified.
+\item A \textbf{high specificity} means few false alarms (low FP).
+\item $1 - \text{Specificity}$ = False Positive Rate.
+\end{itemize}
+
+\vfill
+\small
+Critical when a false positive triggers costly or harmful follow-up procedures.
+
+
+## Moving the Threshold Changes Everything
+
+```{r}
+#| echo: FALSE
+#| fig.width: 7
+#| fig.height: 4
+#| fig.dpi: 100
+
+x   <- seq(-2, 8, length.out = 500)
+y_c <- dnorm(x, mean = 4, sd = 1)
+y_p <- dnorm(x, mean = 2, sd = 1)
+
+scenarios <- list(
+  list(cut = 2.5, label = "High sensitivity\n(low threshold)"),
+  list(cut = 3.0, label = "Balanced"),
+  list(cut = 3.6, label = "High specificity\n(high threshold)")
+)
+
+par(mfrow = c(1, 3), mar = c(3, 1, 3.5, 1))
+for (s in scenarios) {
+  cut <- s$cut
+  se_v <- round(pnorm(cut, 2, 1), 2)
+  sp_v <- round(1 - pnorm(cut, 4, 1), 2)
+
+  plot(x, y_c, type = "l", lwd = 2, col = "steelblue",
+       yaxt = "n", ylab = "", xlab = "",
+       main = s$label, ylim = c(0, 0.45), cex.main = 1.2)
+  lines(x, y_p, lwd = 2, col = "tomato")
+  abline(v = cut, lty = 2, lwd = 2, col = "gray30")
+
+  # FN shading
+  xi <- x[x > cut]
+  polygon(c(xi, rev(xi)), c(y_p[x > cut], rep(0, sum(x > cut))),
+          col = rgb(1, 0.6, 0, 0.45), border = NA)
+  # FP shading
+  xi <- x[x <= cut]
+  polygon(c(xi, rev(xi)), c(y_c[x <= cut], rep(0, sum(x <= cut))),
+          col = rgb(0.8, 0.2, 0.8, 0.35), border = NA)
+
+  text(-1, 0.40, sprintf("Se=%.2f\nSp=%.2f", se_v, sp_v), cex = 1, adj = 0)
+}
+```
+
+## The ROC Curve: Concept
+
+As we move the cut-off across all possible values, we trace a curve:
+
+- **x-axis**: False Positive Rate = $1 - \text{Specificity}$
+- **y-axis**: True Positive Rate = Sensitivity
+
+\vfill
+This is the **Receiver Operating Characteristic (ROC) curve**.
+
+\vfill
+\small
+Originally developed in signal detection theory (radar); now standard in medical/clinical testing.
+
+## Plotting the ROC Curve
+
+```{r}
+#| echo: FALSE
+#| fig.width: 4.5
+#| fig.height: 4.5
+#| fig.dpi: 100
+#| out-width: "75%"
+#| fig-align: "center"
+
+cuts  <- seq(-2, 8, length.out = 300)
+sens  <- pnorm(cuts, mean = 2, sd = 1)        # P(X < cut | patient)
+fpr   <- 1 - pnorm(cuts, mean = 4, sd = 1)   # P(X < cut | control)
+
+# Sort by FPR for clean plotting
+ord  <- order(fpr)
+#fpr  <- fpr[ord]; sens <- sens[ord]
+
+par(mar = c(4, 4, 3, 1))
+plot(1-fpr, sens, type = "l", lwd = 2, col = "tomato",
+     xlab = "1 - Specificity (FPR)", ylab = "Sensitivity (TPR)",
+     main = "ROC Curve", xlim = c(0,1), ylim = c(0,1))
+
+abline(0, 1, lty = 2, col = "gray60")
+
+# AUC via trapezoid rule
+auc <- sum(diff(fpr[ord]) * (head(sens[ord],-1) + tail(sens[ord],-1)) / 2) # note that sens and spec are ordered.
+
+legend("bottomright", legend = sprintf("AUC = %.2f", auc),
+       bty = "n", cex = 0.9)
+```
+
+## Area Under the Curve (AUC)
+
+The **AUC** summarises the overall discrimination ability of the test:
+
+| AUC | Interpretation |
+|-----|----------------|
+| 0.5 | No discrimination (chance) |
+| 0.70–0.79 | Acceptable |
+| 0.80–0.89 | Good |
+| $\geq$ 0.90 | Excellent |
+
+\vfill
+\small
+AUC = probability that a randomly chosen patient scores higher (more impaired) than a randomly chosen control.
+
+## Choosing the Optimal Threshold (Cut-off)
+
+The ROC curve helps select a threshold balancing sensitivity and specificity:
+
+- **Youden index**: maximise $\text{Sensitivity} + \text{Specificity} - 1$
+- **Clinical priority**: weight sensitivity more if missing cases is costly; weight specificity more if false positives are costly.
+
+\vfill
+\small
+There is no universally optimal cut-off: the choice depends on the clinical context.
+
+## The Youden Index Is Not Always the Right Goal
+
+The Youden Index maximises Se + Sp $- 1$, treating \textbf{false positives and false negatives as equally costly}.
+
+\vfill
+
+But in clinical practice they rarely are:
+
+\begin{columns}
+\begin{column}{0.48\textwidth}
+\textbf{FN is costly}\\[0.3em]
+\small Missing a serious condition (e.g., psychosis, early dementia) $\Rightarrow$ delayed treatment, harm to patient.\\[0.5em]
+$\Rightarrow$ Prefer \textbf{high sensitivity}, accept more FP.
+\end{column}
+\begin{column}{0.48\textwidth}
+\textbf{FP is costly}\\[0.3em]
+\small Incorrect labelling (e.g., stigma, unnecessary follow-up, expensive procedures) $\Rightarrow$ harm to healthy person.\\[0.5em]
+$\Rightarrow$ Prefer \textbf{high specificity}, accept more FN.
+\end{column}
+\end{columns}
+
+
+
+<!--
+
+## Weighted Criteria for Threshold Selection
+
+If we can assign a \textbf{relative cost} to FP and FN, the optimal threshold is:
+
+$$\text{maximise} \quad w_1 \cdot \text{Sensitivity} + w_2 \cdot \text{Specificity}$$
+
+where $w_1$ and $w_2$ reflect the relative harm of each error type.
+
+\vfill
+
+\begin{itemize}
+\item Youden is a special case: $w_1 = w_2 = 1$.
+\item In screening for a serious condition: $w_1 \gg w_2$.
+\item In confirmation (ruling in): $w_2 \gg w_1$.
+\end{itemize}
+
+\vfill
+\small
+The choice of weights is a \textbf{clinical and ethical} decision, not a statistical one.
+
+## Generalisability of the Threshold
+
+Even after a threshold is optimised and published, it may not generalise:
+
+\begin{itemize}
+\item The clinical and normative samples used for validation may not match the \textbf{target population}.
+\item \textbf{Age, education, cultural background} can shift the score distributions.
+\item The \textbf{severity mix} of the clinical sample (mild vs.\ severe cases) affects where the optimal threshold falls.
+\end{itemize}
+
+\vfill
+\small
+A threshold optimised on inpatients may perform poorly in a community outpatient setting.
+
+-->
+
+
+
+
+## Summary
+
+| Index | Formula | What it tells us |
+|---|---|---|
+| **Sensitivity** | TP / (TP+FN) | Ability to detect the condition |
+| **Specificity** | TN / (TN+FP) | Ability to exclude the condition |
+| **AUC** | Area under ROC | Overall discrimination |
+
+\vfill
+\small

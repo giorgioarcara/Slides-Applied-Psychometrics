@@ -1,0 +1,257 @@
+---
+title: ""
+author: "Giorgio Arcara"
+date: ""
+format:
+  beamer:
+    theme: metropolis
+    keep-tex: false
+incremental: false
+header-includes:
+  \setbeamerfont{title}{size=\large}
+  \usepackage{hyperref}
+  \setbeamertemplate{footline}[frame number]
+  \usepackage{tikz}
+  \usetikzlibrary{arrows.meta, positioning, shapes.geometric}
+  \usetikzlibrary{overlay-beamer-styles}
+---
+
+::: {.content-visible when-format="beamer"}
+```{=latex}
+\title{{\fontsize{15pt}{16pt}\selectfont Applied Psychometrics}:\\ studying subclinical psychopathologies\\ \vspace{1.5em} \raggedright 
+\emph{10.1 - PPV, NPV, and Likelihood Ratios}}
+\author{Giorgio Arcara,\\ University of Padua \\ IRCCS San Camillo, Venice}
+
+\titlegraphic{
+\vspace*{7cm}
+\includegraphics[scale=0.15]{Figures/LogoSanCamilloIRCCS_Unipd_alpha.png}
+\begin{center}
+\vspace{-2.2em}
+\includegraphics[scale=0.15]{Figures/CC_license_3_0.png}
+\end{center}
+}
+\date{2026}
+\maketitle
+```
+
+## The Question Clinicians Actually Ask
+
+Sensitivity and specificity answer questions about \emph{known groups}:
+
+\begin{itemize}
+\item ``Given the patient \textbf{has} the condition, how likely is a positive test?''
+\item ``Given the patient \textbf{does not have} the condition, how likely is a negative test?''
+\end{itemize}
+
+\pause
+\vfill
+
+But in practice the clinician asks the \textbf{opposite}:
+
+\begin{center}
+\large\textit{``Given a positive test, how likely is the condition?''}
+\end{center}
+
+\vfill
+\small
+This is what \textbf{Positive Predictive Value} answers.
+
+## Positive and Negative Predictive Value
+
+$$\text{PPV} = \frac{TP}{TP + FP} \qquad \text{NPV} = \frac{TN}{TN + FN}$$
+
+\vfill
+
+\begin{columns}
+\begin{column}{0.48\textwidth}
+\textbf{PPV}\\[0.4em]
+\small Probability that the condition is \emph{present} given a positive test result.
+\end{column}
+\begin{column}{0.48\textwidth}
+\textbf{NPV}\\[0.4em]
+\small Probability that the condition is \emph{absent} given a negative test result.
+\end{column}
+\end{columns}
+
+\vfill
+\small
+Unlike sensitivity and specificity, PPV and NPV \textbf{depend on prevalence}.
+
+## Prevalence Drives PPV
+
+```{r}
+#| echo: FALSE
+#| fig.width: 6.5
+#| fig.height: 4
+#| fig.dpi: 100
+
+prev <- seq(0.01, 0.50, by = 0.005)
+se   <- 0.85
+sp   <- 0.90
+
+ppv  <- (se * prev) / (se * prev + (1 - sp) * (1 - prev))
+npv  <- (sp * (1 - prev)) / (sp * (1 - prev) + (1 - se) * prev)
+
+par(mar = c(4, 4, 3, 1))
+plot(prev, ppv, type = "l", lwd = 2, col = "tomato",
+     xlab = "Prevalence", ylab = "Predictive Value",
+     main = "PPV and NPV as a Function of Prevalence\n(Sensitivity = 0.85, Specificity = 0.90)",
+     ylim = c(0, 1))
+lines(prev, npv, lwd = 2, col = "steelblue")
+abline(v = 0.05, lty = 2, col = "gray50")
+text(0.06, 0.15, "5%\nprevalence", col = "gray40", cex = 0.75, adj = 0)
+legend("right", legend = c("PPV", "NPV"),
+       col = c("tomato", "steelblue"), lwd = 2, cex = 0.85)
+```
+
+## A Striking Example
+
+Suppose a test has Sensitivity = 0.90 and Specificity = 0.95.
+
+We screen a population where the condition affects **1 in 100** people.
+
+\vfill
+
+```{=latex}
+\begin{center}
+\begin{tabular}{|c|c|c|c|}
+\hline
+ & \textbf{Condition +} & \textbf{Condition --} & \textbf{Total} \\
+\hline
+\textbf{Test +} & 9 (TP) & 50 (FP) & 59 \\
+\hline
+\textbf{Test --} & 1 (FN) & 940 (TN) & 941 \\
+\hline
+\textbf{Total} & 100 & 9900 & 10\,000 \\
+\hline
+\end{tabular}
+\end{center}
+```
+
+\vfill
+
+$$\text{PPV} = \frac{9}{59} \approx \mathbf{15\%}$$
+
+\small
+A positive result is \emph{wrong} 85\% of the time — despite excellent test properties!
+
+## The Limitation of Prevalence Figures
+
+Prevalence estimates assume the person is a \textbf{random draw from the population}.
+
+\vfill
+
+In a clinical context this rarely holds:
+
+\begin{itemize}
+\item A patient referred to a memory clinic has a \emph{higher} pre-test probability of MCI than the general population.
+\item A patient screened opportunistically at a GP visit has a \emph{lower} pre-test probability.
+\end{itemize}
+
+\vfill
+\small
+PPV and NPV computed from published prevalence figures may be \textbf{misleading} if the clinical context differs substantially.
+
+## Prevalence in Psychological Testing
+
+\begin{itemize}
+\item Epidemiological prevalence estimates are available for some psychiatric disorders (e.g., major depression, schizophrenia), but often with wide confidence intervals.
+\item For many neuropsychological constructs (e.g., ``executive dysfunction'', ``memory deficit'') \textbf{no reliable prevalence figure exists}.
+\item Base rates shift dramatically across settings: community, primary care, specialist clinic, inpatient ward.
+\end{itemize}
+
+\vfill
+\small
+In practice, the clinician's \textbf{clinical judgment} — not a published prevalence — often serves as the prior probability. This motivates the Bayesian approach (see next group).
+
+## Likelihood Ratios: A Prevalence-Free Alternative
+
+Likelihood Ratios (LR) express how much a test result \emph{shifts} the probability of the condition — without requiring a prevalence estimate.
+
+$$LR^{+} = \frac{\text{Sensitivity}}{1 - \text{Specificity}} \qquad LR^{-} = \frac{1 - \text{Sensitivity}}{\text{Specificity}}$$
+
+\vfill
+
+\begin{itemize}
+\item $LR^{+}$: how much more likely a positive result is in someone \emph{with} vs.\ \emph{without} the condition.
+\item $LR^{-}$: how much more likely a negative result is in someone \emph{with} vs.\ \emph{without} the condition.
+\end{itemize}
+
+## Interpreting Likelihood Ratios
+
+```{r}
+#| echo: FALSE
+#| fig.width: 6.5
+#| fig.height: 3.5
+#| fig.dpi: 100
+
+lrp <- c(1, 2, 5, 10, 20)
+labs <- c("No change\n(LR=1)", "Slight\n(LR=2)", "Moderate\n(LR=5)",
+          "Strong\n(LR=10)", "Very strong\n(LR=20)")
+cols <- c("gray70", "#f0c060", "#e08030", "#c04020", "#801010")
+
+par(mar = c(3, 5, 3, 1))
+barplot(lrp, names.arg = labs, col = cols, border = NA,
+        horiz = FALSE, ylab = "LR+",
+        main = "Interpreting LR+: Rule of Thumb",
+        cex.names = 0.75)
+abline(h = 1, lty = 2, col = "gray40")
+```
+
+\small
+Rule of thumb: LR $>$ 10 provides strong evidence; LR $<$ 0.1 provides strong evidence \emph{against} the condition.
+
+## LR: Stable Across Prevalence
+
+```{r}
+#| echo: FALSE
+#| fig.width: 6.5
+#| fig.height: 3.8
+#| fig.dpi: 100
+
+se <- 0.85; sp <- 0.90
+lrp_val <- se / (1 - sp)
+
+prev  <- seq(0.01, 0.60, by = 0.01)
+ppv_v <- (se * prev) / (se * prev + (1 - sp) * (1 - prev))
+
+# Posterior odds = LR * prior odds
+prior_odds <- prev / (1 - prev)
+post_odds  <- lrp_val * prior_odds
+post_prob  <- post_odds / (1 + post_odds)
+
+par(mar = c(4, 4, 3, 1))
+plot(prev, ppv_v, type = "l", lwd = 2, col = "tomato",
+     xlab = "Prior probability (prevalence)",
+     ylab = "Posterior probability",
+     main = sprintf("LR+ = %.1f: Converting Prior to Posterior", lrp_val),
+     ylim = c(0, 1))
+lines(prev, post_prob, lwd = 2, lty = 2, col = "tomato")
+abline(0, 1, lty = 3, col = "gray60")
+legend("topleft", legend = c("PPV (exact)", "LR approximation", "No update (diagonal)"),
+       col = c("tomato", "tomato", "gray60"),
+       lty = c(1, 2, 3), lwd = 2, cex = 0.75)
+```
+
+## Summary: PPV, NPV, LR
+
+\small
+\begin{tabular}{|p{2.3cm}|p{3cm}|p{3cm}|}
+\hline
+\textbf{Index} & \textbf{What it tells us} & \textbf{Depends on prevalence?} \\
+\hline
+PPV & P(condition $|$ test +) & Yes \\
+\hline
+NPV & P(no condition $|$ test --) & Yes \\
+\hline
+LR+ & Evidence shift from positive result & No \\
+\hline
+LR-- & Evidence shift from negative result & No \\
+\hline
+\end{tabular}
+
+\vfill
+\small
+Use LRs when prevalence is unknown or context-specific; use PPV/NPV when a reliable prevalence estimate is available and the clinical context matches.
+
+:::

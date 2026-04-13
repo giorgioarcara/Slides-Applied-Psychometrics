@@ -20,7 +20,7 @@ header-includes:
 ```{=latex}
 % TITLE SLIDE
 \title{{\fontsize{15pt}{16pt}\selectfont Applied Psychometrics}:\\ studying subclinical psychopathologies\\ \vspace{1.5em} \raggedright 
-\emph{7.4 - Z-scores and non parametric percentiles}}
+\emph{8.1 - Z-scores and non parametric percentiles}}
 \author{Giorgio Arcara,\\ University of Padua \\ IRCCS San Camillo, Venice}
 
 \titlegraphic{
@@ -77,11 +77,20 @@ If the data distribution is normal, z-scores can be easily mapped to percentiles
 
 ![](Figures/gaussiana.png){fig-align="center" widt="80%"}
 
+
+## A few "famous" z-scores
+
+- $\mathbf{Z = -1.64}$ denotes the $5^{th}$ percentile.
+\pause
+
+- $\mathbf{Z = -2}$, $\mathbf{Z = -1.5}$ are commonly used because they are easy to remember (the correspond to $2.2^{th}$ and $6.7^{th}$ percentile, respectively)
+
+
 ## Interpreting z-scores
 \centering
 z-scores can be easily interpreted.
 
-See online app!
+See the \href{https://app.hsancamillo.it/app/zscore_crawfordt1}{\underline{\textbf{online app!}}}
 
 ## Important!
 
@@ -104,6 +113,7 @@ mtext("Z-score: not ok", side = 3)
 
 
 ```
+
 
 ## Alternative: non-parametric percentile
 

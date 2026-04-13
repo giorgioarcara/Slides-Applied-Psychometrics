@@ -1,0 +1,249 @@
+---
+title: ""
+author: "Giorgio Arcara"
+date: ""
+format:
+  beamer:
+    theme: metropolis
+    keep-tex: false
+    keep-md: false
+incremental: false
+header-includes:
+  \setbeamerfont{title}{size=\large}
+  \usepackage{hyperref}
+  \setbeamertemplate{footline}[frame number]
+  \usepackage{tikz}
+  \usetikzlibrary{arrows.meta, positioning, shapes.geometric}
+  \usetikzlibrary{overlay-beamer-styles}
+---
+
+```{=latex}
+\title{{\fontsize{15pt}{16pt}\selectfont Applied Psychometrics}:\\ studying subclinical psychopathologies\\ \vspace{1.5em} \raggedright 
+\emph{9.1 - Normative data vs. Known-Groups}}
+\author{Giorgio Arcara,\\ University of Padua \\ IRCCS San Camillo, Venice}
+
+\titlegraphic{
+\vspace*{7cm}
+\includegraphics[scale=0.15]{Figures/LogoSanCamilloIRCCS_Unipd_alpha.png}
+\begin{center}
+\vspace{-2.2em}
+\includegraphics[scale=0.15]{Figures/CC_license_3_0.png}
+\end{center}
+}
+\date{2026}
+\maketitle
+```
+
+## What we discussed so far
+
+```{=latex}
+\begin{columns}[c]
+\column{0.5\textwidth}
+
+\begin{figure}
+\includegraphics[width=0.8\textwidth]{Figures/group_1.png}
+\end{figure}
+\onslide<2->{
+\column{0.8\textwidth}
+\begin{figure}
+\includegraphics[width=0.5\textwidth]{Figures/group_2.png}
+}
+\end{figure}
+\end{columns}
+\pause
+
+In case of \textbf{kwnown-groups} other methods can be used (see also lectures on Validity)
+```
+
+
+
+## Two Ways of Deciding "Something deserves attention"
+
+\begin{columns}
+\begin{column}{0.48\textwidth}
+\textbf{Normative-based}\\[0.5em]
+Compare the individual against a \emph{reference population}.\\[0.5em]
+\small ``Your score is unusually low compared to people like you.''
+\end{column}
+\begin{column}{0.48\textwidth}
+\textbf{Known-groups}\\[0.5em]
+Compare the individual against a \emph{known group}.\\[0.5em]
+\small ``Your score resembles those of people \emph{with} the condition.''
+\end{column}
+\end{columns}
+
+## Some terminology
+
+In known-group testing we need to define two groups:
+
+- **Condition of interest**:  the group we want to \emph{detect} (e.g., a clinical diagnosis).
+
+- **Gold standard**:  the definitive, authoritative way of establishing who truly belongs to that group.
+
+\vfill
+\small
+The gold standard is the reference against which the test is validated.
+
+## What Is a Gold Standard?
+
+```{=latex}
+\begin{tikzpicture}[node distance=1.5cm, auto,
+  box/.style={rectangle, rounded corners, draw=black, fill=gray!15,
+              text width=5cm, align=center, minimum height=1cm}]
+\node[box] (gs) {\textbf{Gold Standard}\\(e.g., structured clinical interview, biopsy, long neuropsychological battery)};
+\node[box, below=of gs] (test) {\textbf{Test under study}\\(shorter, cheaper, faster)};
+\draw[-{Latex}, thick] (gs) -- node[right]{\small validates} (test);
+\end{tikzpicture}
+```
+
+\vfill
+\small
+The gold standard is often expensive, time-consuming, or invasive <!-- — that is exactly why we need a shorter test. -->
+
+## When Is a second group used in clinical psychology?
+
+Two common situations in clinical/neuropsychological practice:
+
+1. **Identifiable clinical group** — participants are recruited from a setting where the condition is established (e.g., patients admitted to a Psychiatric Ward, patients with a confirmed neurological diagnosis).
+
+2. **Costly gold standard** — the definitive diagnosis requires a long procedure (e.g., full neuropsychological battery, multi-day observation), making a screening test valuable.
+
+## Classification with known-group
+
+Whenever a known-group is involved is useful to start thinking from **thresholds**
+
+
+
+## Imagining the Screening Scenario
+
+Suppose we administer a test to a **normative sample** only.
+
+We can set a cut-off score below which we flag someone as potentially with clinical relevance.
+
+\vfill
+
+```{r}
+#| echo: FALSE
+#| fig.width: 6
+#| fig.height: 3.5
+#| fig.dpi: 100
+
+set.seed(42)
+x <- seq(-4, 4, length.out = 300)
+y <- dnorm(x)
+
+par(mar = c(4, 1, 3, 1))
+plot(x, y, type = "l", lwd = 2, yaxt = "n", ylab = "",
+     xlab = "Test Score", main = "Normative Distribution with Cut-off",
+     col = "steelblue")
+
+cutoff <- -1.65
+polygon(c(x[x <= cutoff], cutoff), c(y[x <= cutoff], 0),
+        col = rgb(1, 0.2, 0.2, 0.4), border = NA)
+abline(v = cutoff, lty = 2, lwd = 2, col = "red")
+text(cutoff - 0.1, 0.35, "cut-off\n(5th pct.)", col = "red", adj = 1, cex = 0.85)
+text(-3, 0.05, "flagged", col = "darkred", cex = 0.8)
+```
+
+## True Negatives and False Positives
+
+With a **normative reference only**, we can identify:
+```{=latex}
+\vfill
+
+\begin{columns}
+\begin{column}{0.48\textwidth}
+\textbf{True Negative (TN)}\\[0.4em]
+\small Score above cut-off \emph{and} person does not have the condition.\\
+\textit{healthy person correctly flagged.}
+\end{column}
+\begin{column}{0.48\textwidth}
+\textbf{False Positive (FP)}\\[0.4em]
+\small Score below cut-off \emph{but} person does not have the condition.\\
+\textit{Healthy person incorrectly flagged.}
+\end{column}
+\end{columns}
+
+\vfill
+\small
+%Without a group \emph{with} the condition, we \textbf{cannot} estimate True Positives or False %Negatives.
+```
+
+## Visualising TN and FP
+
+```{r}
+#| echo: FALSE
+#| fig.width: 6
+#| fig.height: 3.8
+#| fig.dpi: 100
+
+set.seed(42)
+x   <- seq(-4, 4, length.out = 400)
+y   <- dnorm(x)
+cut <- -1.65
+
+par(mar = c(4, 1, 3, 1))
+plot(x, y, type = "l", lwd = 2, yaxt = "n", ylab = "",
+     xlab = "Test Score", main = "Normative Sample: TN and FP",
+     col = "steelblue")
+
+# FP region (left of cut-off)
+polygon(c(x[x <= cut], cut), c(y[x <= cut], 0),
+        col = rgb(1, 0.3, 0.3, 0.5), border = NA)
+# TN region (right of cut-off)
+polygon(c(cut, x[x >= cut]), c(0, y[x >= cut]),
+        col = rgb(0.2, 0.6, 1, 0.3), border = NA)
+
+abline(v = cut, lty = 2, lwd = 2, col = "red")
+legend("topright", legend = c("True Negative (TN)", "False Positive (FP)"),
+       fill = c(rgb(0.2, 0.6, 1, 0.5), rgb(1, 0.3, 0.3, 0.5)), cex = 0.8)
+```
+
+## The Limitation of Normative Testing Alone
+
+With only a normative sample we can estimate:
+
+- **Specificity** (partially): how often do healthy people score above the cut-off?
+
+\pause
+
+But we **cannot** answer:
+
+- How often does the test \emph{correctly identify} people with the condition?
+- How many people with the condition will be \emph{missed}?
+
+\vfill
+\pause
+\small
+<!--
+$\Rightarrow$ To answer these questions we need a group \textbf{with} the condition of interest.
+-->
+
+## From Norms to Known-groups: the Logic
+
+```{=latex}
+\begin{tikzpicture}[node distance=1.4cm,
+  grp/.style={rectangle, rounded corners, draw, fill=gray!10,
+              text width=3.8cm, align=center, minimum height=1cm}]
+\node[grp] (norm) {Normative sample\\(no condition)};
+\node[grp, right=2cm of norm] (clin) {Clinical sample\\(condition present)};
+\node[grp, below=1.2cm of norm] (fp) {FP / TN estimable};
+\node[grp, below=1.2cm of clin] (tp) {TP / FN estimable};
+\draw[-{Latex}] (norm) -- (fp);
+\draw[-{Latex}] (clin) -- (tp);
+\draw[{Latex}-{Latex}, dashed] (norm) -- node[above]{\small compare} (clin);
+\end{tikzpicture}
+```
+
+## Summary
+
+| Concept | Definition |
+|---|---|
+| **Condition of interest** | The clinical state we aim to detect |
+| **Gold standard** | Authoritative diagnostic reference |
+| **True Negative** | Healthy person, correctly classified |
+| **False Positive** | Healthy person, incorrectly classified |
+
+\vfill
+\small
+Next: what happens when we \emph{also} have a group with the condition?

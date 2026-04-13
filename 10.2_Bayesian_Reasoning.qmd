@@ -1,0 +1,212 @@
+---
+title: ""
+author: "Giorgio Arcara"
+date: ""
+format:
+  beamer:
+    theme: metropolis
+    keep-tex: false
+incremental: false
+header-includes:
+  \setbeamerfont{title}{size=\large}
+  \usepackage{hyperref}
+  \setbeamertemplate{footline}[frame number]
+  \usepackage{tikz}
+  \usetikzlibrary{arrows.meta, positioning, shapes.geometric}
+  \usetikzlibrary{overlay-beamer-styles}
+---
+
+::: {.content-visible when-format="beamer"}
+```{=latex}
+\title{{\fontsize{15pt}{16pt}\selectfont Applied Psychometrics}:\\ studying subclinical psychopathologies\\ \vspace{1.5em} \raggedright 
+\emph{10.2 - Bayesian Reasoning in Clinical Testing}}
+\author{Giorgio Arcara,\\ University of Padua \\ IRCCS San Camillo, Venice}
+
+\titlegraphic{
+\vspace*{7cm}
+\includegraphics[scale=0.15]{Figures/LogoSanCamilloIRCCS_Unipd_alpha.png}
+\begin{center}
+\vspace{-2.2em}
+\includegraphics[scale=0.15]{Figures/CC_license_3_0.png}
+\end{center}
+}
+\date{2026}
+\maketitle
+```
+
+## A Common Confusion
+
+When a patient scores below the cut-off, it is tempting to say:
+
+\begin{center}
+\large ``The probability that this person has the condition is 85\%''\\
+\small \textit{(if sensitivity = 0.85)}
+\end{center}
+
+\pause
+\vfill
+
+This is \textbf{wrong}.
+
+\vfill
+
+Sensitivity tells us:
+$$P(\text{score below cut-off} \mid \text{condition present}) = 0.85$$
+
+What we \emph{want} is:
+$$P(\text{condition present} \mid \text{score below cut-off}) = \;?$$
+
+## These Are Not the Same Thing
+
+$$P(A \mid B) \neq P(B \mid A)$$
+
+\vfill
+
+A vivid analogy:\\
+$P(\text{wet street} \mid \text{raining}) \approx 1$\\
+$P(\text{raining} \mid \text{wet street}) \ll 1$ \quad (streets are also wet after cleaning trucks)
+
+\vfill
+
+In testing:\\
+$P(\text{low score} \mid \text{dementia}) \approx $ Sensitivity\\
+$P(\text{dementia} \mid \text{low score}) = $ what the clinician wants — and requires \textbf{Bayes' theorem}.
+
+## Bayes' Theorem (Simply Stated)
+
+$$P(\text{condition} \mid \text{result}) = \frac{P(\text{result} \mid \text{condition}) \times P(\text{condition})}{P(\text{result})}$$
+
+\vfill
+
+In plain language:
+
+\begin{center}
+\textbf{Posterior} $\propto$ \textbf{Likelihood} $\times$ \textbf{Prior}
+\end{center}
+
+\vfill
+\small
+The \emph{prior} is what we believed before the test.\\
+The \emph{likelihood} is provided by sensitivity and specificity.\\
+The \emph{posterior} is our updated belief after seeing the result.
+
+## Belief Updating: A Practical Example
+
+A 72-year-old patient is referred with memory complaints after a GP visit.
+
+\begin{itemize}
+\item \textbf{Prior}: based on age, referral context, and brief interview, you estimate a 30\% probability of MCI.
+\item \textbf{Test}: a cognitive screening with Sensitivity = 0.85, Specificity = 0.80.
+\item \textbf{Result}: the patient scores below the cut-off (positive test).
+\end{itemize}
+
+\vfill
+
+$$\text{LR}^+ = \frac{0.85}{1 - 0.80} = 4.25$$
+
+\vfill
+
+Prior odds $= \frac{0.30}{0.70} = 0.43$ $\Rightarrow$ Posterior odds $= 0.43 \times 4.25 = 1.82$
+
+$$\text{Posterior probability} = \frac{1.82}{1 + 1.82} \approx \mathbf{65\%}$$
+
+## Visualising the Update
+
+```{r}
+#| echo: FALSE
+#| fig.width: 6.5
+#| fig.height: 4
+#| fig.dpi: 100
+
+prior <- 0.30
+se    <- 0.85
+sp    <- 0.80
+lrp   <- se / (1 - sp)
+lrn   <- (1 - se) / sp
+
+# Positive and negative update
+prior_o   <- prior / (1 - prior)
+post_o_p  <- prior_o * lrp
+post_o_n  <- prior_o * lrn
+post_p    <- post_o_p / (1 + post_o_p)
+post_n    <- post_o_n / (1 + post_o_n)
+
+probs <- c(prior, post_p, post_n)
+labs  <- c(sprintf("Prior\n%.0f%%", prior*100),
+           sprintf("After\npositive\ntest\n%.0f%%", post_p*100),
+           sprintf("After\nnegative\ntest\n%.0f%%", post_n*100))
+cols  <- c("gray60", "tomato", "steelblue")
+
+par(mar = c(3, 4, 3, 1))
+bp <- barplot(probs, names.arg = labs, col = cols, border = NA,
+              ylim = c(0, 1), ylab = "P(condition)",
+              main = "Bayesian Update: Prior and Posterior Probabilities")
+abline(h = prior, lty = 2, col = "gray40")
+text(bp, probs + 0.03, sprintf("%.0f%%", probs * 100), cex = 0.9, font = 2)
+```
+
+## What If the Test Is Negative?
+
+Using the same example (prior = 30\%, Se = 0.85, Sp = 0.80):
+
+$$\text{LR}^- = \frac{1 - 0.85}{0.80} = 0.19$$
+
+Prior odds $= 0.43$ $\Rightarrow$ Posterior odds $= 0.43 \times 0.19 = 0.08$
+
+$$\text{Posterior probability} = \frac{0.08}{1 + 0.08} \approx \mathbf{7\%}$$
+
+\vfill
+\small
+A negative result substantially \emph{reduces} the probability — even though it cannot fully rule out the condition.
+
+## Testing as Progressive Evidence
+
+A single test result is rarely the end of the story.
+
+\vfill
+
+```{=latex}
+\begin{tikzpicture}[node distance=1.1cm, auto,
+  ev/.style={rectangle, rounded corners, draw=gray!60, fill=gray!10,
+             text width=2.4cm, align=center, minimum height=0.9cm, font=\small}]
+
+\node[ev] (p0) {Clinical interview\\Prior: 30\%};
+\node[ev, right=0.8cm of p0] (p1) {Screening test +\\Updated: 65\%};
+\node[ev, right=0.8cm of p1] (p2) {Full battery +\\Updated: 90\%};
+\node[ev, right=0.8cm of p2] (p3) {Neuroimaging\\Final: 95\%};
+
+\draw[-{Latex}] (p0) -- (p1);
+\draw[-{Latex}] (p1) -- (p2);
+\draw[-{Latex}] (p2) -- (p3);
+\end{tikzpicture}
+```
+
+\vfill
+\small
+Each piece of evidence — test score, clinical interview, anamnesis, imaging — updates the probability. No single source should be interpreted in isolation.
+
+## Integrating All Sources of Evidence
+
+The Bayesian framework makes explicit what good clinical practice already implies:
+
+\begin{itemize}
+\item \textbf{Test scores} are one piece of evidence, not a verdict.
+\item \textbf{Clinical interview} and \textbf{anamnesis} inform the prior.
+\item \textbf{Collateral information} (family, GP referral notes) adds further evidence.
+\item Each additional source \emph{updates} the probability estimate.
+\end{itemize}
+
+\vfill
+\small
+A very sensitive test rules \emph{out}; a very specific test rules \emph{in} — but neither replaces clinical judgment.
+
+## Summary of Group 5
+
+\begin{itemize}
+\item Sensitivity and specificity estimate $P(\text{result} \mid \text{condition})$, \textbf{not} $P(\text{condition} \mid \text{result})$.
+\item Bayes' theorem is needed to invert this — it requires a prior (pre-test probability).
+\item Every test result is an \textbf{update of belief}, not a binary decision.
+\item Good clinical assessment integrates test scores with interview, anamnesis, and collateral information as a \textbf{progressive accumulation of evidence}.
+\end{itemize}
+
+:::
