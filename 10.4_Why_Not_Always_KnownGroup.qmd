@@ -1,0 +1,124 @@
+---
+title: ""
+author: "Giorgio Arcara"
+date: ""
+format:
+  beamer:
+    theme: metropolis
+    keep-tex: false
+incremental: false
+knitr:
+  opts_chunk:
+    dev: pdf
+header-includes:
+  \setbeamerfont{title}{size=\large}
+  \usepackage{hyperref}
+  \setbeamertemplate{footline}[frame number]
+  \usepackage{tikz}
+  \usetikzlibrary{arrows.meta, positioning, shapes.geometric}
+  \usetikzlibrary{overlay-beamer-styles}
+---
+
+```{=latex}
+\title{{\fontsize{15pt}{16pt}\selectfont Applied Psychometrics}:\\ studying subclinical psychopathologies\\ \vspace{1.5em} \raggedright 
+\emph{10.4 - Why Don't We Always Use Known-Groups?}}
+\author{Giorgio Arcara,\\ University of Padua \\ IRCCS San Camillo, Venice}
+
+\titlegraphic{
+\vspace*{7cm}
+\includegraphics[scale=0.15]{Figures/LogoSanCamilloIRCCS_Unipd_alpha.png}
+\begin{center}
+\vspace{-2.2em}
+\includegraphics[scale=0.15]{Figures/CC_license_3_0.png}
+\end{center}
+}
+\date{2026}
+\maketitle
+```
+
+## A Reasonable Question
+
+The known-group approach, comparing a clinical group to controls, gives us **lot of information**: sensitivity, specificity, ROC curves, PPV, and NPV.
+
+\vfill
+
+Despite the limitations in interpreting probability, It is clearly \textbf{richer} than normative-based testing alone.
+
+\vfill
+\pause
+
+So why don't we \emph{always} use it?
+\pause
+\vfill
+\small
+The short answer: because it requires something we do not always have: a \textbf{well-defined, discrete group} with the condition.
+
+## Continuous Gradients vs Discrete Categories
+
+```{r}
+#| echo: FALSE
+#| fig.width: 6.5
+#| fig.height: 4.2
+#| fig.dpi: 100
+
+par(mfrow = c(2, 1), mar = c(2, 2, 2.5, 2))
+
+# --- Upper panel: continuous gradient ---
+n   <- 100
+col_lo  <- col2rgb("#FFAC1C") / 255
+col_hi  <- col2rgb("steelblue") / 255
+grad    <- sapply(seq(0, 1, length.out = n), function(t)
+  rgb(col_lo[1]*(1-t) + col_hi[1]*t,
+      col_lo[2]*(1-t) + col_hi[2]*t,
+      col_lo[3]*(1-t) + col_hi[3]*t))
+
+image(matrix(1:n, ncol  = 1), col = grad,
+      axes = FALSE, main = "Continuous variation\n(e.g. subclinical anxiety trait)",
+      cex.main = 0.9)
+mtext("Low", side = 1, at = 0.02, line = 0.3, cex = 0.8, col = "#FFAC1C", font = 2)
+mtext("High", side = 1, at = 0.98, line = 0.3, cex = 0.8, col = "steelblue", font = 2)
+
+# --- Lower panel: two discrete rectangles ---
+plot(NULL, xlim = c(0, 1), ylim = c(0, 1), axes = FALSE,
+     main = "Discrete categories\n(e.g. presence / absence of a diagnosis)",
+     cex.main = 0.9)
+rect(0.02, 0.1, 0.47, 0.9, col = "#FFAC1C", border = NA)
+rect(0.53, 0.1, 0.98, 0.9, col = "steelblue", border = NA)
+text(0.245, 0.50, "Condition", col = "white", font = 2, cex = 1.0)
+text(0.755, 0.50, "No Condition",    col = "white", font = 2, cex = 1.0)
+```
+
+## When a "Known Group" Does Not Exist
+
+The known-group approach requires a \textbf{clear, established boundary} between those who have the condition and those who do not.
+
+This boundary is often absent or problematic:
+
+## When boundaries may not be appropriate
+
+
+\begin{itemize}
+\item \textbf{Subclinical constructs}: anxiety, subclinical depression, impulsivity: these exist on a continuum in the general population, with no natural discrete cut-point.
+\item \textbf{No agreed gold standard}: for many psychological constructs, there is no definitive diagnostic procedure to determine who "truly" belongs to the clinical group.
+\item \textbf{Spectrum conditions}: autism, personality disorders; the boundary between clinical and non-clinical is gradual and contested.
+\end{itemize}
+
+## Summary
+
+The known-group approach is powerful: but it presupposes a \textbf{discrete, identifiable condition}.
+
+<!--
+## Summary
+
+\begin{itemize}
+\item The known-group approach is powerful: but it presupposes a \textbf{discrete, identifiable condition}.
+\item When the construct of interest is \textbf{dimensional} (a trait or continuum), there is no natural clinical group to recruit.
+\item When there is \textbf{no agreed gold standard}, assembling a valid known group is impossible.
+\item In these cases, normative-based testing: despite providing less information, remains the \textbf{only feasible option}.
+\end{itemize}
+
+\vfill
+\small
+The choice between approaches is not a statistical preference: it is determined by the \textbf{nature of the construct}.
+
+-->

@@ -1,0 +1,194 @@
+---
+title: ""
+author: "Giorgio Arcara"
+date: ""
+#format: revealjs
+format:
+  beamer:
+    theme: metropolis
+    keep-tex: false
+incremental: false
+header-includes:
+  \setbeamerfont{title}{size=\large}
+  \usepackage{hyperref}
+  \setbeamertemplate{footline}[frame number]
+  \usepackage{tikz}
+  \usetikzlibrary{arrows.meta, positioning, shapes.geometric}
+  \usetikzlibrary{overlay-beamer-styles}
+  \usepackage{booktabs}
+---
+
+
+```{=latex}
+% TITLE SLIDES
+\title{{\fontsize{15pt}{16pt}\selectfont Applied Psychometrics}:\\ studying subclinical psychopathologies\\ \vspace{1.5em} \raggedright 
+\emph{11.3 - Comparing scores across tests}}
+\author{Giorgio Arcara,\\ University of Padua \\ IRCCS San Camillo, Venice}
+
+\titlegraphic{
+
+\vspace*{7cm}
+\includegraphics[scale=0.15]{Figures/LogoSanCamilloIRCCS_Unipd_alpha.png}
+\begin{center}
+\vspace{-2.2em}
+\includegraphics[scale=0.15]{Figures/CC_license_3_0.png}
+\end{center}
+}
+\date{2026}
+\maketitle
+```
+
+
+
+## Comparing scores across tests
+
+A patient scores **42** on a depression scale and **61** on an anxiety scale. Which symptom is more severe?
+
+\pause
+
+```{=latex}
+\vspace{0.5em}
+Raw scores are on \textbf{different scales} and they cannot be directly compared. We need a \emph{common metric}.
+```
+
+## Z-scores as a common metric
+
+A **z-score** expresses a raw score in units of standard deviations from the normative mean:
+
+$$z = \frac{X - M}{SD}$$
+
+\pause
+
+This allows comparison across tests with different scales and units, \textbf{assuming the normative distributions are comparable}.
+
+```{=latex}
+\vspace{0.5em}
+A $z = +2.0$ on depression and $z = +1.2$ on anxiety tells us immediately that depression deviates more from the norm regardless of the original scales.
+```
+
+## From z-scores to percentiles
+
+If the normative distribution is approximately **normal**, z-scores map directly onto **percentile ranks**:
+
+```{=latex}
+\vspace{0.6em}
+\begin{center}
+\begin{tabular}{ccc}
+\toprule
+\textbf{z-score} & \textbf{Percentile} & {\small \textbf{Potential Interpretation}} \\
+\midrule
+$-2.0$ & 2.3\% & Far below average \\
+$-1.0$ & 15.9\% & Below average \\
+$\phantom{-}0.0$ & 50.0\% & Average \\
+$+1.0$ & 84.1\% & Above average \\
+$+2.0$ & 97.7\% & Far above average \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\vspace{0.5em}
+Percentiles provide an \textbf{intuitive, scale-free} summary: a score at the 97th percentile is high \emph{regardless} of which test produced it.
+```
+
+## Test profiles
+```{r}
+#| echo: FALSE
+#| fig.width: 6.5
+#| fig.height: 4
+#| fig.dpi: 100
+
+source("R_functions/radio_barplot.R")
+
+radio_barplot()
+
+
+```
+
+
+## Limitations (1): comparing across different samples
+
+```{=latex}
+This approach rests on a critical assumption: \textbf{all norms come from equivalent populations}.
+\pause
+
+\vspace{0.5em}
+\begin{itemize}
+  \item Different tests are often normed on \textbf{different samples} (different countries, ages, education levels, education, recruitment criteria).
+  \vspace{0.3em}
+  \item A $z = +1.5$ on Test A (normed on a community sample) is \textbf{not} directly comparable to $z = +1.5$ on Test B (normed on a clinical sample).
+  \vspace{0.3em}
+  \item Normative samples vary in \textbf{size}: a percentile derived from $n = 80$ carries far more uncertainty than one from $n = 2000$, yet both are typically reported as point estimates with no uncertainty attached.
+  \vspace{0.3em}
+  \item Percentile equivalence across tests is \textbf{an assumption, not a fact}: and it is often violated silently.
+\end{itemize}
+```
+
+## Limitation (2): the normality assumption
+
+Percentiles derived from z-scores are only valid when the normative distribution is **approximately normal**.
+
+\pause
+
+```{=latex}
+\vspace{0.4em}
+Many psychopathology scales are \textbf{skewed} in community samples (most people score near zero). In such cases:
+
+\begin{itemize}
+  \item The $z \to$ percentile conversion is \textbf{inaccurate}.
+  \item Empirical percentiles (directly from the normative sample) should be preferred over those derived from the normal distribution.
+\end{itemize}
+```
+
+## Limitation (3): multivariate patterns?
+
+A pattern of scores can be entirely consistent with expected _multivariate relationships_.
+
+For example, a very high score on one scale (e.g., Social Withdrawal) may be associated with a low score on another (e.g., Extroversion).
+Therefore, a simple high–low contrast is not, in itself, evidence of something problematic.
+
+_Note: this problem holds whenever we used norms that treat each test separately_
+
+## Limitations (4): no statistical inference
+
+Comparing percentiles across tests provides **no statistical inference**.
+
+\pause
+
+```{=latex}
+\vspace{0.4em}
+\begin{itemize}
+  \item Saying \textit{``the patient is at the 85th percentile on anxiety and at the 72nd on depression''} is a \textbf{descriptive} statement, but no test of whether the two scores are \emph{significantly} different (i.e., no $p$-value).
+  \vspace{0.3em}
+  \item \pause The difference between two percentiles could easily be due to \textbf{sampling variability} in the two normative samples, to \textbf{measurement error} in the two tests, or both.
+  \vspace{0.3em}
+  \item \pause There is no formal procedure, within a pure percentile-comparison framework, to test the null hypothesis that the patient performs \emph{equally} on both constructs.
+\end{itemize}
+
+\vspace{0.4em}
+\pause
+Methods such as those proposed by \textbf{Crawford \& Howell (1998)} or \textbf{Crawford \& Garthwaite (2006)} provide proper inferential tests for individual scores and score differences against normative data.
+```
+
+## Summary: when percentile comparison works, and when it does not
+
+```{=latex}
+\begin{itemize}
+  \item[\textbf{+}] Percentiles and z-scores offer a \textbf{convenient common metric} when tests share comparable normative populations.
+  \vspace{0.3em}
+  \item[\textbf{--}] Results are \textbf{not interpretable} when normative samples differ in composition, size, or recruitment strategy.
+  \vspace{0.3em}
+  \item[\textbf{--}] The normality assumption can be violated in many psychological measures.
+  \vspace{0.3em}
+  \item[\textbf{--}] Percentile comparison is \textbf{purely descriptive}: it cannot answer whether two scores are statistically different from each other or from the norm.
+\end{itemize}
+
+```
+
+## Conclusion
+
+```{=latex}
+\vspace{0.5em}
+\begin{alertblock}{Bottom line}
+Percentile comparison is an intuitive but statistically weak tool. For rigorous individual-level inference, formal methods that model measurement error, multivariate patterns, and normative uncertainty are required.
+\end{alertblock}
+```

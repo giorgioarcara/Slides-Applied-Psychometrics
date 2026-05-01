@@ -1,0 +1,58 @@
+---
+title: ""
+author: "Giorgio Arcara"
+date: ""
+format:
+  beamer:
+    theme: metropolis
+    keep-tex: false
+incremental: false
+header-includes:
+  \setbeamerfont{title}{size=\large}
+  \usepackage{hyperref}
+  \setbeamertemplate{footline}[frame number]
+  \usepackage{tikz}
+  \usetikzlibrary{arrows.meta, positioning, shapes.geometric}
+  \usetikzlibrary{overlay-beamer-styles}
+---
+
+```{=latex}
+\title{{\fontsize{15pt}{16pt}\selectfont Applied Psychometrics}:\\ studying subclinical psychopathologies\\ \vspace{1.5em} \raggedright 
+\emph{10.1 - Probability and clinical judgment}}
+\author{Giorgio Arcara,\\ University of Padua \\ IRCCS San Camillo, Venice}
+
+\titlegraphic{
+\vspace*{7cm}
+\includegraphics[scale=0.15]{Figures/LogoSanCamilloIRCCS_Unipd_alpha.png}
+\begin{center}
+\vspace{-2.2em}
+\includegraphics[scale=0.15]{Figures/CC_license_3_0.png}
+\end{center}
+}
+\date{2026}
+\maketitle
+```
+
+## The real question
+\centering
+![](Figures/confused.png){width="70%"}
+
+What is the probability of a clinical condition,\
+given the score(s) at the tests?
+
+## An Important Caveat
+Sensitivity, specificity, and all the further indices discussed in these slides describe the behaviour of a test across a series of cases. They say nothing certain about the individual in front of you.
+
+
+## How to think these lectures
+
+![](Figures/mechanic_peek.png){width="90%" fig-align="center"}
+
+## What a Test Score Actually Does
+\underline{\textbf{A test result does not assign a probability to a specific person}}. It is a piece of evidence that shifts your assessment in one direction or another, toward or away from a clinical hypothesis.
+
+Its weight depends on everything else you know about that person: history, interview, referral context, and prior clinical judgment.
+
+\pause
+\vfill
+\textcolor{red}{The numbers contribute to the decision. \textbf{They do not make}}

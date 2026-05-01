@@ -1,0 +1,238 @@
+---
+title: ""
+author: "Giorgio Arcara"
+date: ""
+format:
+  beamer:
+    theme: metropolis
+    keep-tex: false
+incremental: false
+header-includes:
+  \setbeamerfont{title}{size=\large}
+  \usepackage{hyperref}
+  \setbeamertemplate{footline}[frame number]
+  \usepackage{tikz}
+  \usetikzlibrary{arrows.meta, positioning, shapes.geometric}
+  \usetikzlibrary{overlay-beamer-styles}
+---
+
+::: {.content-visible when-format="beamer"}
+```{=latex}
+\title{{\fontsize{15pt}{16pt}\selectfont Applied Psychometrics}:\\ studying subclinical psychopathologies\\ \vspace{1.5em} \raggedright 
+\emph{10.2 - Positive and Negative Predictive Values}}
+\author{Giorgio Arcara,\\ University of Padua \\ IRCCS San Camillo, Venice}
+
+\titlegraphic{
+\vspace*{7cm}
+\includegraphics[scale=0.15]{Figures/LogoSanCamilloIRCCS_Unipd_alpha.png}
+\begin{center}
+\vspace{-2.2em}
+\includegraphics[scale=0.15]{Figures/CC_license_3_0.png}
+\end{center}
+}
+\date{2026}
+\maketitle
+```
+
+## An example
+
+Suppose you have a test with excellent Sensitity and Specificity (e.g. 0.99 Sensitivity and 0.98 Specificity) to discriminate people with OCD from people without OCD.
+\pause
+
+Suppose that the patient score below the thresholds and has a _positive_ result.
+\pause
+
+What would you conclude?
+
+<!-- QUIZ -->
+
+## The Question Clinicians Actually Ask
+
+Sensitivity and specificity answer questions about \emph{known groups}:
+
+\begin{itemize}
+\item ``Given the patient \textbf{has} the condition, how likely is a positive test?''
+\item ``Given the patient \textbf{does not have} the condition, how likely is a negative test?''
+\end{itemize}
+
+\pause
+\vfill
+
+\textcolor{red}{But in practice the clinician asks the \textbf{opposite}}:
+
+\begin{center}
+\large\textit{``Given a positive test, how likely is the condition?''}
+\end{center}
+
+\vfill
+\small
+\pause
+This is what \textbf{Positive Predictive Value} answers.
+
+## Positive and Negative Predictive Value
+
+$$\text{PPV} = \frac{TP}{TP + FP} \qquad \text{NPV} = \frac{TN}{TN + FN}$$
+
+\vfill
+
+\begin{columns}
+\begin{column}{0.48\textwidth}
+\textbf{PPV}\\[0.4em]
+\small Probability that the condition is \emph{present} given a positive test result.
+\end{column}
+\begin{column}{0.48\textwidth}
+\textbf{NPV}\\[0.4em]
+\small Probability that the condition is \emph{absent} given a negative test result.
+\end{column}
+\end{columns}
+
+\pause
+\vfill
+\small
+Unlike sensitivity and specificity, **PPV and NPV depend on the relative proportion of cases with condition of interest and controls in the sample**. <!--If this proportion is arbitrarily set by the experimenter, as is typical in validation studies, where roughly equal group sizes are recruited, the resulting PPV and NPV do not reflect real-world performance.-->
+
+## Base rate and PPV
+To obtain clinically meaningful PPV and NPV, the proportion of cases in the sample must reflect how common the condition actually is in the target population. 
+
+This proportion is known as the **base rate**: the underlying frequency of the condition in a defined population. 
+
+In epidemiology, this is estimated through _prevalence_, the base rate of the condition in a defined population at a given time.
+
+
+
+
+## Consequence of PPV (an extreme case)
+
+Suppose you have a very rare clinical condition, and that you have a very Sensitive and Specific test.
+
+If the **base rate** is low, a positive test is more likely to be a False Positive rather than a True Positive.
+
+
+
+## A Striking Example
+
+Suppose a test has Sensitivity = 0.90 and Specificity = 0.95.
+
+We test a sample of 1000 people from a population where the condition affects **1 in 100** people (**base rate** = 0.01).
+
+\vfill
+\pause
+```{=latex}
+\begin{center}
+\begin{tabular}{|c|c|c|c|}
+\hline
+ & \textbf{Condition +} & \textbf{Condition --} & \textbf{Total} \\
+\hline
+\textbf{Test +} & \onslide<3->{9 (TP)} & \onslide<5->{50 (FP)} & \onslide<7->{59} \\
+\hline
+\textbf{Test --} & \onslide<4->{1 (FN)} & \onslide<6->{940 (TN)} & \onslide<7->{941} \\
+\hline
+\textbf{Total} & \onslide<7->{10} & \onslide<7->{990} & \onslide<7->{1\,000} \\
+\hline
+\end{tabular}
+\end{center}
+
+\onslide<8->{
+\vfill
+
+$$\text{PPV} = \frac{9}{59} \approx \mathbf{15\%}$$
+
+\small
+\includegraphics[scale=0.01]{Figures/triangle.png} In this scenario, a positive result is \emph{wrong} 85\% of the time despite excellent Sensitivity and Specificity!
+}
+```
+
+## Base rate Drives PPV
+
+```{r}
+#| echo: FALSE
+#| fig.width: 6.5
+#| fig.height: 4
+#| fig.dpi: 100
+
+prev <- seq(0.01, 0.50, by = 0.005)
+se   <- 0.85
+sp   <- 0.90
+
+ppv  <- (se * prev) / (se * prev + (1 - sp) * (1 - prev))
+npv  <- (sp * (1 - prev)) / (sp * (1 - prev) + (1 - se) * prev)
+
+par(mar = c(4, 4, 3, 1))
+plot(prev, ppv, type = "l", lwd = 2, col = "tomato",
+     xlab = "Prevalence", ylab = "Predictive Value",
+     main = "PPV and NPV as a Function of Prevalence\n(Sensitivity = 0.85, Specificity = 0.90)",
+     ylim = c(0, 1))
+lines(prev, npv, lwd = 2, col = "steelblue")
+abline(v = 0.05, lty = 2, col = "gray50")
+text(0.06, 0.15, "5%\nprevalence", col = "gray40", cex = 0.75, adj = 0)
+legend("right", legend = c("PPV", "NPV"),
+       col = c("tomato", "steelblue"), lwd = 2, cex = 0.85)
+```
+
+
+## The Limitation of Prevalence Figures
+
+Prevalence estimates assume the person is a \textbf{random draw from the population}.
+
+\vfill
+
+In a clinical context this rarely holds
+
+\pause
+\begin{itemize}
+\item A patient referred to a memory clinic has a \emph{higher} pre-test probability of MCI than the general population.
+\item A patient that participant to a random screening (e.g. by a General Practictioner) has a \emph{lower} pre-test probability.
+\end{itemize}
+
+\vfill
+\small
+PPV and NPV computed from published prevalence figures may be \textbf{misleading} if the clinical context differs substantially.
+
+## Prevalence in Psychological Testing
+
+\begin{itemize}
+\item Epidemiological prevalence estimates are available for some psychiatric disorders (e.g., major depression, schizophrenia), but often with wide confidence intervals.
+\item For many neuropsychological constructs (e.g., ``executive dysfunction'') \textbf{no reliable prevalence figure exists}.
+\item Base rates shift dramatically across settings: community, primary care, specialist clinic, inpatient ward.
+\end{itemize}
+
+\vfill
+\small
+In practice, the clinician's \textbf{clinical judgment} (not a published prevalence) often serves as the prior probability. This motivates the Bayesian approach (see next video lecture).
+
+<!--
+## Potential alternatives
+
+Note that there are alternative approaches (e.g. based on Likelihood ratios), but they are rarely used in psychological or neuropsychological practice and so they will not be discussed in this course.
+
+\href{https://clinicalproblemsolving.com/2020/02/09/clinical-reasoning-corner-likelihood-ratios/}{\underline{\textbf{Likelihood Ratios plainly explained}}}
+
+-->
+
+## Summary: Sensitivity, Specificity, PPV, NPV
+
+```{=latex}
+\scriptsize
+\begin{tabular}{|p{2.3cm}|p{4cm}|p{3.5cm}|}
+\hline
+\textbf{Index} & \textbf{What it tells us (Proportions)} & \textbf{Depends on base rate?} \\
+\hline
+Sensitivity & test + when condition + & ? \\
+\hline
+Specificity & test -- when condition -- & ? \\
+\hline
+PPV & condition + when test + & ? \\
+\hline
+NPV & condition -- when test -- & ? \\
+\hline
+%LR+ & Evidence shift from positive result & No \\
+%\hline
+%LR-- & Evidence shift from negative result & No \\
+%\hline
+\end{tabular}
+
+%\vfill
+%\small
+%Use LRs when prevalence is unknown or context-specific; use PPV/NPV when a reliable prevalence estimate is available and %the clinical context matches.
+```
+

@@ -209,7 +209,7 @@ Using a **percentile**: we say "95% of the norm group scored higher", but it doe
 
 - How uncertain is the norm group estimate?
 - How probable is this score given the *population*?
-- Is this score truly *abnormal*, or just low-average given sampling noise?
+- Is this score truly *abnormal*, or just low compared to that specific sample?
 
 \vspace{1em}
 
@@ -236,11 +236,12 @@ Crawford & Howell proposed treating the normative sample mean and SD as **estima
 
 $$t = \frac{X - M}{SD \sqrt{\frac{n+1}{n}}}$$
 
-with $df = n - 1$.
+with $df = n - 1$. $X$ = observed score, $M$ mean of the normative sample. 
+$SD$ = standard deviation of the normative sample. $n$ = normative sample size.
 
 \vspace{1em}
-
-This is a small but crucial correction: it explicitly acknowledges that $M$ and $SD$ are uncertain, inflating the standard error accordingly.
+\small
+Including $n$ introduces a small but crucial correction: it explicitly acknowledges that $M$ and $SD$ are uncertain, inflating the standard error accordingly.
 
 
 ## What the Crawford $t$-test actually asks

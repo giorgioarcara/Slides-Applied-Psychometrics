@@ -1,0 +1,129 @@
+---
+title: ""
+author: "Giorgio Arcara"
+date: ""
+#format: revealjs
+format:
+  beamer:
+    theme: metropolis
+    keep-tex: false
+incremental: false
+header-includes:
+  \setbeamerfont{title}{size=\large}
+  \usepackage{hyperref}
+  \setbeamertemplate{footline}[frame number]
+  \usepackage{tikz}
+  \usetikzlibrary{arrows.meta, positioning, shapes.geometric}
+  \usetikzlibrary{overlay-beamer-styles}
+  \usepackage{booktabs}
+---
+
+
+```{=latex}
+% TITLE SLIDES
+\title{{\fontsize{15pt}{16pt}\selectfont Applied Psychometrics}:\\ studying subclinical psychopathologies\\ \vspace{1.5em} \raggedright 
+\emph{11.2 - Methods to detect change}}
+\author{Giorgio Arcara,\\ University of Padua \\ IRCCS San Camillo, Venice}
+
+\titlegraphic{
+
+\vspace*{7cm}
+\includegraphics[scale=0.15]{Figures/LogoSanCamilloIRCCS_Unipd_alpha.png}
+\begin{center}
+\vspace{-2.2em}
+\includegraphics[scale=0.15]{Figures/CC_license_3_0.png}
+\end{center}
+}
+\date{2026}
+\maketitle
+```
+
+
+## Reliable Change Index (RCI)
+
+The **Reliable Change Index** (Jacobson \& Truax, 1991) tests whether the difference between two scores exceeds measurement error:
+
+$$RCI = \frac{X_{t1} - X_{t0}}{SE_{diff}}$$
+\pause
+\small
+\vfill
+where $SE_{diff} = \sqrt{2 \cdot SEM^2}$ is the standard error of the difference.
+
+$SEM = SD(x_t0) * \sqrt{(1-r)};$
+
+$r = cor(X_{t0}, X_{t1})$ \pause $\leftarrow$ \textcolor{red}{\textbf{test-retest reliability}}
+
+## Significant change with RCI
+
+```{=latex}
+\vspace{0.5em}
+A change is considered \textbf{reliable} (i.e., not due to chance) when $|RCI| > 1.96$ (corresponding to $p < .05$).
+```
+
+## Practice effect
+
+A limitation of the RCI is that it ignores **practice effects** : the tendency for scores to improve simply due to re-exposure to the test, even without true change (particularly important with performance tests)
+
+## Accounting for practice effects: mRCI
+
+The **modified RCI** (mRCI; McSweeny et al., 1993; Temkin et al., 1999) corrects for this by incorporating the **expected retest change** observed in a control group:
+
+$$mRCI = \frac{(X_{t1} - X_{t0}) - \overline{\Delta}_{control}}{SE_{diff}}$$
+
+\pause
+
+```{=latex}
+\vspace{0.4em}
+This makes the criterion more \textbf{conservative}: a score must change \emph{more} than the typical practice-effect gain to be considered truly improved.
+```
+
+## The sample vs. population distinction
+
+A further issue arises when using **normative statistics** (mean, SD) from a published norm table rather than from a new, locally collected sample.
+
+\pause
+
+**Crawford \& Garthwaite (2006) regression method** showed that treating normative sample statistics as if they were population parameters leads to underestimated uncertainty.
+
+\pause
+
+## Note on methods
+
+Sometimes methods for detecting change are associated with "thresholds" (cut-off for change), that delimits when a change can be considered **significant**
+
+This is usually the **thresholds** delimiting 5% of extreme (difference) scores.
+
+## An important limitation
+![](Figures/triangle.png){fig-align="center" width="10%"}
+All methods discussed so far operationalize **significant change** in statistical terms, taking measurement error into account.
+
+\pause
+
+However, they are not necessarily related to **clinical significance.**
+
+\pause
+
+_(For example, an RCI > 1.96 indicates that the observed change is unlikely to be due to measurement error in the normative sample, but it does not speak to the clinical relevance or meaningfulness of that change.)_
+
+
+## Summary: detecting meaningful change
+
+```{=latex}
+\begin{itemize}
+\item[\textbf{1.}] \textbf{Normative thresholds alone are not enough}: crossing a cut-off or normative percentiles are not evidence of reliable change.
+\vspace{0.4em}
+\item[\textbf{2.}] \textbf{RCI} (Jacobson \& Truax, 1991): accounts for measurement error using test reliability.
+\vspace{0.4em}
+\item[\textbf{3.}] \textbf{mRCI} (Temkin et al., 1999): additionally corrects for \emph{practice effects} using a control group.
+\vspace{0.4em}
+\item[\textbf{4.}] \textbf{Crawford \& Garthwaite (2006)}: addresses the \emph{sample vs.\ population} distinction, providing proper inference at population level.
+\end{itemize}
+
+```
+
+## Final conclusion
+
+\vspace{0.6em}
+\centering \textit{Detecting changes requires taking measurement error seriously: not just eyeballing scores.}
+
+

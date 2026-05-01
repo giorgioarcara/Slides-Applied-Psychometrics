@@ -82,7 +82,7 @@ In known-group testing we need to define two groups:
 
 \vfill
 \small
-The gold standard is the reference against which the test is validated.
+In known-group validity, the gold standard is the reference against which the test is validated.
 
 ## What Is a Gold Standard?
 

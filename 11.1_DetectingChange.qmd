@@ -1,0 +1,281 @@
+---
+title: ""
+author: "Giorgio Arcara"
+date: ""
+#format: revealjs
+format:
+  beamer:
+    theme: metropolis
+    keep-tex: false
+incremental: false
+header-includes:
+  \setbeamerfont{title}{size=\large}
+  \usepackage{hyperref}
+  \setbeamertemplate{footline}[frame number]
+  \usepackage{tikz}
+  \usetikzlibrary{arrows.meta, positioning, shapes.geometric}
+  \usetikzlibrary{overlay-beamer-styles}
+  \usepackage{booktabs}
+  \usepackage{colortbl}
+  \usepackage{xcolor}
+---
+
+<!-- the section below is shown only if rendering is beamer from latex. (and format:revealjs is commmented) -->
+
+```{=latex}
+% TITLE SLIDES
+\title{{\fontsize{15pt}{16pt}\selectfont Applied Psychometrics}:\\ studying subclinical psychopathologies\\ \vspace{1.5em} \raggedright 
+\emph{11.1 - Detecting Change over time}}
+\author{Giorgio Arcara,\\ University of Padua \\ IRCCS San Camillo, Venice}
+
+\titlegraphic{
+
+\vspace*{7cm}
+\includegraphics[scale=0.15]{Figures/LogoSanCamilloIRCCS_Unipd_alpha.png}
+\begin{center}
+\vspace{-2.2em}
+\includegraphics[scale=0.15]{Figures/CC_license_3_0.png}
+\end{center}
+}
+\date{2026}
+\maketitle
+```
+
+## Many reasons to detect change over time
+
+- Compare scores before and after a treatment \pause
+
+- In a chronic disease monitoring scores over time to see if symptoms are improving/worsening \pause
+
+- In a degenerative disease monitoring if performance is worsening or is stable \pause
+
+- \ldots
+
+
+## Is this change meaningful?
+
+A patient completes an anxiety questionnaire at two timepoints:
+
+```{=latex}
+\vspace{0.8em}
+\begin{center}
+\begin{tabular}{lcc}
+\toprule
+ & \textbf{Time 1} & \textbf{Time 2} \\
+\midrule
+Anxiety score & 38 & 34 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\pause
+\vspace{0.8em}
+The score dropped by \textbf{4 points}. Is the patient \emph{really} better?
+
+%\vspace{0.5em}
+%\textbf{Not necessarily.} All psychological tests have %measurement error. A difference of 9 points might simply reflect %noise --- not true change.
+```
+
+## The common (but wrong) approach
+
+A frequent practice is to compare scores against **normative thresholds**, e.g., classifying a patient as "improved" because their score moved from the *clinical* to the *non-clinical* range.
+
+\pause
+
+```{=latex}
+\vspace{0.5em}
+\begin{alertblock}{Why this is wrong}
+\vspace{0.2em}
+Normative thresholds tell us where a score stands \emph{relative to a sample/population}, but not if the change between scores deserve attention. 
+\end{alertblock}
+```
+
+## Change over time and reliability
+
+In the context of Classical Test Theory, detecting change over time is tightly related to Test-retest reliability.
+
+\pause
+To detect a _meaningful_ change they test whether the \emph{change between two scores} exceeds what we would expect by chance due to measurement error.
+
+## Two observations with a High-reliability test
+
+```{r} 
+#| echo: FALSE
+#| output: TRUE
+#| fig.dpi: 100
+#| fig.width: 6
+#| fig.height: 4
+#| out-width: "100%"
+
+
+library(ONDAutils)
+
+set.seed(10)
+X = simulate_obs(Ts = 38, n = 30, rel=0.9, mu_true = 35, sd_true = 2, label = "High Reliability")
+abline(h=38, col="blue", lwd=3)
+legend("topright", legend=c("observed score", "true score"), pch=c(1, NA), lty=c(NA, 1), lwd=c(NA, 3), col=c("black", "blue"))
+
+```
+
+## Two observations with a Low-reliability test
+
+```{r} 
+#| echo: FALSE
+#| output: TRUE
+#| fig.dpi: 100
+#| fig.width: 6
+#| fig.height: 4
+#| out-width: "100%"
+
+
+set.seed(10)
+X = simulate_obs(Ts = 38, n = 30, rel=0.5, mu_true = 35, sd_true = 2, label = "Low Reliability")
+abline(h=38, col="blue", lwd=3)
+legend("topright", legend=c("observed score", "true score"), pch=c(1, NA), lty=c(NA, 1), lwd=c(NA, 3), col=c("black", "blue"))
+
+```
+
+## Is this a "real" change?
+
+```{r} 
+#| echo: FALSE
+#| output: TRUE
+#| fig.dpi: 100
+#| fig.width: 6
+#| fig.height: 4
+#| out-width: "100%"
+
+
+set.seed(10)
+X = simulate_obs(Ts = 38, n = 30, rel=0.5, mu_true = 35, sd_true = 2, label = "Low Reliability")
+abline(h=38, col="blue", lwd=3)
+legend("topright", legend=c("observed score", "true score"), pch=c(1, NA), lty=c(NA, 1), lwd=c(NA, 3), col=c("black", "blue"))
+
+points(10, X[10],  pch=21, bg="orange",col="black", cex=2)
+
+```
+
+## Is this a "real" change?
+
+```{r} 
+#| echo: FALSE
+#| output: TRUE
+#| fig.dpi: 100
+#| fig.width: 6
+#| fig.height: 4
+#| out-width: "100%"
+
+
+set.seed(10)
+X = simulate_obs(Ts = 38, n = 30, rel=0.5, mu_true = 35, sd_true = 2, label = "Low Reliability")
+abline(h=38, col="blue", lwd=3)
+legend("topright", legend=c("observed score", "true score"), pch=c(1, NA), lty=c(NA, 1), lwd=c(NA, 3), col=c("black", "blue"))
+
+points(10, X[10],  pch=21, bg="orange",col="black", cex=2)
+points(11, X[11]-1,  pch=21, bg="orange",col="black", cex=2)
+```
+\small
+\emph{A difference of two points $X_{t0}$ = 37, $X_{t1}$=39, seems negligible in this case.}
+<!--
+
+## Reliability and measurement error (CTT)
+
+Within **Classical Test Theory (CTT)**, every observed score $X$ contains a true score $T$ and an error $E$:
+
+$$X = T + E$$
+
+The **Standard Error of Measurement** (SEM) quantifies the typical size of $E$:
+
+$$\text{SEM} = SD \sqrt{1 - r_{xx}}$$
+
+where $r_{xx}$ is the reliability coefficient of the test.
+\pause
+
+A \textbf{higher reliability} $\rightarrow$ smaller SEM $\rightarrow$ more confidence that observed change is real.
+-->
+
+## How to Build Normative Data for Change Detection
+A group is tested twice (separated by a pre-specified time interval), during which **no true change is assumed to have occurred**.
+
+Any fluctuations observed in the scores are therefore attributable to measurement error.
+
+## How to solve?
+
+One simile possibility is to calculate z-scores from the difference 
+```{=latex}
+\centering
+$X_{t1} - X_{t0}$
+```
+
+## Normative data (raw score)
+```{r} 
+#| echo: FALSE
+#| output: TRUE
+#| fig.dpi: 100
+#| fig.width: 6
+#| fig.height: 4
+#| out-width: "90%"
+
+par(mfrow=c(1,2))
+set.seed(10)
+hist(rnorm(100, mean=20), col="steelblue", bg="steelblue", main="Normative data (raw score)\n at t0", xlab=expression("X"))
+
+set.seed(11)
+hist(rnorm(100, mean=20), col="steelblue", bg="steelblue", main="Normative data (raw score)\n at t1", xlab=expression("X"))
+
+
+```
+\emph{Note the x-axis}
+
+
+## Normative data (Difference score)
+
+```{r} 
+#| echo: FALSE
+#| output: TRUE
+#| fig.dpi: 100
+#| fig.width: 6
+#| fig.height: 4
+#| out-width: "90%"
+
+
+set.seed(10)
+xt0 = rnorm(100, mean=20)
+set.seed(11)
+xt1 = rnorm(100, mean=20)
+
+xdiff = xt1-xt0
+
+hist(rnorm(100), col="steelblue", bg="steelblue", main="Normative data (difference score)\n t1 minus t0", xlab=expression("X"[t1] - "X"[t0]))
+```
+\emph{Note the x-axis. Using differences assumes "interval scale", see Lectures of Week 1}
+
+## Assumption: interval scale
+Imagine a test in which scores range from 0 to 30
+
+\pause
+\vspace{1em}
+$X_{t0}$ = 25, $X_{t1}$ = 30. \pause  $\Delta = X_{t1}- X_{t0}$ = +5
+
+\pause
+\vspace{1em}
+$X_{t0}$ = 15, $X_{t1}$ = 20 $\Delta = X_{t1}- X_{t0}$ = +5
+
+
+## Summary
+
+Percentiles derived from normative data answer the question:
+
+*How likely is to observe this score within the reference sample/population?*
+
+\pause
+Our question, instead, is:
+
+*How likely is it to observe this score at $t_1$, given the score observed at $t_0$?*
+
+## Methods to detect change
+\centering
+
+See the next video lecture!
+
+

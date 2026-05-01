@@ -1,0 +1,177 @@
+---
+title: ""
+author: "Giorgio Arcara"
+date: ""
+format:
+  beamer:
+    theme: metropolis
+    keep-tex: false
+incremental: false
+header-includes:
+  \setbeamerfont{title}{size=\large}
+  \usepackage{hyperref}
+  \setbeamertemplate{footline}[frame number]
+  \usepackage{tikz}
+  \usetikzlibrary{arrows.meta, positioning, shapes.geometric}
+  \usetikzlibrary{overlay-beamer-styles}
+---
+
+```{=latex}
+\title{{\fontsize{15pt}{16pt}\selectfont Applied Psychometrics}:\\ studying subclinical psychopathologies\\ \vspace{1.5em} \raggedright 
+\emph{10.3 - Bayesian Reasoning in Clinical Testing}}
+\author{Giorgio Arcara,\\ University of Padua \\ IRCCS San Camillo, Venice}
+
+\titlegraphic{
+\vspace*{7cm}
+\includegraphics[scale=0.15]{Figures/LogoSanCamilloIRCCS_Unipd_alpha.png}
+\begin{center}
+\vspace{-2.2em}
+\includegraphics[scale=0.15]{Figures/CC_license_3_0.png}
+\end{center}
+}
+\date{2026}
+\maketitle
+```
+
+## A Common Confusion
+
+When a patient scores exceed a threshold, it is tempting to say:
+
+\begin{center}
+\large ``The probability that this person has the condition is 85\%''\\
+\small \textit{(if sensitivity = 0.85)}
+\end{center}
+
+\pause
+\vfill
+
+This is \textbf{wrong}.
+
+\vfill
+
+Sensitivity tells us:
+$$P(\text{positive test} \mid \text{condition present}) = 0.85$$
+
+What we \emph{want} is:
+$$P(\text{condition present} \mid \text{positive test}) = \;?$$
+
+## From PPV to Bayes Theorem
+
+$$P(A \mid B) \neq P(B \mid A)$$
+
+\vfill
+```{=latex}
+\begin{columns}
+\column{0.5\textwidth}
+\vspace{0.5cm}
+$P(\text{fever} \mid \text{meningitis}) \approx 1$\\
+\vspace{0.4cm}
+\onslide<2->{
+$P(\text{meningitis} \mid \text{fever}) \ll 1$ \\
+\scriptsize{(fever is often due to minor pathologies)}
+}
+\column{0.5\textwidth}
+\begin{figure}
+\includegraphics[width=0.6\textwidth]{Figures/high_fever.png}
+\end{figure}
+\end{columns}
+```
+
+## These Are Not the Same Thing
+
+$$P(A \mid B) \neq P(B \mid A)$$
+
+```{=latex}
+In testing:\\
+\vspace{0.5cm}
+$P(\text{low score} \mid \text{dementia}) \approx $ Sensitivity\\
+\vspace{0.4cm} \pause
+$P(\text{dementia} \mid \text{low score}) = $ what the clinician wants \\
+\pause $\to$ requires \textbf{Bayes' theorem}.
+```
+
+## Bayes' Theorem (Simply Stated)
+
+$$P(\text{condition} \mid \text{positive}) = \frac{P(\text{positive} \mid \text{condition}) \times P(\text{condition})}{P(\text{positive})}$$
+
+or:
+
+\begin{center}
+$$Posterior = \frac{Likelihood  \times Prior}{Evidence}$$
+\end{center}
+
+```{=latex}
+\pause
+\vfill
+\small
+\begin{itemize}
+\item The \textbf{posterior} is our updated probability after seeing the result.
+\item The \textbf{prior} is what we believed before the test (in PPV is the \textbf{Prevalence}).\\
+\item The \textbf{likelihood} is provided by sensitivity.\\
+\item The \textbf{marginal probability} is the probability of having a positive result.
+\end{itemize}
+```
+
+## What is our probability?
+
+$$P(\text{condition present} \mid \text{positive test}) = \;?$$
+
+
+## Prior Probability in Clinical Practice
+PPV, uses Prevalence that assume the patient is a \textbf{random draw from the population}: which is rarely true.
+
+The relevant prior is the \textbf{pre-test probability} in the specific clinical context:
+
+\begin{itemize}
+\item A student participating to a study on OCD for additional credits $\Rightarrow$ low prior.
+\item A patient referred to a clinic specialized in OCD from another specialist $\Rightarrow$ much higher prior.
+\end{itemize}
+
+## Estimating the Prior
+
+Published prevalence figures may not match either context of the previous slide.
+\pause
+
+Existing data (e.g., interview, anamnesis, etc.) may also change the prior probability. 
+\pause
+
+In practice, the clinician's \textbf{clinical judgment} (not a published prevalence) often serves as the **prior** probability. 
+
+## Expliciting the prior?
+
+In clinical practice, the prior rarely takes the form of an explicit number. Clinicians typically reason with **qualitative, implicit beliefs**, a sense of how likely a condition is, shaped by experience, context, and available information (E.g. Elstein \& Schwarz, 2002)
+
+
+## From probabilities to Likelihood ratios
+
+Alternative approaches overcome this limitation (e.g. based on Likelihood ratios) based on _shifts in odds_, but they are rarely used in psychological or neuropsychological practice and so they will not be discussed in this course.
+
+\href{https://clinicalproblemsolving.com/2020/02/09/clinical-reasoning-corner-likelihood-ratios/}{\underline{\textbf{Likelihood Ratios plainly explained}}}
+
+## A different perspective
+
+All these considerations tells us (in a bit formal way) a crucial aspect.
+\pause
+
+\textcolor{red}{\textbf{Test results does not have always the same meaning}}
+
+\small
+\emph{it depends on what we now about the individual we are assessing (or, in Bayesian terms, on prior probability)}
+
+
+## Summary
+
+\begin{itemize}
+\item Sensitivity and specificity estimate $P(\text{result} \mid \text{condition})$, \textbf{not} $P(\text{condition} \mid \text{result})$.
+\item PPV/NPV or Bayes' theorem allow to respond to this but it requires a prior (pre-test probability or \emph{base rate}).
+\item Every test result is an \textbf{update of belief}, not a binary decision.
+\item Good clinical assessment integrates test scores with interview, anamnesis, and collateral information as a \textbf{progressive accumulation of evidence}.
+\end{itemize}
+
+## Take-home message
+![](Figures/triangle.png){width="10%" fig-align="center"}
+
+Exact posterior probabilities are rarely calculable in clinical practice, as they require information that is seldom available: most notably the prior probability. For this reason, test results are better understood as **evidence** to be integrated with all other available information.
+
+
+
