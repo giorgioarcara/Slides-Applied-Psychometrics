@@ -1,0 +1,92 @@
+---
+title: "Case 2 - BC"
+author: "Giorgio Arcara"
+date: ""
+format: pdf
+header-includes:
+  \usepackage{hyperref}
+  \usepackage{multirow}
+  \usepackage{booktabs}
+  \usepackage{graphicx}
+  \usepackage{hyperref}
+---
+
+## Clinical Case 2 - **BC**
+
+A current assessment of learning achievements, cognitive functions, and behavioral profile of the minor **BC** is being conducted today, at the request of her mother. The assessment was recommended by **BC**'s school, which identified academic difficulties (particularly in Italian Language Arts and Mathematics) warranting specialist evaluation.
+
+## **BC** - Background Data
+
+- Age: 14 years
+- Sex: F
+- Handedness: Right
+- School level: 1st year of upper secondary school
+
+## **BC** - Personal History
+
+Born and raised in Moldova until the age of 10, she moved to Italy 4 years ago. Her father has been absent from her life for a long time. She lives in XXX with her mother and her mother's new partner. She is described as a withdrawn girl who enjoys spending most of her time at the computer. She practiced dance when younger but stopped several years ago.
+
+## **BC** - Medical History
+
+Birth with complications. Emergency cesarean section (due to detected absence of heartbeat). Signs of hypoxia at birth with a brief stay in the neonatal intensive care unit. Motor and language milestones within normal range (native language). No signs of other dysfunctions. Mild myopia (corrected with glasses).
+
+## **BC** - Academic History
+
+**BC** began her schooling in Moldova prior to moving to Italy. Shortly after relocating, she was forced to attend school via distance learning (due to COVID). She currently attends the first year of a vocational institute and is already considered at high risk of grade retention. Weak areas: Italian Language Arts. Strong area: Mathematics.
+
+## **BC** - Clinical Interview
+
+During the interview, **BC** is cooperative and motivated; she occasionally reports difficulty finding words. Her speech is marked by a strong accent and limited command of the Italian language (both lexical and pragmatic). Mood appears flat. She reports having few friends and spending most of her time at the computer.
+
+## **BC** - Test-Based Assessment
+
+The assessment uses the **BINS** battery (Batteria Inesistente del Neurosviluppo — a fictitious neurodevelopmental battery).
+The battery was normed on approximately 1,100 Italian children aged 10–18 years.
+Normative data were collected with approximately 70 subjects per group (male and female).
+Cut-off scores were derived via a regression method that also accounts for the difference between sample and population.
+All subtests have Test-reliability with reasonable values $ICC \geq 0.7$, and the Validity was assessed via correlations with another battery tapping similar constructs (all Pearson's $r \geq 0.6$)
+
+## **BC** - Test Results
+
+```{=latex}
+\begin{table}[h!]
+\scriptsize
+\centering
+\begin{tabular}{llccc}
+\toprule
+\textbf{BINS 12-18} & & \textbf{RS} & \textbf{Z} & \textbf{Percentile} \\
+\midrule
+\multirow{3}{*}{\textit{Learning}} 
+& Passage reading (correct syllables/sec.) & 2.10 & -2.32 & $\mathbf{<1st}$ \\
+& Passage dictation (correct words in 2 min.) & 20 & -3.32 & $\mathbf{<1st}$  \\
+& Written calculation (correct responses) & 11/12 & -0.1 & Normal   \\
+\midrule
+
+\multirow{2}{*}{\textit{Memory}}
+& Forward verbal span & 6/9 & 0.06 & Normal \\
+& Backward verbal span & 4/8 & -0.38 & Normal \\
+\midrule
+
+\multirow{1}{*}{\textit{Attention}}
+& Selective visual attention & 14/21 & -0.08 & Normal \\
+\midrule
+
+\multirow{2}{*}{\textit{Reasoning and Executive Functions}}
+& Spatial reasoning (RAVEN) & 35/48 & -1.22 & Normal \\
+& Phonemic fluency (total words) & 19 & -1.92 & $\mathbf{2nd}$ \\
+\midrule
+
+\multirow{2}{*}{\textit{Language}}
+& Categorical fluency (total words) & 30 & -1.83 & $\mathbf{3rd}$  \\
+& Lexical naming (correct responses) & 50/80 & -3.8 & $\mathbf{<1st}$  \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+```
+
+## BC - Conclusions
+
+_How would you interpret these results?_
+
+_What additional information would you collect?_

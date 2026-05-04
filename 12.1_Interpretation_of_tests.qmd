@@ -1,0 +1,377 @@
+---
+title: ""
+author: "Giorgio Arcara"
+date: ""
+#format: revealjs
+format:
+  beamer:
+    theme: metropolis
+    keep-tex: false
+incremental: false
+header-includes:
+  \setbeamerfont{title}{size=\large}
+  \usepackage{hyperref}
+  \usepackage{tikz}
+  \usetikzlibrary{positioning, arrows.meta, shapes.callouts}
+  \usepackage{booktabs}
+  \usepackage{colortbl}
+  \setbeamertemplate{footline}[frame number]
+---
+
+<!-- the section below is shown only if rendering is beamer from latex. (and format:revealjs is commmented) -->
+
+```{=latex}
+% TITLE SLIDES
+\title{{\fontsize{15pt}{16pt}\selectfont Applied Psychometrics}:\\ studying subclinical psychopathologies\\ \vspace{1.5em} \raggedright \emph{12.1 - Interpretation of tests}}
+\author{Giorgio Arcara,\\ University of Padua \\ IRCCS San Camillo, Venice}
+
+\titlegraphic{
+
+\vspace*{7cm}
+\includegraphics[scale=0.15]{Figures/LogoSanCamilloIRCCS_Unipd_alpha.png}
+\begin{center}
+\vspace{-2.2em}
+\includegraphics[scale=0.15]{Figures/CC_license_3_0.png}
+\end{center}
+}
+\date{2026}
+\maketitle
+```
+:::
+
+## A score is not an interpretation
+
+```{=latex}
+\begin{center}
+\begin{tikzpicture}
+    \node[draw, rectangle, text width=4cm, align=center] (score) {\textbf{Raw Score} \\ (e.g., 24/30)};
+    \node[draw, rectangle, text width=4cm, align=center, right=3cm of score] (interp) {\textbf{Clinical meaning} \\ (e.g., "impaired memory")};
+    \onslide<1>{\draw[<->, >=stealth, gray, dashed, thick] (score) -- (interp);}
+    \onslide<2->{
+        \draw[-{Stealth}, gray, solid, thick] (score) -- (interp);
+        \node[below=1.5cm of score, text width=10cm, align=center] (gap) {\emph{The gap between score and interpretation is not trivial.\\It requires knowledge, judgment, and context.}};
+    }
+\end{tikzpicture}
+\end{center}
+```
+
+## Tests measure — but humans interpret
+
+```{=latex}
+\begin{itemize}
+    \item<1-> A test produces a number. That number \textbf{does not interpret itself}.
+    \item<2-> Interpretation requires situating the score within:
+    \begin{itemize}
+        \item the psychometric properties of the tool
+        \item the normative reference group
+        \item the individual's specific context
+        \item the clinical question being asked
+    \end{itemize}
+    \item<3-> \textbf{The same score can mean very different things} depending on who obtained it, under what conditions, and for what purpose.
+\end{itemize}
+```
+
+## What can go wrong?
+
+```{=latex}
+\begin{center}
+\begin{tikzpicture}
+    \node[draw, rectangle, text width=3.5cm, align=center] (construct) {\textbf{Construct} \\ (e.g., executive function)};
+    \node[draw, rectangle, text width=3.5cm, align=center, below=2cm of construct] (behaviour) {\textbf{Test performance}};
+    \node[draw, rectangle, minimum width=3cm, minimum height=1cm, below=2cm of behaviour] (score) {\textbf{Score}};
+    \node[draw, rectangle, text width=3.5cm, align=center, right=1cm of construct] (others) {\textbf{Other variables}\\ {\small (anxiety, fatigue, motivation, culture, \ldots)}};
+    \draw[-{Stealth}, gray, solid, thick] (construct) -- (behaviour);
+    \draw[-{Stealth}, gray, solid, thick] (behaviour) -- (score);
+    \draw[-{Stealth}, gray, solid, thick] (others) -- (behaviour);
+    \onslide<2->{
+        \node[draw, rectangle, dashed, text width=3.5cm, align=center, below=2cm of score] (interp) {\textbf{Interpretation}};
+        \draw[-{Stealth}, gray, dashed, thick] (score) -- (interp);
+        \node[right=1cm of score, text width=3.5cm, align=center, font=\small] {\emph{Normative data,\\ validity, reliability,\\ clinical context}};
+    }
+\end{tikzpicture}
+\end{center}
+```
+
+## Scores vary: context matters
+
+```{=latex}
+\begin{itemize}
+    \item<1-> Test performance is \textbf{not a fixed property} of an individual.
+    \item<2-> The same person can score differently across:
+    \begin{itemize}
+        \item different times of day
+        \item different emotional states
+        \item different testing environments
+        \item different examiners
+    \end{itemize}
+    \item<3-> This is not noise to eliminate — it is \textbf{clinically meaningful variation} to interpret.
+    \item<4-> \textbf{Context is not a confound. It is part of the data.}
+\end{itemize}
+```
+
+## Individual factors: motivation
+
+```{=latex}
+\begin{columns}
+    \begin{column}{0.55\textwidth}
+        \begin{itemize}
+            \item<1-> Low motivation $\rightarrow$ underperformance \textbf{unrelated to the target construct}
+            \item<2-> Motivation is not always observable. It must be \textbf{inferred} from:
+            \begin{itemize}
+                \item effort indices (e.g., PVTs, SVTs)
+                \item behavioural observation
+                \item response consistency
+            \end{itemize}
+            \item<3-> Performance Validity Tests (PVTs) can help — but have limitations (false positives in genuine impairment)
+        \end{itemize}
+    \end{column}
+    \begin{column}{0.4\textwidth}
+        \onslide<2->{
+        \begin{tikzpicture}
+            \node[draw, rectangle, text width=3cm, align=center] (mot) {\small \textbf{Low motivation}};
+            \node[draw, rectangle, text width=3cm, align=center, below=1.2cm of mot] (perf) {\small \textbf{Poor performance}};
+            \node[draw, rectangle, text width=3cm, align=center, below=1.2cm of perf] (interp) {\small \textbf{Misinterpreted as impairment}};
+            \draw[-{Stealth}, gray, solid, thick] (mot) -- (perf);
+            \draw[-{Stealth}, gray, dashed, thick] (perf) -- (interp);
+        \end{tikzpicture}
+        }
+    \end{column}
+\end{columns}
+```
+
+## Individual factors: social desirability and response bias
+
+```{=latex}
+\begin{itemize}
+    \item<1-> On \textbf{self-report} measures, individuals may respond in a socially desirable direction — minimising symptoms or problems.
+    \item<2-> Conversely, \textbf{symptom exaggeration} (malingering or somatisation) inflates scores on symptom inventories.
+    \item<3-> Both distort the score-construct relationship:
+    \begin{itemize}
+        \item underreporting $\rightarrow$ false negatives
+        \item overreporting $\rightarrow$ false positives
+    \end{itemize}
+    \item<4-> Symptom Validity Tests (SVTs) help, but again: no tool is infallible.
+    \item<5-> Response bias is not always deliberate. \textbf{Anosognosia} is a neurological failure of self-monitoring — not deception.
+\end{itemize}
+```
+
+## Individual factors: emotional and physical state
+
+```{=latex}
+\begin{itemize}
+    \item<1-> \textbf{Anxiety}: test anxiety can depress performance independently of the construct. Particularly documented in working memory and processing speed tasks.
+    \item<2-> \textbf{Depression}: slows processing, reduces effort, impairs episodic memory — mimicking neurological impairment (pseudodementia).
+    \item<3-> \textbf{Fatigue and pain}: reduce sustained attention and processing speed. Relevant in neurological, oncological, and chronic illness contexts.
+    \item<4-> \textbf{Sleep deprivation}: directly impairs executive function, memory consolidation, and reaction times.
+    \item<5-> \emph{None of these invalidate the test. They are essential clinical context.}
+\end{itemize}
+```
+
+## When the test does not work as intended: Validity
+
+```{=latex}
+\begin{itemize}
+    \item<1-> A test is \textbf{valid} when it measures what it claims to measure.
+    \item<2-> Validity is not a fixed property — it is \textbf{context-dependent}.
+    \item<3-> External factors can undermine validity:
+    \begin{itemize}
+        \item fatigue or pain during testing
+        \item inadequate testing environment (noise, interruptions)
+        \item poor examiner rapport
+        \item language or cultural mismatch
+    \end{itemize}
+    \item<4-> In these conditions, a poor score \textbf{does not reflect the construct}. It reflects the testing conditions.
+    \item<5-> \textbf{A score obtained under invalid conditions is not a valid score} — regardless of what the number says.
+\end{itemize}
+```
+
+## When the test does not work as intended: Reliability
+
+```{=latex}
+\begin{columns}
+    \begin{column}{0.55\textwidth}
+        \begin{itemize}
+            \item<1-> All scores carry \textbf{measurement error}: $X_{obs} = X_{true} + e$
+            \item<2-> The \textbf{Standard Error of Measurement} (SEM) quantifies this uncertainty.
+            \item<3-> An "abnormal" score near the cut-off may simply reflect \textbf{unreliability} — not true deficit.
+            \item<4-> A single assessment is rarely sufficient for diagnosis. \textbf{Retest data} and \textbf{confidence intervals} matter.
+            \item<5-> \emph{The score is an estimate. Treat it as one.}
+        \end{itemize}
+    \end{column}
+    \begin{column}{0.4\textwidth}
+        \onslide<2->{
+        \begin{tikzpicture}
+            \draw[thick, ->] (0,0) -- (4,0) node[right] {\small Score};
+            \draw[thick] (2, -0.1) -- (2, 0.1) node[above] {\small $X_{obs}$};
+            \draw[dashed] (1, -0.1) -- (1, 0.1) node[above] {\small $-$SEM};
+            \draw[dashed] (3, -0.1) -- (3, 0.1) node[above] {\small $+$SEM};
+            \draw[<->, thick, gray] (1, -0.4) -- (3, -0.4) node[midway, below] {\small True score range};
+        \end{tikzpicture}
+        }
+    \end{column}
+\end{columns}
+```
+
+## Cut-offs: what they tell us — and what they don't
+
+```{=latex}
+\begin{itemize}
+    \item<1-> A cut-off classifies a score as \textbf{normal} or \textbf{abnormal}. It does not diagnose.
+    \item<2-> Cut-offs are derived from \textbf{normative samples}. Their validity depends on how well that sample represents the individual being tested.
+    \item<3-> Common mismatches between individual and norms:
+    \begin{itemize}
+        \item different age bracket
+        \item different educational background
+        \item different language or cultural group
+        \item atypical premorbid functioning
+    \end{itemize}
+    \item<4-> A score below cut-off in a mismatched normative group \textbf{may not be clinically abnormal}.
+    \item<5-> Conversely: a score within normal limits in a high-premorbid-ability individual \textbf{may represent genuine decline}.
+\end{itemize}
+```
+
+## Representativeness of normative data
+
+```{=latex}
+\begin{itemize}
+    \item<1-> Normative samples are typically drawn from \textbf{WEIRD populations}: Western, Educated, Industrialised, Rich, Democratic (Henrich et al., 2010).
+    \item<2-> In neuropsychology, most standardisation samples over-represent:
+    \begin{itemize}
+        \item majority ethnic groups
+        \item urban, educated individuals
+        \item younger-old (rather than oldest-old) adults
+    \end{itemize}
+    \item<3-> This creates \textbf{systematic bias}: minority-group individuals are more likely to score below cut-off even without pathology.
+    \item<4-> \textbf{Solution}: use demographically adjusted norms when available. Interpret with caution when they are not.
+\end{itemize}
+```
+
+## Discrimination between groups: a critical issue
+
+```{=latex}
+\begin{itemize}
+    \item<1-> Tests are often used to distinguish \textbf{clinical from control groups} (e.g., MCI vs. healthy ageing).
+    \item<2-> Discriminative ability depends on:
+    \begin{itemize}
+        \item sensitivity and specificity of the tool
+        \item base rate of the condition in the population
+        \item the reference group used for comparison
+    \end{itemize}
+    \item<3-> \textbf{A test that discriminates well in one context may not in another.}
+    \begin{itemize}
+        \item e.g., a screening tool validated in memory clinics \emph{may perform poorly} in a community sample with lower base rates.
+    \end{itemize}
+    \item<4-> \textbf{Base rate neglect} is a common clinical error: ignoring the prior probability of the condition distorts the interpretation of any score.
+\end{itemize}
+```
+
+## Base rates and Bayes: a concrete example
+
+```{=latex}
+\begin{itemize}
+    \item<1-> Suppose a test has 90\% sensitivity and 90\% specificity for dementia.
+    \item<2-> In a \textbf{memory clinic} (base rate $\sim$40\%): a positive result has high positive predictive value.
+    \item<3-> In a \textbf{community sample} (base rate $\sim$5\%): the same positive result yields many false positives.
+\end{itemize}
+
+\onslide<4->{
+\begin{center}
+\begin{tabular}{lcc}
+\toprule
+ & Memory clinic (40\%) & Community (5\%) \\
+\midrule
+PPV & $\sim$86\% & $\sim$32\% \\
+NPV & $\sim$94\% & $\sim$99\% \\
+\bottomrule
+\end{tabular}
+\end{center}
+\vspace{0.5em}
+\emph{Same test. Same score. Very different meaning.}
+}
+```
+
+## Practice effects and repeated testing
+
+```{=latex}
+\begin{itemize}
+    \item<1-> Scores on repeated assessments tend to \textbf{increase} due to practice effects — independent of true improvement.
+    \item<2-> This is particularly relevant for:
+    \begin{itemize}
+        \item longitudinal monitoring (e.g., post-stroke recovery)
+        \item treatment outcome evaluation
+        \item forensic contexts (repeated neuropsychological evaluations)
+    \end{itemize}
+    \item<3-> \textbf{Reliable Change Index} (RCI) provides a statistical criterion for distinguishing genuine change from measurement error + practice.
+    \item<4-> Failure to account for practice effects \textbf{underestimates} true change when scores rise, and \textbf{overestimates} decline when scores fall from a practice-inflated baseline.
+\end{itemize}
+```
+
+## Premorbid functioning and the reference point problem
+
+```{=latex}
+\begin{itemize}
+    \item<1-> Normative data provide a \textbf{group reference}, not an individual baseline.
+    \item<2-> For individuals with high premorbid functioning, a score in the "average" range may represent \textbf{significant decline}.
+    \item<3-> Premorbid ability can be estimated via:
+    \begin{itemize}
+        \item reading/pronunciation tests (e.g., NART, TIB)
+        \item educational and occupational history
+        \item demographic regression equations
+    \end{itemize}
+    \item<4-> \textbf{Intraindividual variability} across tests is often more informative than any single score — a profile of relative strengths and weaknesses reveals more than an isolated data point.
+\end{itemize}
+```
+
+## Cultural and linguistic factors
+
+```{=latex}
+\begin{itemize}
+    \item<1-> Many neuropsychological tests are \textbf{language-dependent} or \textbf{culturally loaded}:
+    \begin{itemize}
+        \item verbal fluency tasks (category norms differ across cultures)
+        \item proverb interpretation
+        \item figure naming (familiarity varies)
+    \end{itemize}
+    \item<2-> \textbf{Bilingualism} affects performance differently across domains: verbal tasks typically show effects; visuospatial tasks less so.
+    \item<3-> Test translation is \textbf{not standardisation}: a translated test without re-norming is of limited clinical value.
+    \item<4-> \emph{Cultural incompetence in testing is not a neutral failure — it produces systematically biased conclusions.}
+\end{itemize}
+```
+
+## Putting it together: the interpretive process
+
+```{=latex}
+\begin{center}
+\begin{tikzpicture}[node distance=0.8cm]
+    \node[draw, rectangle, text width=3cm, align=center] (score) {\textbf{Score}};
+    \node[draw, rectangle, text width=3cm, align=center, right=1.2cm of score] (norms) {\textbf{Normative fit?}};
+    \node[draw, rectangle, text width=3cm, align=center, right=1.2cm of norms] (validity) {\textbf{Valid conditions?}};
+    \node[draw, rectangle, text width=3cm, align=center, below=1.5cm of validity] (reliability) {\textbf{Within SEM?}};
+    \node[draw, rectangle, text width=3cm, align=center, below=1.5cm of norms] (context) {\textbf{Clinical context}};
+    \node[draw, rectangle, text width=3cm, align=center, below=1.5cm of score] (interp) {\textbf{Interpretation}};
+
+    \draw[-{Stealth}, gray, solid, thick] (score) -- (norms);
+    \draw[-{Stealth}, gray, solid, thick] (norms) -- (validity);
+    \draw[-{Stealth}, gray, solid, thick] (validity) -- (reliability);
+    \draw[-{Stealth}, gray, solid, thick] (reliability) -- (context);
+    \draw[-{Stealth}, gray, solid, thick] (context) -- (interp);
+    \draw[-{Stealth}, gray, solid, thick] (norms) -- (context);
+    \draw[-{Stealth}, gray, solid, thick] (score) -- (interp);
+\end{tikzpicture}
+\end{center}
+\onslide<2->{\emph{Interpretation is not applied after testing. It is built into every step.}}
+```
+
+## Summary
+
+```{=latex}
+\begin{itemize}
+    \item A score is a starting point, not a conclusion.
+    \item \textbf{Validity} is conditional: external factors can sever the score-construct link.
+    \item \textbf{Reliability} sets a floor on interpretive precision: all scores carry error.
+    \item \textbf{Cut-offs} classify — they do not diagnose. Norms may not represent the individual.
+    \item \textbf{Individual factors} (motivation, affect, culture, premorbid ability) modulate the meaning of any score.
+    \item \textbf{Context} (clinical setting, base rates, referral question) determines what the same score means.
+    \item \emph{Interpretation requires integrating all of this — not just reading off a table.}
+\end{itemize}
+```

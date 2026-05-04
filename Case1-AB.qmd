@@ -1,0 +1,104 @@
+---
+title: "Case 1 - AB"
+author: "Giorgio Arcara"
+date: ""
+format: pdf
+header-includes:
+  \usepackage{hyperref}
+  \usepackage{multirow}
+  \usepackage{booktabs}
+  \usepackage{graphicx}
+  \usepackage{hyperref}
+---
+
+## Clinical Case 4 - **AB**
+
+A current assessment of anxiety-related symptomatology and cognitive appraisal patterns of **AB** is being conducted today, at his own request. **AB** self-referred after his general practitioner, consulted repeatedly over the past year for tension headaches and intermittent insomnia, found no organic basis for the complaints and suggested a psychological evaluation. **AB** reports persistent worry and difficulty "switching off" after work, which he attributes to the demands of a recently started position.
+
+## **AB** - Background Data
+
+- Age: 25 years
+- Sex: M
+- Handedness: Right
+- Education: Bachelor's degree in Business Administration
+- Occupation: Financial analyst (employed for 14 months)
+
+## **AB** - Personal History
+
+**AB** was born and raised in a large northern Italian city. He currently shares an apartment with a flatmate. He describes his family of origin as close-knit and moderately achievement-oriented; his father is a civil engineer, his mother a secondary school teacher. He is in a stable romantic relationship of two years. He describes himself as organized and conscientious, and reports a tendency to overthink decisions. He maintains an active social life and plays recreational football on weekends. He reports no significant difficulties prior to starting his current job.
+
+## **AB** - Medical History
+
+Unremarkable perinatal and developmental history. No chronic conditions. Tension-type headaches onset approximately 12 months ago, managed with over-the-counter analgesics. No prior neurological or psychiatric evaluation. No pharmacological treatment in place. Non-smoker; alcohol consumption described as social and moderate.
+
+## **AB** - Occupational and Academic History
+
+**AB** performed above average throughout his academic career. He describes university as demanding but positive overall. Since starting his current role, he reports increased difficulty disengaging from work-related thoughts in the evening, occasional anticipatory worry before high-stakes meetings, and reduced sleep quality during busy periods. He has not missed work days and describes his performance as satisfactory; his line manager has raised no concerns. Difficulties are largely confined to the transition between work and personal time.
+
+## **AB** - Clinical Interview
+
+During the interview, **AB** is relaxed, well-organized in his account, and shows good insight. He distinguishes clearly between periods of higher and lower stress and does not endorse pervasive or uncontrollable worry. He describes his anxiety as situational (tied primarily to work deadlines) and reports that symptoms remit substantially during holidays and weekends. He denies panic attacks, marked social discomfort, or significant functional impairment. Sleep difficulties are present but he reports falling asleep within 30--40 minutes on most nights. Affect is appropriate and reactive throughout; he smiles spontaneously when discussing his relationship and leisure activities.
+
+## **AB** - Test-Based Assessment
+
+The assessment uses two instruments administered concurrently:
+
+**ADAQ** *(Anxiety and Daily-life Assessment Questionnaire)* — a fictitious 36-item self-report scale measuring generalised anxiety, worry, and associated somatic symptoms in adults. Normed on 1,240 Italian adults aged 18--65 years, with stratified sampling across gender, age, and educational level. T-scores are reported with a population mean of 50 and SD of 10; scores $\geq$ 65 are considered clinically elevated.
+
+**WASI-AN** *(Worry and Anxiety Symptom Inventory — Adult Norms)* — a fictitious 18-item self-report scale measuring worry frequency and intensity. Normed on 310 Italian adults aged 20--45 years, predominantly university-educated. T-scores reported with the same metric; scores $\geq$ 65 are considered clinically elevated.
+
+### Psychometric Properties
+
+```{=latex}
+\begin{table}[h!]
+\scriptsize
+\centering
+\begin{tabular}{lcccccc}
+\toprule
+\textbf{Scale} & \textbf{Items} & \textbf{N norm} & \textbf{Cronbach $\alpha$} & \textbf{Test-retest r} & \textbf{Convergent validity} & \textbf{Cut-off SE} \\
+\midrule
+ADAQ        & 36 & 1,240 & .91 & .83 & .74 & $z-scores \\
+WASI-AN     & 18 & 310   & .63 & .54 & .41 & $z-scores \\
+\bottomrule
+\end{tabular}
+\end{table}
+```
+
+## **AB** - Test Results
+
+```{=latex}
+\begin{table}[h!]
+\scriptsize
+\centering
+\begin{tabular}{llccccc}
+\toprule
+\textbf{Scale} & \textbf{Subscale} & \textbf{RS} & \textbf{T-score} & \textbf{Percentile} & \textbf{Clinical range} \\
+\midrule
+\multirow{3}{*}{\textit{ADAQ}}
+& Generalised Worry        & 24/48 & 53 & 62nd  & No \\
+& Somatic Symptoms         & 11/24 & 55 & 69th  & No \\
+& Functional Interference  & 8/24  & 51 & 54th  & No \\
+\midrule
+\multirow{2}{*}{\textit{WASI-AN}}
+& Worry Frequency          & 14/18 & 68 & 96th  & $\mathbf{Yes}$ \\
+& Worry Intensity          & 12/18 & 66 & 95th  & $\mathbf{Yes}$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+```
+
+## **AB** - Qualitative Observations
+
+The two instruments yield divergent results. The ADAQ places **AB** consistently within normal limits across all three subscales (T range: 51--55), with no score approaching the clinical threshold. The WASI-AN, by contrast, yields two clinically elevated subscores (T = 66--68). At face value, this discrepancy could be interpreted as evidence of a specific worry-focused profile not captured by a broader anxiety battery. However, several considerations qualify that interpretation. The clinical interview is consistent with the ADAQ profile: situational, remitting anxiety with preserved functioning, intact hedonic capacity, and no avoidance. Behavioral observation during the session does not support a clinical anxiety presentation. The discrepancy between the two instruments therefore requires scrutiny of the measures themselves before clinical conclusions are drawn.
+
+## AB - Conclusions
+
+_The two instruments yield contradictory results. How do you decide which one to trust, and why?_
+
+<!--
+_What aspects of the psychometric properties table are relevant to this decision, and why?_
+
+_What does the test-retest reliability of the WASI-AN imply about the stability and interpretability of its scores?_
+-->
+
+_Integrating test data, psychometric properties, and clinical observation, what is your overall formulation?_
