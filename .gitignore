@@ -58,3 +58,6 @@ Export_Files/*
 
 # .DS_store
 .DS_Store
+
+# Pdf
+*.pdf
