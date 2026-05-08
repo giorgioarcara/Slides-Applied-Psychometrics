@@ -1,0 +1,170 @@
+---
+title: ""
+author: "Giorgio Arcara"
+date: ""
+#format: revealjs
+format:
+  beamer:
+    theme: metropolis
+    keep-tex: false
+incremental: false
+header-includes:
+  \setbeamerfont{title}{size=\large}
+  \usepackage{hyperref}
+  \usepackage{tikz}
+  \usetikzlibrary{arrows.meta, shapes.geometric, positioning, decorations.pathreplacing}
+  \setbeamertemplate{footline}[frame number]
+---
+
+<!-- the section below is shown only if rendering is beamer from latex. (and format:revealjs is commented) -->
+
+```{=latex}
+% TITLE SLIDES
+\title{{\fontsize{15pt}{16pt}\selectfont Applied Psychometrics}:\\ studying subclinical psychopathologies\\ \vspace{1.5em} \raggedright 
+\emph{5.1 - Test Interpretation: Introduction}}
+\author{Giorgio Arcara,\\ University of Padua \\ IRCCS San Camillo, Venice}
+
+\titlegraphic{
+
+\vspace*{7cm}
+\includegraphics[scale=0.15]{Figures/LogoSanCamilloIRCCS_Unipd_alpha.png}
+\begin{center}
+\vspace{-2.2em}
+\includegraphics[scale=0.15]{Figures/CC_license_3_0.png}
+\end{center}
+}
+\date{2026}
+\maketitle
+```
+
+## Applied Psychometrics: the key word
+
+The course is on \textbf{Applied} Psychometrics
+
+\vfill \pause
+
+Application always implies a \textbf{purpose} \pause and in clinical and research contexts, that purpose is the \textbf{interpretation} of test results.
+
+\vfill \pause
+
+```{=latex}
+\begin{center}
+\begin{tikzpicture}
+  \node[draw, rounded corners, fill=gray!15, minimum width=3.5cm, minimum height=1cm, align=center] (test) {\textbf{Test}};
+  \node[draw, rounded corners, fill=gray!15, minimum width=3.5cm, minimum height=1cm, align=center, right=2.5cm of test] (interp) {\textbf{Interpretation}};
+  \draw[-{Stealth[length=3mm]}, thick] (test) -- (interp);
+\end{tikzpicture}
+\end{center}
+```
+
+
+## Scores are Interpreted, Not Read
+
+A score is not a label to be looked up in a table.
+
+\vfill \pause
+
+```{=latex}
+\begin{center}
+\begin{tikzpicture}
+
+  % "read/convert" node — crossed out
+  \node[inner sep=6pt, outer sep=0pt] (read) at (0,0) {%
+    \parbox{4cm}{\centering \emph{read} / \emph{convert}}%
+  };
+  \onslide<2->{
+  \draw[red, thick] ([yshift=1em, xshift=2em]read.south west) -- ([yshift=1em, xshift=-2em]read.south east);
+ }
+  \onslide<3->{
+
+  % "interpret" node — highlighted
+  \node[inner sep=6pt, outer sep=0pt, draw=mDarkTeal, rounded corners, fill=mDarkTeal!10] (interp) at (6,0) {%
+    \parbox{4cm}{\centering \textbf{interpret}}%
+  };
+  \draw[-{Stealth[length=3mm]}, thick, mDarkTeal] (read) -- (interp);
+}
+\end{tikzpicture}
+\end{center}
+```
+
+\vfill \pause
+
+\small \emph{Interpretation} stresses the \textbf{active role} of the psychologist. It requires \emph{judgment}, not mere table lookup.
+
+
+## No Straightforward Conversion
+
+```{=latex}
+\begin{center}
+\begin{tikzpicture}
+
+  \node[draw, rounded corners, fill=gray!15, minimum width=2.5cm, minimum height=1cm, align=center] (score) {\textbf{Score}};
+
+  % Single arrow fantasy
+  \node[draw, dashed, rounded corners, fill=red!8, minimum width=2.5cm, minimum height=1cm, align=center, right=3cm of score] (wrong) {\small \emph{single} \\ \emph{interpretation}};
+  \draw[-{Stealth[length=3mm]}, dashed, red!70!black] (score) -- node[above]{\small\color{red!70!black}not this} (wrong);
+  \draw[red, thick] ([yshift=0.35em]wrong.south west) -- ([yshift=0.35em]wrong.south east);
+
+  \pause
+
+  % Multiple arrows
+  \node[draw, rounded corners, fill=mDarkTeal!10, minimum width=2.5cm, minimum height=0.8cm, align=center, right=3cm of score, yshift=2.5cm] (i1) {\small Interpretation A};
+  \node[draw, rounded corners, fill=mDarkTeal!10, minimum width=2.5cm, minimum height=0.8cm, align=center, right=3cm of score, yshift=1.25cm] (i2) {\small Interpretation B};
+  \node[draw, rounded corners, fill=mDarkTeal!10, minimum width=2.5cm, minimum height=0.8cm, align=center, right=3cm of score, yshift=-2cm] (i3) {\small Interpretation C};
+
+  \draw[-{Stealth[length=3mm]}, thick, mDarkTeal] (score) -- (i1.west);
+  \draw[-{Stealth[length=3mm]}, thick, mDarkTeal] (score) -- (i2.west);
+  \draw[-{Stealth[length=3mm]}, thick, mDarkTeal] (score) -- (i3.west);
+
+\end{tikzpicture}
+\end{center}
+```
+
+\vfill
+
+The \emph{same score} can carry different meanings depending on context.
+
+
+## What Determines Test Interpretation?
+
+Two main dimensions shape how a score is interpreted:
+
+\vfill \pause
+
+```{=latex}
+\begin{center}
+\begin{tikzpicture}
+
+  \node[draw, rounded corners, fill=gray!15, minimum width=2.8cm, minimum height=1cm, align=center] (score) {Score};
+
+  \node[draw, rounded corners, fill=red!8, minimum width=4.2cm, minimum height=1cm, align=center, above right=0cm and 1cm of score] (clin)
+    {\parbox{4cm}{\centering \small \textbf{Integration with \\ other clinical information}}};
+
+  \node[draw, rounded corners, fill=red!8, minimum width=4.2cm, minimum height=1cm, align=center, below right=0cm and 1cm of score] (test)
+    {\parbox{4cm}{\centering \small \textbf{Strengths and limitations \\ of the test}}};
+
+\onslide<3->{
+  \node[draw, rounded corners, fill=orange!20, minimum width=2.8cm, minimum height=1cm, align=center, right=6cm of score] (interp)
+    {Interpretation};
+}
+
+  \draw[-{Stealth[length=3mm]}, thick] (score) -- (clin);
+  \draw[-{Stealth[length=3mm]}, thick] (score) -- (test);
+  
+  \onslide<3>{
+  \draw[-{Stealth[length=3mm]}, thick] (clin) -- (interp);
+  \draw[-{Stealth[length=3mm]}, thick] (test) -- (interp);
+}
+\end{tikzpicture}
+\end{center}
+```
+
+
+## Integration with Clinical Information
+
+![](Figures/Integration.png){fig-align="center" width="60%"}
+
+## Psychometric proprerties of the tests
+
+![](Figures/Psychometric_properties.png){fig-align="center" width="60%"}
+
