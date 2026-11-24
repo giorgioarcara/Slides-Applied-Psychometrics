@@ -34,7 +34,7 @@ header-includes:
 \includegraphics[scale=0.15]{Figures/LogoSanCamilloIRCCS_Unipd_alpha.png}
 \begin{center}
 \vspace{-2.2em}
-\includegraphics[scale=0.15]{Figures/CC_license_3_0.png}
+\href{https://creativecommons.org/licenses/by-nc-sa/4.0/}{\includegraphics[scale=0.15]{Figures/CC_BY-NC-SA.png}}\hspace{0.4em}{\tiny CC BY-NC-SA 4.0}
 \end{center}
 }
 \date{2026}
@@ -108,7 +108,7 @@ To detect a _meaningful_ change they test whether the \emph{change between two s
 #| out-width: "100%"
 
 
-library(ONDAutils)
+library(cnp)
 
 set.seed(10)
 X = simulate_obs(Ts = 38, n = 30, rel=0.9, mu_true = 35, sd_true = 2, label = "High Reliability")
